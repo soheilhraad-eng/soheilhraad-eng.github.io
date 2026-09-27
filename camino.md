@@ -7,6 +7,8 @@ permalink: /projects/camino/
 
 <p class="lede">An offline Spanish tutor for absolute beginners. Twenty-five lessons, a year in Salamanca, and someone to speak Spanish with.</p>
 
+<!-- A demo video goes here once it's recorded. -->
+
 ## Who it's for
 
 Camino is built for NGO learners whose first language is usually Persian, who often start with

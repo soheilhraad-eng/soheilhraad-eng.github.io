@@ -13,8 +13,8 @@ permalink: /projects/
     <h3>Camino</h3>
     <p>An offline Spanish tutor for beginners: 25 lessons, explained in Persian, English or Spanish. Nothing leaves the learner's computer.</p>
   </a>
-  <a class="card" href="{{ '/projects/netlogo/' | relative_url }}">
-    <h3>NetLogo modelling project</h3>
-    <p>An agent-based model built in NetLogo.</p>
+  <a class="card" href="{{ '/projects/banbury-model/' | relative_url }}">
+    <h3>Banbury Acculturation Model</h3>
+    <p>An agent-based NetLogo model of when migrant settlement leads to integration and when it leads to separation.</p>
   </a>
 </div>

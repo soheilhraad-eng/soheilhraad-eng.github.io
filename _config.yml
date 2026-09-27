@@ -48,6 +48,7 @@ defaults:
 exclude:
   - README.md
   - CLAUDE.md
+  - NOTES.md
   - Gemfile
   - Gemfile.lock
   - vendor

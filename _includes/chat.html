@@ -12,7 +12,17 @@
       <p class="chat-intro">{{ t.chat_intro }}</p>
     </div>
   </div>
-  <ol class="chat-log" aria-live="polite"></ol>
+  <ol class="chat-moves" aria-hidden="true">
+    {%- for m in t.chat_moves %}<li>{{ m }}</li>{% endfor -%}
+  </ol>
+  <div class="chat-window">
+    <ol class="chat-log" aria-live="polite"></ol>
+    <div class="chat-starters">
+      {%- for s in t.chat_starters %}
+      <button type="button" class="chip">{{ s }}</button>
+      {%- endfor %}
+    </div>
+  </div>
   <form class="chat-form">
     <label class="visually-hidden" for="marco-input">{{ t.chat_placeholder }}</label>
     <textarea id="marco-input" rows="2" maxlength="600" dir="auto" placeholder="{{ t.chat_placeholder }}" required></textarea>

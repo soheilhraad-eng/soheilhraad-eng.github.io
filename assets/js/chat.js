@@ -15,6 +15,9 @@
   var button = form.querySelector("button");
   var status = box.querySelector(".chat-status");
   var done = box.querySelector(".chat-done");
+  var win = box.querySelector(".chat-window");
+  var starters = box.querySelector(".chat-starters");
+  var moves = box.querySelectorAll(".chat-moves li");
 
   var today = new Date().toISOString().slice(0, 10);
   var messages = [];
@@ -60,11 +63,37 @@
     log.textContent = "";
     messages.forEach(function (m) { bubble(m.role, m.content); });
     var left = MAX - used();
+    starters.hidden = messages.length > 0;
+    // Light up the move the visitor is on (or has finished).
+    var replies = messages.filter(function (m) { return m.role === "assistant"; }).length;
+    for (var i = 0; i < moves.length; i++) {
+      moves[i].className = i < replies ? "done" : i === replies ? "current" : "";
+    }
     var finished = left <= 0 && messages.length && messages[messages.length - 1].role === "assistant";
     form.hidden = !!finished;
     done.hidden = !finished;
     status.textContent = finished ? "" : d.left.replace("{n}", digits(left));
+    scrollToEnd();
   }
+
+  // The window has a fixed height. A new message from Marco is scrolled to its first
+  // line, so it's read from the top; anything else keeps the newest line in view.
+  function scrollToEnd() {
+    var last = log.lastElementChild;
+    if (last && last.classList.contains("from-marco") && !last.classList.contains("thinking")) {
+      win.scrollTop = last.offsetTop - 12;
+    } else {
+      win.scrollTop = win.scrollHeight;
+    }
+  }
+
+  // A starter chip sends its own text as the first message.
+  starters.addEventListener("click", function (e) {
+    var chip = e.target.closest(".chip");
+    if (!chip || button.disabled) return;
+    input.value = chip.textContent.trim();
+    if (typeof form.requestSubmit === "function") form.requestSubmit(); else button.click();
+  });
 
   function busy(on) {
     input.disabled = on;
@@ -80,6 +109,7 @@
     render();
     input.value = "";
     var thinking = bubble("assistant", d.thinking, "thinking");
+    scrollToEnd();
     busy(true);
 
     fetch(d.endpoint, {

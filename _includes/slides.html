@@ -1,0 +1,16 @@
+{%- comment -%}
+A swipeable row of slides for a post. The post lists them in its front matter under
+`slides:` (file + alt), and keeps the files in /assets/img/posts/<post slug>/.
+Every slide needs alt text that says what the slide says: it's the only way a screen
+reader, or a reader with images off, gets the content.
+{%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign folder = page.image | split: "/" | pop | join: "/" -%}
+<figure class="slides">
+  <div class="slides-track" tabindex="0" role="region" aria-label="{{ t.slides_label }}">
+    {%- for s in page.slides %}
+    <img src="{{ folder | append: '/' | append: s.file | relative_url }}" alt="{{ s.alt | escape }}" width="1600" height="900" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+    {%- endfor %}
+  </div>
+  <figcaption>{{ t.slides_hint | replace: "%n", page.slides.size }}</figcaption>
+</figure>

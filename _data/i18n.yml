@@ -35,6 +35,8 @@ en:
   chat_thinking: Marco is thinking…
   chat_marco: Marco
   chat_you: You
+  slides_label: Slides
+  slides_hint: "%n slides. Swipe, scroll sideways or use the arrow keys."
   months: [January, February, March, April, May, June, July, August, September, October, November, December]
   months_short: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 es:
@@ -72,6 +74,8 @@ es:
   chat_thinking: Marco está pensando…
   chat_marco: Marco
   chat_you: Tú
+  slides_label: Diapositivas
+  slides_hint: "%n diapositivas. Desliza, desplázate a un lado o usa las flechas."
   months: [enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre]
   months_short: [ene, feb, mar, abr, may, jun, jul, ago, sept, oct, nov, dic]
 fa:
@@ -109,5 +113,7 @@ fa:
   chat_thinking: مارکو در حال فکر کردن است…
   chat_marco: مارکو
   chat_you: شما
+  slides_label: اسلایدها
+  slides_hint: "%n اسلاید. بکشید، به پهلو اسکرول کنید یا از کلیدهای جهت‌نما استفاده کنید."
   months: [ژانویه, فوریه, مارس, آوریل, مه, ژوئن, ژوئیه, اوت, سپتامبر, اکتبر, نوامبر, دسامبر]
   months_short: [ژانویه, فوریه, مارس, آوریل, مه, ژوئن, ژوئیه, اوت, سپتامبر, اکتبر, نوامبر, دسامبر]

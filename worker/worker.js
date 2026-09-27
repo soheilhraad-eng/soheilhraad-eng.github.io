@@ -21,7 +21,8 @@ const MAX_MARCO_CHARS = 2400;
 const MAX_REPLY_TOKENS = 500;
 
 const ALLOWED_ORIGINS = new Set([
-  "https://soheilhraad-eng.github.io",
+  "https://soheilhrad.github.io",
+  "https://soheilhraad-eng.github.io", // the old address; remove once the move is done
   "http://localhost:4000",
   "http://127.0.0.1:4000",
 ]);

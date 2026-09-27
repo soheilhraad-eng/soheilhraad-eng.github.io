@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Banbury Acculturation Model
-description: An agent-based model in NetLogo of how migrant settlement produces integration or separation, through host receptivity, individual preparedness and institutional capacity.
-permalink: /projects/banbury-model/
-ref: banbury
+title: Small Town
+description: A small town, simulated in NetLogo. Newcomers settle, ties form, and integration or separation emerges from host receptivity, individual preparedness and the capacity of local services.
+permalink: /projects/small-town/
+ref: small-town
 ---
 
-<p class="lede">An agent-based model, built in NetLogo, of when migrant settlement leads to integration and when it leads to separation.</p>
+<p class="lede">A small town, simulated in NetLogo. Newcomers arrive, ties form, and the town shows when settlement leads to integration and when it leads to separation.</p>
 
 ## The question
 
@@ -16,7 +16,7 @@ the balance between integration and separation?
 
 ## How it works
 
-Migrants and hosts are agents who form social ties over time. A migrant's outcome isn't
+The model is a small town. Newcomers settle among long-standing residents, and every person in it is an agent who forms social ties over time. The town's local services can take only so many people at once. A migrant's outcome isn't
 assigned or scored. It's **read from their network**: whom they are actually connected to,
 within their own community and across to the host community. Integration, separation and the
 other outcomes are patterns in those ties, not labels.

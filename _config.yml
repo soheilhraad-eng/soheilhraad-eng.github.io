@@ -1,6 +1,6 @@
 title: Sohi
 # Placeholder until the throughline is settled — see "Still open" in README.md.
-description: Projects, experiments and notes.
+description: AI applications, multilingual tools and simulations, built remotely with creative people wherever they work.
 url: "https://soheilhraad-eng.github.io"
 baseurl: ""
 lang: en
@@ -11,6 +11,10 @@ lang: en
 author:
   name: Sohi
   github: soheilhraad-eng
+
+# Where the home page's "Start a project" button goes. Change this to an email
+# (mailto:you@example.com), a contact form or LinkedIn once you've picked one.
+contact_url: https://github.com/soheilhraad-eng
 
 permalink: /blog/:year/:month/:title/
 

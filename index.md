@@ -5,13 +5,14 @@ ref: home
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 <section class="hero">
-  <h1>Hi, I'm Sohi.</h1>
-  <p class="lede">I build things to find out how they work: AI apps, language tools and simulations.</p>
+  <p class="eyebrow">Open to collaboration</p>
+  <h1>Building with creative minds, wherever they work.</h1>
+  <p class="lede">AI applications, multilingual tools and simulations, designed and built end to end, remotely, in English, Spanish and Persian.</p>
+  <p class="actions">
+    <a class="button" href="{{ site.contact_url }}">Start a project {{ t.arrow }}</a>
+    <a class="button secondary" href="{{ t.prefix | append: '/projects/' | relative_url }}">See the work</a>
+  </p>
 </section>
 
 <h2>{{ t.projects }}</h2>
 {% include project-cards.html %}
-<p><a href="{{ t.prefix | append: '/projects/' | relative_url }}">{{ t.all_projects }} {{ t.arrow }}</a></p>
-
-<h2>{{ t.writing }}</h2>
-{% include post-list.html limit=5 %}

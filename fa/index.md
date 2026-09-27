@@ -6,13 +6,14 @@ permalink: /fa/
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 <section class="hero">
-  <h1>سلام، من سهی هستم.</h1>
-  <p class="lede">چیزهایی می‌سازم تا بفهمم چطور کار می‌کنند: اپلیکیشن‌های هوش مصنوعی، ابزارهای یادگیری زبان و شبیه‌سازی‌ها.</p>
+  <p class="eyebrow">آماده همکاری</p>
+  <h1>ساختن همراه با ذهن‌های خلاق، هر جا که کار کنند.</h1>
+  <p class="lede">اپلیکیشن‌های هوش مصنوعی، ابزارهای چندزبانه و شبیه‌سازی‌ها، طراحی‌شده و ساخته‌شده از ابتدا تا انتها، از راه دور، به فارسی، انگلیسی و اسپانیایی.</p>
+  <p class="actions">
+    <a class="button" href="{{ site.contact_url }}">شروع یک پروژه {{ t.arrow }}</a>
+    <a class="button secondary" href="{{ t.prefix | append: '/projects/' | relative_url }}">دیدن کارها</a>
+  </p>
 </section>
 
 <h2>{{ t.projects }}</h2>
 {% include project-cards.html %}
-<p><a href="{{ t.prefix | append: '/projects/' | relative_url }}">{{ t.all_projects }} {{ t.arrow }}</a></p>
-
-<h2>{{ t.writing }}</h2>
-{% include post-list.html limit=5 %}

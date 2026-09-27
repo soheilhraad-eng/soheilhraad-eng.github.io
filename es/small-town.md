@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Modelo de aculturación de Banbury
-description: Un modelo basado en agentes, hecho en NetLogo, sobre cómo el asentamiento de migrantes produce integración o separación, según la receptividad de la sociedad de acogida, la preparación individual y la capacidad de las instituciones.
-permalink: /es/projects/banbury-model/
-ref: banbury
+title: Pueblo pequeño
+description: Un pueblo pequeño, simulado en NetLogo. Llegan recién llegados, se crean vínculos y la integración o la separación surgen de la receptividad de los vecinos, la preparación individual y la capacidad de los servicios locales.
+permalink: /es/projects/small-town/
+ref: small-town
 ---
 
-<p class="lede">Un modelo basado en agentes, hecho en NetLogo, sobre cuándo el asentamiento de migrantes lleva a la integración y cuándo a la separación.</p>
+<p class="lede">Un pueblo pequeño, simulado en NetLogo. Llega gente nueva, se crean vínculos y el pueblo muestra cuándo el asentamiento lleva a la integración y cuándo a la separación.</p>
 
 ## La pregunta
 
@@ -16,7 +16,7 @@ de esas palancas inclina de verdad la balanza entre integración y separación?
 
 ## Cómo funciona
 
-Migrantes y población de acogida son agentes que crean vínculos sociales con el tiempo. El
+El modelo es un pueblo pequeño. Los recién llegados se asientan entre los vecinos de siempre, y cada persona es un agente que crea vínculos sociales con el tiempo. Los servicios locales del pueblo solo pueden atender a cierto número de personas a la vez. El
 resultado de cada migrante no se asigna ni se puntúa: **se lee en su red**, es decir, con quién
 está realmente conectado, dentro de su propia comunidad y con la sociedad de acogida. La
 integración, la separación y los demás resultados son patrones en esos vínculos, no etiquetas.

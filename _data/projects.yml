@@ -20,13 +20,13 @@
   fa:
     title: کامینو
     blurb: معلم آفلاین اسپانیایی برای مبتدی‌ها، با ۲۵ درس که به فارسی، انگلیسی یا اسپانیایی توضیح داده می‌شوند. هیچ چیزی از رایانه زبان‌آموز بیرون نمی‌رود.
-- slug: banbury-model
+- slug: small-town
   en:
-    title: Banbury Acculturation Model
-    blurb: An agent-based NetLogo model of when migrant settlement leads to integration and when it leads to separation.
+    title: Small Town
+    blurb: A small town simulated in NetLogo, showing when newcomers' settlement leads to integration and when it leads to separation.
   es:
-    title: Modelo de aculturación de Banbury
-    blurb: Un modelo basado en agentes, hecho en NetLogo, sobre cuándo el asentamiento de migrantes lleva a la integración y cuándo a la separación.
+    title: Pueblo pequeño
+    blurb: Un pueblo pequeño simulado en NetLogo, que muestra cuándo el asentamiento de los recién llegados lleva a la integración y cuándo a la separación.
   fa:
-    title: مدل فرهنگ‌پذیری بنبری
-    blurb: مدلی عامل‌بنیان در NetLogo درباره اینکه اسکان مهاجران چه زمانی به یکپارچگی می‌انجامد و چه زمانی به جدایی.
+    title: شهر کوچک
+    blurb: شهری کوچک، شبیه‌سازی‌شده در NetLogo، که نشان می‌دهد اسکان تازه‌واردها چه زمانی به یکپارچگی می‌انجامد و چه زمانی به جدایی.

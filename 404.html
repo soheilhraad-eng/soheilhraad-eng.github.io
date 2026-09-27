@@ -3,7 +3,21 @@ layout: default
 title: Page not found
 permalink: /404.html
 ---
-<article class="page">
-  <h1>Page not found</h1>
-  <p>That page doesn't exist. <a href="{{ '/' | relative_url }}">Back to the home page →</a></p>
+{%- comment -%}
+GitHub Pages serves this one file for every missing address in every language, so it
+says the same thing three times, each block in its own language and direction.
+{%- endcomment -%}
+<article class="page not-found">
+  <section lang="en" dir="ltr">
+    <h1>Page not found</h1>
+    <p>That page doesn't exist. <a href="{{ '/' | relative_url }}">Go to the home page →</a></p>
+  </section>
+  <section lang="es" dir="ltr">
+    <h2>Página no encontrada</h2>
+    <p>Esa página no existe. <a href="{{ '/es/' | relative_url }}">Ir a la página de inicio →</a></p>
+  </section>
+  <section lang="fa" dir="rtl">
+    <h2>صفحه پیدا نشد</h2>
+    <p>این صفحه وجود ندارد. <a href="{{ '/fa/' | relative_url }}">رفتن به صفحه اصلی ←</a></p>
+  </section>
 </article>

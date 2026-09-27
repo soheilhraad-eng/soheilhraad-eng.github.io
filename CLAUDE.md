@@ -29,7 +29,7 @@ and must be flagged as one when handing back.
 English at `/`, Spanish at `/es/`, Persian at `/fa/`. Every page exists in all three, linked
 by a shared `ref:`; every key in `_data/i18n.yml` and every card in `_data/projects.yml`
 needs `en`, `es` and `fa`. Spanish is Spain's Spanish. Persian is right to left and uses
-Vazirmatn (loaded only on `/fa/` pages); write it without letter-spacing or italics.
+Vazirmatn, self-hosted in `assets/fonts/` (no Google Fonts or other third-party requests); write it without letter-spacing or italics.
 
 ## Check before pushing
 

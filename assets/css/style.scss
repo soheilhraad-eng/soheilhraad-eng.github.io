@@ -30,13 +30,27 @@
 }
 
 // Persian: Georgia and the system UI fonts have no (or poor) Arabic-script glyphs, so both
-// the body and the headings use Vazirmatn, loaded only on /fa/ pages. Arabic-script letters
+// the body and the headings use Vazirmatn. It's served from this site, not Google Fonts, so
+// visitors' browsers contact nobody else. A browser only downloads it on a page that uses it
+// (the /fa/ pages preload it). SIL Open Font License: assets/fonts/OFL-Vazirmatn.txt.
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+ Arabic-script letters
 // join, so no letter-spacing or synthetic italics there.
 :root[lang="fa"] {
   --font-body: "Vazirmatn", system-ui, sans-serif;
   --font-display: "Vazirmatn", system-ui, sans-serif;
 }
 [lang="fa"] em, [lang="fa"] i { font-style: normal; }
+// A Persian block inside a page in another language (the 404) still needs the font.
+:not(:root)[lang="fa"] { font-family: "Vazirmatn", system-ui, sans-serif; }
+
+.not-found section + section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.not-found section[dir="rtl"] { text-align: right; }
 
 *, *::before, *::after { box-sizing: border-box; }
 

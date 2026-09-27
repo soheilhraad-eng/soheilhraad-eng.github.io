@@ -25,9 +25,14 @@ plugins:
 # three is in _data/i18n.yml.
 languages: [en, es, fa]
 
+# The link-preview picture used when a page is shared (WhatsApp, LinkedIn, ...). A page can
+# set its own `image:` to override it.
+twitter:
+  card: summary_large_image
+
 defaults:
   - scope: { path: "" }
-    values: { lang: en, locale: en_GB }
+    values: { lang: en, locale: en_GB, image: /assets/img/og.png }
   - scope: { path: "es" }
     values: { lang: es, locale: es_ES }
   - scope: { path: "fa" }

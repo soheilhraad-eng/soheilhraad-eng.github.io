@@ -15,6 +15,23 @@
   <ol class="chat-moves" aria-hidden="true">
     {%- for m in t.chat_moves %}<li>{{ m }}</li>{% endfor -%}
   </ol>
+  <div class="idea-card-wrap" hidden>
+    <article class="idea-card" aria-labelledby="idea-card-name">
+      <p class="idea-card-label">{{ t.chat_ui.card }}</p>
+      <h3 id="idea-card-name" class="idea-card-name" dir="auto"></h3>
+      <p class="idea-card-pitch" dir="auto"></p>
+      <p class="idea-card-h">{{ t.chat_ui.steps }}</p>
+      <ol class="idea-card-steps" dir="auto"></ol>
+      <p class="idea-card-h">{{ t.chat_ui.risk }}</p>
+      <p class="idea-card-risk" dir="auto"></p>
+      <p class="idea-card-foot">{{ t.chat_ui.ai_mark }} · {{ site.url | remove: "https://" }}</p>
+    </article>
+    <div class="idea-card-actions">
+      <button type="button" class="button card-download">{{ t.chat_ui.download }}</button>
+      <button type="button" class="button secondary card-copy">{{ t.chat_ui.copy }}</button>
+      <a class="button secondary" href="{{ site.contact_url }}">{{ t.start_project }} {{ t.arrow }}</a>
+    </div>
+  </div>
   <div class="chat-window">
     <ol class="chat-log" aria-live="polite"></ol>
     <div class="chat-starters">
@@ -23,6 +40,7 @@
       {%- endfor %}
     </div>
   </div>
+  <p class="card-toggle-row"><button type="button" class="linkish card-toggle" hidden>{{ t.chat_ui.show_chat }}</button></p>
   <form class="chat-form">
     <label class="visually-hidden" for="marco-input">{{ t.chat_placeholder }}</label>
     <textarea id="marco-input" rows="1" maxlength="600" dir="auto" placeholder="{{ t.chat_placeholder }}" required></textarea>
@@ -32,5 +50,6 @@
   <p class="chat-done" hidden>{{ t.chat_done }} <a class="button" href="{{ site.contact_url }}">{{ t.start_project }} {{ t.arrow }}</a></p>
   <p class="chat-note">{{ t.chat_disclosure }}</p>
 </section>
+<script type="application/json" id="marco-ui">{{ t.chat_ui | jsonify }}</script>
 <script src="{{ '/assets/js/chat.js' | relative_url }}" defer></script>
 {%- endif -%}

@@ -244,6 +244,56 @@ pre code { background: none; padding: 0; }
 .chat-done .button { padding: 0.45rem 0.9rem; }
 .chat-note { margin: 0.6rem 0 0; font-size: 0.72rem; line-height: 1.45; color: var(--muted); border-top: 1px solid var(--border); padding-top: 0.5rem; }
 
+.chat-window[hidden], .idea-card-wrap[hidden] { display: none; }
+
+// Move 1: the sparks, as cards to pick from.
+.msg-body > p { margin: 0 0 0.4rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.sparks { display: grid; gap: 0.4rem; margin: 0.5rem 0 0.2rem; }
+.spark {
+  display: block; width: 100%; text-align: start; font: inherit; color: var(--text); cursor: pointer;
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.5rem 0.7rem;
+}
+.spark strong { display: block; font-size: 0.9rem; }
+.spark span { display: block; font-size: 0.84rem; color: var(--muted); line-height: 1.4; }
+.spark:hover:not(:disabled) { border-color: var(--accent); }
+.spark:hover:not(:disabled) strong { color: var(--accent); }
+.spark:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.spark:disabled { cursor: default; opacity: 0.75; }
+.msg-body .hint { margin: 0.4rem 0 0; font-size: 0.78rem; color: var(--muted); }
+
+// Move 2: the idea worked out.
+.dev-title { margin: 0 0 0.4rem; font-size: 1rem; }
+.dev { margin: 0; display: grid; gap: 0.1rem 0; }
+.dev dt { font-size: 0.72rem; font-weight: 600; color: var(--accent); margin-top: 0.35rem; }
+.dev dd { margin: 0; }
+.dev-question { margin: 0.6rem 0 0 !important; font-weight: 600; }
+.make-card { margin-top: 0.6rem; border: 0; font: inherit; font-weight: 600; font-size: 0.88rem; cursor: pointer; padding: 0.45rem 0.9rem; }
+.make-card:disabled { opacity: 0.5; cursor: default; }
+
+// Move 3: the idea card, in place of the conversation window.
+.idea-card-wrap { margin-top: 0.6rem; }
+.idea-card {
+  position: relative; padding: 1.4rem 1.5rem 1.1rem; border-radius: var(--radius);
+  background: var(--bg); border: 1px solid var(--border); overflow: hidden;
+}
+.idea-card::before { content: ""; position: absolute; inset-inline-start: 1.5rem; top: 0; width: 3rem; height: 4px; background: var(--accent); }
+.idea-card-label, .idea-card-h { margin: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.idea-card-name { margin: 0.3rem 0 0.2rem; font-size: 1.6rem; }
+.idea-card-pitch { margin: 0 0 0.9rem; color: var(--muted); }
+.idea-card-steps { margin: 0.25rem 0 0.8rem; padding-inline-start: 1.3rem; }
+.idea-card-steps li { margin: 0.15rem 0; }
+.idea-card-risk { margin: 0.25rem 0 0.9rem; }
+.idea-card-foot { margin: 0; padding-top: 0.6rem; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--muted); }
+[lang="fa"] .idea-card-label, [lang="fa"] .idea-card-h { letter-spacing: 0; }
+[lang="fa"] ol { list-style-type: persian; }
+.idea-card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.7rem; }
+.idea-card-actions .button { border: 0; font: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer; padding: 0.45rem 0.9rem; }
+.idea-card-actions .button.secondary { font-weight: 500; }
+.card-toggle-row { margin: 0.3rem 0 0; text-align: end; line-height: 1; }
+.linkish { background: none; border: 0; padding: 0.2rem 0; font: inherit; font-size: 0.8rem; color: var(--muted); text-decoration: underline; cursor: pointer; }
+.linkish[hidden] { display: none; }
+.linkish:hover { color: var(--accent); }
+
 @media (max-width: 520px) {
   .chat { padding: 0.9rem; }
   .chat-window { height: 18rem; }

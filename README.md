@@ -114,8 +114,6 @@ reason a new post goes missing. Set `timezone:` in `_config.yml` so "now" is you
 
 ## Still open
 
-- **Deploy Marco** (`worker/README.md`) and set `chat_endpoint:` in `_config.yml`. Until
-  then the chat box stays hidden.
 
 - **Review the Spanish and Persian text**, which was drafted by Claude. In particular, check
   that «سهی» is how you write your name in Persian.

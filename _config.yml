@@ -17,7 +17,7 @@ author:
 contact_url: https://github.com/soheilhraad-eng
 
 # The address of the Marco chat Worker (see worker/README.md). Empty = the chat box is hidden.
-chat_endpoint: ""
+chat_endpoint: "https://marco.soheilhraad-0e6.workers.dev/"
 
 permalink: /blog/:year/:month/:title/
 

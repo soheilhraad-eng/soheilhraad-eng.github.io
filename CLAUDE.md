@@ -1,0 +1,32 @@
+# CLAUDE.md
+
+Operating rules for this repo. Setup and editing instructions live in `README.md`.
+
+## This repo is public, and everything in it is published
+
+Every file pushed here is readable by anyone on GitHub, and every page is on the open web at
+https://soheilhraad-eng.github.io. Treat every commit as publishing.
+
+- **This file is public too.** Describe categories to leave out; never give real examples
+  of what was left out.
+- **Filter source material before anything reaches a page or a commit.** When writing from
+  a document Sohi shares (plans, notes, drafts, private repos), publish only what describes
+  the work itself. Leave out personal plans and ambitions, anything about applications,
+  institutions or people Sohi is approaching, money, private timelines, private contact
+  details, anything marked internal, and anything written as a note to self.
+- **Never commit the source documents themselves**, and never quote them wholesale.
+- **When unsure whether something is sensitive, leave it out and ask.** Adding it later costs
+  nothing; removing it later doesn't remove it from git history or from caches.
+- **Private repos stay private.** Don't link to them, and don't copy their code or internal docs here.
+
+## Writing about Sohi
+
+Don't invent facts about Sohi. Wording about them that hasn't come from them is a placeholder,
+and must be flagged as one when handing back.
+
+## Check before pushing
+
+```
+bundle exec jekyll build
+```
+It must finish with no warnings. `_config.yml` excludes `CLAUDE.md` from the built site.

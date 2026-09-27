@@ -14,7 +14,7 @@
     <nav class="langs" aria-label="{{ t.lang_label }}">
       {%- for l in site.languages -%}
         {%- assign twin = nil -%}
-        {%- if page.ref -%}{%- assign twin = site.pages | where: "ref", page.ref | where: "lang", l | first -%}{%- endif -%}
+        {%- if page.ref -%}{%- assign twin = site.pages | concat: site.posts | where: "ref", page.ref | where: "lang", l | first -%}{%- endif -%}
         {%- if twin -%}{%- assign href = twin.url -%}{%- else -%}{%- assign href = site.data.i18n[l].prefix | append: "/" -%}{%- endif %}
       <a href="{{ href | relative_url }}" hreflang="{{ l }}" lang="{{ l }}"{% if l == page.lang %} aria-current="true"{% endif %}>{{ site.data.i18n[l].name }}</a>
       {%- endfor %}

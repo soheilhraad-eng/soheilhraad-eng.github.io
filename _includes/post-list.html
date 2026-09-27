@@ -1,9 +1,23 @@
+{%- comment -%}
+The blog list for the current page's language. Posts that translate each other share a
+`ref`; a list shows the version in its own language, and falls back to another language
+(tagged) only when no translation exists. `limit` caps how many are shown.
+{%- endcomment -%}
 {%- assign t = site.data.i18n[page.lang] -%}
-{%- if site.posts.size > 0 -%}
-<ul class="post-list">
-  {%- for post in site.posts limit: include.limit -%}
+{%- assign shown = 0 -%}
+{%- capture items -%}
+  {%- for post in site.posts -%}
+    {%- if include.limit and shown >= include.limit -%}{%- break -%}{%- endif -%}
+    {%- if post.lang != page.lang and post.ref -%}
+      {%- assign own = site.posts | where: "ref", post.ref | where: "lang", page.lang | first -%}
+      {%- if own -%}{%- continue -%}{%- endif -%}
+    {%- endif -%}
+    {%- assign shown = shown | plus: 1 %}
   <li>{% include date.html date=post.date short=true %} <a href="{{ post.url | relative_url }}"{% if post.lang != page.lang %} hreflang="{{ post.lang }}" lang="{{ post.lang }}" dir="{{ site.data.i18n[post.lang].dir }}"{% endif %}>{{ post.title }}</a>{% if post.lang != page.lang and post.lang == "en" %} <span class="tag">{{ t.in_english }}</span>{% endif %}</li>
   {%- endfor -%}
+{%- endcapture -%}
+{%- if shown > 0 -%}
+<ul class="post-list">{{ items }}
 </ul>
 {%- else -%}
 <p>{{ t.nothing_yet }}</p>

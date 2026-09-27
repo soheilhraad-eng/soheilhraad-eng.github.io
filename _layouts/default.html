@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#15130f" media="(prefers-color-scheme: dark)">
   {% feed_meta %}
   {%- if page.ref -%}
-  {%- assign twins = site.pages | where: "ref", page.ref -%}
+  {%- assign twins = site.pages | concat: site.posts | where: "ref", page.ref -%}
   {%- for twin in twins %}
   <link rel="alternate" hreflang="{{ twin.lang }}" href="{{ twin.url | absolute_url }}">
   {%- if twin.lang == "en" %}

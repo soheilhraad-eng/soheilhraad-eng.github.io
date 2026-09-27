@@ -37,6 +37,7 @@ en:
   chat_you: You
   slides_label: Slides
   slides_hint: "%n slides. Swipe, scroll sideways or use the arrow keys."
+  slides_in_english: The slides are in English.
   months: [January, February, March, April, May, June, July, August, September, October, November, December]
   months_short: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 es:
@@ -76,6 +77,7 @@ es:
   chat_you: Tú
   slides_label: Diapositivas
   slides_hint: "%n diapositivas. Desliza, desplázate a un lado o usa las flechas."
+  slides_in_english: Las diapositivas están en inglés.
   months: [enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre]
   months_short: [ene, feb, mar, abr, may, jun, jul, ago, sept, oct, nov, dic]
 fa:
@@ -115,5 +117,6 @@ fa:
   chat_you: شما
   slides_label: اسلایدها
   slides_hint: "%n اسلاید. بکشید، به پهلو اسکرول کنید یا از کلیدهای جهت‌نما استفاده کنید."
+  slides_in_english: اسلایدها به انگلیسی هستند.
   months: [ژانویه, فوریه, مارس, آوریل, مه, ژوئن, ژوئیه, اوت, سپتامبر, اکتبر, نوامبر, دسامبر]
   months_short: [ژانویه, فوریه, مارس, آوریل, مه, ژوئن, ژوئیه, اوت, سپتامبر, اکتبر, نوامبر, دسامبر]

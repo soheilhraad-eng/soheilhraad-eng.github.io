@@ -12,5 +12,7 @@ reader, or a reader with images off, gets the content.
     <img src="{{ folder | append: '/' | append: s.file | relative_url }}" alt="{{ s.alt | escape }}" width="1600" height="900" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
     {%- endfor %}
   </div>
-  <figcaption>{{ t.slides_hint | replace: "%n", page.slides.size }}</figcaption>
+  {%- assign n = page.slides.size | append: "" -%}
+  {%- if page.lang == "fa" -%}{%- assign n = n | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}{%- endif %}
+  <figcaption>{{ t.slides_hint | replace: "%n", n }}{% if page.slides_lang and page.slides_lang != page.lang %} {{ t.slides_in_english }}{% endif %}</figcaption>
 </figure>

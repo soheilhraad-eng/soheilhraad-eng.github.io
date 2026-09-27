@@ -99,9 +99,20 @@ don't collide.
 
 ## Add a blog post
 
-Copy `_posts/2026-09-27-hello-world.md`, rename it `YYYY-MM-DD-title.md`, and edit the
-title and text. A post whose date is later than now doesn't appear, which is the usual
-reason a new post goes missing. Set `timezone:` in `_config.yml` so "now" is your time.
+Create `_posts/YYYY-MM-DD-title.md` with a `title:` at the top (see
+`_posts/2025-11-23-the-wall-of-paper.md`). A post whose date is later than now doesn't
+appear, which is the usual reason a new post goes missing. Set `timezone:` in `_config.yml`
+so "now" is your time.
+
+**Translations:** put the Spanish and Persian versions in `es/_posts/` and `fa/_posts/` with
+the same file name, give all three the same `ref:`, and give the translations a `permalink:`
+under `/es/blog/` or `/fa/blog/`. Each language's blog then lists its own version, and the
+language switcher on a post goes to the same post in the other language. A post without a
+translation appears in every list, marked with its language.
+
+**Slides:** list them in the post's front matter under `slides:` (a `file` and an `alt` text
+saying what each slide says), keep the images in `assets/img/posts/<name>/`, set `image:` to
+the first one, and put `{% include slides.html %}` where the carousel should go.
 
 ## Add a project
 

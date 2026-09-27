@@ -1,6 +1,8 @@
 ---
 layout: post
 title: The Wall of Paper
+ref: wall-of-paper
+slides_lang: en
 description: "Sometimes the barrier to belonging isn't emotional. It is structural: the exhaustion of being physically present but structurally excluded."
 image: /assets/img/posts/wall-of-paper/slide1.jpg
 slides:

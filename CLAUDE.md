@@ -11,9 +11,8 @@ https://soheilhraad-eng.github.io. Treat every commit as publishing.
   of what was left out.
 - **Filter source material before anything reaches a page or a commit.** When writing from
   a document Sohi shares (plans, notes, drafts, private repos), publish only what describes
-  the work itself. Leave out personal plans and ambitions, anything about applications,
-  institutions or people Sohi is approaching, money, private timelines, private contact
-  details, anything marked internal, and anything written as a note to self.
+  the work itself. Leave out anything personal: plans, correspondence, money, dates,
+  contact details, anything marked internal, and anything written as a note to self.
 - **Never commit the source documents themselves**, and never quote them wholesale.
 - **When unsure whether something is sensitive, leave it out and ask.** Adding it later costs
   nothing; removing it later doesn't remove it from git history or from caches.

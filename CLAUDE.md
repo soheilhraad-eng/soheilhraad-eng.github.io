@@ -16,6 +16,8 @@ https://soheilhraad-eng.github.io. Treat every commit as publishing.
 - **Never commit the source documents themselves**, and never quote them wholesale.
 - **When unsure whether something is sensitive, leave it out and ask.** Adding it later costs
   nothing; removing it later doesn't remove it from git history or from caches.
+- **To-dos and working notes go in `NOTES.md`**, which is gitignored, never in `README.md` or
+  any other committed file.
 - **Private repos stay private.** Don't link to them, and don't copy their code or internal docs here.
 
 ## Writing about Sohi

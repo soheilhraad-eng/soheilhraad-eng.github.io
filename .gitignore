@@ -6,3 +6,5 @@ _site/
 vendor/
 # Differs between Windows and GitHub's Linux builders; GitHub Pages ignores it anyway.
 Gemfile.lock
+# Private to-do list and working notes. This repo is public; these stay on your computer.
+NOTES.md

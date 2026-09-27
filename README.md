@@ -112,13 +112,8 @@ reason a new post goes missing. Set `timezone:` in `_config.yml` so "now" is you
 2. Add a card for it to `_data/projects.yml`, with `slug: my-thing` and a title and one-line
    summary in each language. It appears on the home and Projects pages in all three languages.
 
-## Still open
+## Private notes
 
-
-- **Review the Spanish and Persian text**, which was drafted by Claude. In particular, check
-  that «سهی» is how you write your name in Persian.
-- `about.md`, in all three languages: still placeholder wording.
-- `_config.yml`: set `contact_url:` to how you want people to reach you (it's the home
-  page's "Start a project" button, and points to GitHub for now), and set `timezone:`.
-- `assets/css/style.scss`: a starting palette, worth revisiting once the throughline
-  (and any visual identity that follows from it) is settled.
+Keep your own to-do list in `NOTES.md` in this folder. Git ignores that file, so it
+stays on your computer and never reaches GitHub. Remember this repo is public:
+anything you commit, anyone can read.

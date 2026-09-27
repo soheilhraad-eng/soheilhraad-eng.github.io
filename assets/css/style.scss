@@ -29,6 +29,15 @@
   }
 }
 
+// Persian: Georgia and the system UI fonts have no (or poor) Arabic-script glyphs, so both
+// the body and the headings use Vazirmatn, loaded only on /fa/ pages. Arabic-script letters
+// join, so no letter-spacing or synthetic italics there.
+:root[lang="fa"] {
+  --font-body: "Vazirmatn", system-ui, sans-serif;
+  --font-display: "Vazirmatn", system-ui, sans-serif;
+}
+[lang="fa"] em, [lang="fa"] i { font-style: normal; }
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }
@@ -70,6 +79,9 @@ pre code { background: none; padding: 0; }
 }
 .brand { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--text); text-decoration: none; }
 .bar nav { display: flex; gap: 1.25rem; }
+.bar .langs { gap: 0.75rem; font-size: 0.9rem; }
+.bar .langs a[aria-current] { color: var(--text); text-decoration: none; font-weight: 600; }
+.bar .langs a[aria-current]:hover { cursor: default; }
 .bar nav a { color: var(--muted); text-decoration: none; }
 .bar nav a:hover, .bar nav a[aria-current="page"] { color: var(--text); }
 .bar nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); }
@@ -98,6 +110,7 @@ pre code { background: none; padding: 0; }
 .post-list time { min-width: 7rem; }
 .meta { margin-top: -0.5rem; }
 .back { margin-top: 3rem; }
+.tag { font-size: 0.8rem; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 0 0.5em; align-self: center; }
 
 .site-footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
 .site-footer .wrap { padding-top: 1.5rem; padding-bottom: 2rem; }

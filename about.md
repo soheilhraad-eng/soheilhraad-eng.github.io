@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+ref: about
 ---
 
 <!-- Still open: the throughline — one sentence connecting the projects. When it exists,

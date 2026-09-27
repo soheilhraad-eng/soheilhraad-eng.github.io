@@ -1,0 +1,12 @@
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign m = include.date | date: "%-m" | minus: 1 -%}
+{%- if include.short -%}{%- assign month = t.months_short[m] -%}{%- else -%}{%- assign month = t.months[m] -%}{%- endif -%}
+{%- if page.lang == "es" -%}
+  {%- capture out -%}{{ include.date | date: "%-d" }} {% unless include.short %}de {% endunless %}{{ month }}{% unless include.short %} de{% endunless %} {{ include.date | date: "%Y" }}{%- endcapture -%}
+{%- else -%}
+  {%- capture out -%}{{ include.date | date: "%-d" }} {{ month }} {{ include.date | date: "%Y" }}{%- endcapture -%}
+{%- endif -%}
+{%- if page.lang == "fa" -%}
+  {%- assign out = out | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
+{%- endif -%}
+<time datetime="{{ include.date | date_to_xmlschema }}">{{ out }}</time>

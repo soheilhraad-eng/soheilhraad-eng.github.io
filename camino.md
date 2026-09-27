@@ -3,6 +3,7 @@ layout: page
 title: Camino
 description: An offline Spanish tutor for absolute beginners. It runs entirely on the learner's own computer, with no account and no internet after setup.
 permalink: /projects/camino/
+ref: camino
 ---
 
 <p class="lede">An offline Spanish tutor for absolute beginners. Twenty-five lessons, a year in Salamanca, and someone to speak Spanish with.</p>

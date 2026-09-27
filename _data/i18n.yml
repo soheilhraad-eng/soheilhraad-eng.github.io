@@ -1,0 +1,68 @@
+# Interface text, one block per language. Every key must exist in all three.
+# `prefix` is where that language's pages live; `arrow` points "forward" for its reading direction.
+en:
+  name: English
+  dir: ltr
+  locale: en_GB
+  prefix: ""
+  arrow: "→"
+  back_arrow: "←"
+  nav_projects: Projects
+  nav_blog: Blog
+  nav_about: About
+  nav_label: Main
+  lang_label: Language
+  projects: Projects
+  all_projects: All projects
+  writing: Writing
+  nothing_yet: Nothing yet.
+  all_posts: All posts
+  in_english: in English
+  try_live: Try it live
+  footer_rss: RSS
+  months: [January, February, March, April, May, June, July, August, September, October, November, December]
+  months_short: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+es:
+  name: Español
+  dir: ltr
+  locale: es_ES
+  prefix: /es
+  arrow: "→"
+  back_arrow: "←"
+  nav_projects: Proyectos
+  nav_blog: Blog
+  nav_about: Sobre mí
+  nav_label: Principal
+  lang_label: Idioma
+  projects: Proyectos
+  all_projects: Todos los proyectos
+  writing: Escritos
+  nothing_yet: Todavía nada.
+  all_posts: Todas las entradas
+  in_english: en inglés
+  try_live: Pruébalo
+  footer_rss: RSS
+  months: [enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre]
+  months_short: [ene, feb, mar, abr, may, jun, jul, ago, sept, oct, nov, dic]
+fa:
+  name: فارسی
+  dir: rtl
+  locale: fa_IR
+  prefix: /fa
+  arrow: "←"
+  back_arrow: "→"
+  nav_projects: پروژه‌ها
+  nav_blog: وبلاگ
+  nav_about: درباره من
+  nav_label: اصلی
+  lang_label: زبان
+  projects: پروژه‌ها
+  all_projects: همه پروژه‌ها
+  writing: نوشته‌ها
+  nothing_yet: هنوز چیزی نیست.
+  all_posts: همه نوشته‌ها
+  in_english: به انگلیسی
+  try_live: امتحانش کنید
+  footer_rss: RSS
+  months: [ژانویه, فوریه, مارس, آوریل, مه, ژوئن, ژوئیه, اوت, سپتامبر, اکتبر, نوامبر, دسامبر]
+  months_short: [ژانویه, فوریه, مارس, آوریل, مه, ژوئن, ژوئیه, اوت, سپتامبر, اکتبر, نوامبر, دسامبر]

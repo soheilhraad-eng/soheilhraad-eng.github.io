@@ -16,7 +16,22 @@ github.com works too. Installing things locally is only for previewing before yo
 | `_posts/` | Blog posts |
 | `_config.yml` | Site title, description, menu, time zone |
 | `assets/css/style.scss` | All the styling; colours are the variables at the top |
+| `es/`, `fa/` | The Spanish and Persian versions of every page |
+| `_data/projects.yml` | The project cards, in all three languages |
+| `_data/i18n.yml` | Menu, buttons and other interface text, in all three languages |
 | `_layouts/`, `_includes/` | Page templates; rarely need touching |
+
+## Languages
+
+The site is in English (at `/`), Spanish (`/es/`) and Persian (`/fa/`, right to left).
+Each page exists three times, once per language, and the three copies share a `ref:`
+line at the top. That's how the language switcher knows which pages are translations
+of each other. When you add or change a page, do all three, keeping the same `ref`.
+If a translation is missing, the switcher sends people to that language's home page.
+
+Blog posts can be in any language: add `lang: es` or `lang: fa` at the top of a post
+(English is the default). Every post shows in every language's list, and a post in
+another language is marked with its language, e.g. "in English".
 
 ## Editing without installing anything
 
@@ -88,13 +103,18 @@ reason a new post goes missing. Set `timezone:` in `_config.yml` so "now" is you
 
 ## Add a project
 
-Copy `tarot-app.md`, rename it, and change its `title`, `description`, `permalink`
-(e.g. `/projects/my-thing/`) and text. Then add a card for it in `projects.md` (and in
-`index.md` if it belongs on the home page) by copying the existing `<a class="card">` block.
+1. Copy `tarot-app.md`, `es/tarot-app.md` and `fa/tarot-app.md`, rename them (e.g.
+   `my-thing.md`), and change their `title`, `description`, text, and `permalink` (e.g.
+   `/projects/my-thing/`, `/es/projects/my-thing/`, `/fa/projects/my-thing/`). Give all three
+   the same new `ref:`.
+2. Add a card for it to `_data/projects.yml`, with `slug: my-thing` and a title and one-line
+   summary in each language. It appears on the home and Projects pages in all three languages.
 
 ## Still open
 
-- `about.md` and the home page intro: needs the throughline, the sentence connecting
+- **Review the Spanish and Persian text**, which was drafted by Claude. In particular, check
+  that «سهی» is how you write your name in Persian.
+- `about.md` and the home page intro, in all three languages: needs the throughline, the sentence connecting
   the projects. The current wording is a placeholder.
 - `_config.yml`: `description:` should become that same throughline once it exists,
   and `timezone:` should be set to yours.

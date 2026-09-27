@@ -1,12 +1,13 @@
 ---
 layout: default
-title: Home
+title: خانه
 ref: home
+permalink: /fa/
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 <section class="hero">
-  <h1>Hi, I'm Sohi.</h1>
-  <p class="lede">I build things to find out how they work: AI apps, language tools and simulations.</p>
+  <h1>سلام، من سهی هستم.</h1>
+  <p class="lede">چیزهایی می‌سازم تا بفهمم چطور کار می‌کنند: اپلیکیشن‌های هوش مصنوعی، ابزارهای یادگیری زبان و شبیه‌سازی‌ها.</p>
 </section>
 
 <h2>{{ t.projects }}</h2>

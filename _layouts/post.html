@@ -1,11 +1,12 @@
 ---
 layout: default
 ---
+{%- assign t = site.data.i18n[page.lang] -%}
 <article class="post">
   <header>
     <h1>{{ page.title }}</h1>
-    <p class="meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time></p>
+    <p class="meta">{% include date.html date=page.date %}</p>
   </header>
   {{ content }}
-  <p class="back"><a href="{{ '/blog/' | relative_url }}">← All posts</a></p>
+  <p class="back"><a href="{{ t.prefix | append: '/blog/' | relative_url }}">{{ t.back_arrow }} {{ t.all_posts }}</a></p>
 </article>

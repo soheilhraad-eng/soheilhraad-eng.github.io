@@ -24,6 +24,13 @@ https://soheilhraad-eng.github.io. Treat every commit as publishing.
 Don't invent facts about Sohi. Wording about them that hasn't come from them is a placeholder,
 and must be flagged as one when handing back.
 
+## Three languages
+
+English at `/`, Spanish at `/es/`, Persian at `/fa/`. Every page exists in all three, linked
+by a shared `ref:`; every key in `_data/i18n.yml` and every card in `_data/projects.yml`
+needs `en`, `es` and `fa`. Spanish is Spain's Spanish. Persian is right to left and uses
+Vazirmatn (loaded only on `/fa/` pages); write it without letter-spacing or italics.
+
 ## Check before pushing
 
 ```

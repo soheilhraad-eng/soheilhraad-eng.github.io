@@ -1,0 +1,10 @@
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- if site.posts.size > 0 -%}
+<ul class="post-list">
+  {%- for post in site.posts limit: include.limit -%}
+  <li>{% include date.html date=post.date short=true %} <a href="{{ post.url | relative_url }}"{% if post.lang != page.lang %} hreflang="{{ post.lang }}" lang="{{ post.lang }}" dir="{{ site.data.i18n[post.lang].dir }}"{% endif %}>{{ post.title }}</a>{% if post.lang != page.lang and post.lang == "en" %} <span class="tag">{{ t.in_english }}</span>{% endif %}</li>
+  {%- endfor -%}
+</ul>
+{%- else -%}
+<p>{{ t.nothing_yet }}</p>
+{%- endif -%}

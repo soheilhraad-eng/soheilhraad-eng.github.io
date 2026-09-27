@@ -1,0 +1,10 @@
+{%- assign t = site.data.i18n[page.lang] -%}
+<div class="cards">
+  {%- for p in site.data.projects -%}
+  {%- assign c = p[page.lang] %}
+  <a class="card" href="{{ t.prefix | append: '/projects/' | append: p.slug | append: '/' | relative_url }}">
+    <h3>{{ c.title }}</h3>
+    <p>{{ c.blurb }}</p>
+  </a>
+  {%- endfor %}
+</div>

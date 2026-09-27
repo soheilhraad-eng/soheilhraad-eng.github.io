@@ -19,13 +19,19 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-nav:
-  - title: Projects
-    url: /projects/
-  - title: Blog
-    url: /blog/
-  - title: About
-    url: /about/
+# Every page names its language (`lang`) and a shared `ref`; pages with the same `ref` are
+# translations of each other, which is how the language switcher finds them. English is the
+# default and lives at the root; the others live under /es/ and /fa/. Interface text for all
+# three is in _data/i18n.yml.
+languages: [en, es, fa]
+
+defaults:
+  - scope: { path: "" }
+    values: { lang: en, locale: en_GB }
+  - scope: { path: "es" }
+    values: { lang: es, locale: es_ES }
+  - scope: { path: "fa" }
+    values: { lang: fa, locale: fa_IR }
 
 exclude:
   - README.md

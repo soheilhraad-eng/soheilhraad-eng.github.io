@@ -3,11 +3,12 @@ layout: page
 title: The Digital Tarot Sanctuary
 description: An AI-powered tarot reading app in three languages, with the original 1909 Rider-Waite artwork.
 permalink: /projects/tarot-app/
+ref: tarot
 ---
 
 <p class="lede">An AI-powered tarot reading app in three languages, with the original 1909 Rider-Waite artwork.</p>
 
-<p><a class="button" href="https://tarotx.streamlit.app">Try it live →</a></p>
+<p><a class="button" href="https://tarotx.streamlit.app">{{ site.data.i18n[page.lang].try_live }} {{ site.data.i18n[page.lang].arrow }}</a></p>
 
 ## What it does
 

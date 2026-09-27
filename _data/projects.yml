@@ -1,0 +1,32 @@
+# The project cards on the home and Projects pages, in order. `slug` is the page under
+# /projects/ (and /es/projects/, /fa/projects/). Every card needs all three languages.
+- slug: tarot-app
+  en:
+    title: The Digital Tarot Sanctuary
+    blurb: AI tarot readings in English, Spanish and Farsi, with the 1909 Rider-Waite deck.
+  es:
+    title: The Digital Tarot Sanctuary
+    blurb: Lecturas de tarot con IA en inglés, español y persa, con la baraja Rider-Waite de 1909.
+  fa:
+    title: The Digital Tarot Sanctuary
+    blurb: فال تاروت با هوش مصنوعی به انگلیسی، اسپانیایی و فارسی، با کارت‌های رایدر-ویت ۱۹۰۹.
+- slug: camino
+  en:
+    title: Camino
+    blurb: An offline Spanish tutor for beginners, with 25 lessons explained in Persian, English or Spanish. Nothing leaves the learner's computer.
+  es:
+    title: Camino
+    blurb: Un tutor de español sin conexión para principiantes, con 25 lecciones explicadas en persa, inglés o español. Nada sale del ordenador del alumno.
+  fa:
+    title: کامینو
+    blurb: معلم آفلاین اسپانیایی برای مبتدی‌ها، با ۲۵ درس که به فارسی، انگلیسی یا اسپانیایی توضیح داده می‌شوند. هیچ چیزی از رایانه زبان‌آموز بیرون نمی‌رود.
+- slug: banbury-model
+  en:
+    title: Banbury Acculturation Model
+    blurb: An agent-based NetLogo model of when migrant settlement leads to integration and when it leads to separation.
+  es:
+    title: Modelo de aculturación de Banbury
+    blurb: Un modelo basado en agentes, hecho en NetLogo, sobre cuándo el asentamiento de migrantes lleva a la integración y cuándo a la separación.
+  fa:
+    title: مدل فرهنگ‌پذیری بنبری
+    blurb: مدلی عامل‌بنیان در NetLogo درباره اینکه اسکان مهاجران چه زمانی به یکپارچگی می‌انجامد و چه زمانی به جدایی.

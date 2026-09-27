@@ -3,6 +3,7 @@ layout: page
 title: Banbury Acculturation Model
 description: An agent-based model in NetLogo of how migrant settlement produces integration or separation, through host receptivity, individual preparedness and institutional capacity.
 permalink: /projects/banbury-model/
+ref: banbury
 ---
 
 <p class="lede">An agent-based model, built in NetLogo, of when migrant settlement leads to integration and when it leads to separation.</p>

@@ -1,12 +1,13 @@
 ---
 layout: default
-title: Home
+title: Inicio
 ref: home
+permalink: /es/
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 <section class="hero">
-  <h1>Hi, I'm Sohi.</h1>
-  <p class="lede">I build things to find out how they work: AI apps, language tools and simulations.</p>
+  <h1>Hola, soy Sohi.</h1>
+  <p class="lede">Construyo cosas para entender cómo funcionan: aplicaciones de IA, herramientas para aprender idiomas y simulaciones.</p>
 </section>
 
 <h2>{{ t.projects }}</h2>

@@ -1,7 +1,8 @@
+{%- assign t = site.data.i18n[page.lang] -%}
 <footer class="site-footer">
   <div class="wrap">
-    <p>© {{ site.time | date: "%Y" }} {{ site.author.name }} ·
+    <p>© {% if page.lang == "fa" %}{{ site.time | date: "%Y" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" }}{% else %}{{ site.time | date: "%Y" }}{% endif %} {{ site.author.name }} ·
       <a href="https://github.com/{{ site.author.github }}">GitHub</a> ·
-      <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
+      <a href="{{ '/feed.xml' | relative_url }}">{{ t.footer_rss }}</a></p>
   </div>
 </footer>

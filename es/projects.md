@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Projects
-permalink: /projects/
+title: Proyectos
+permalink: /es/projects/
 ref: projects
 ---
 {% include project-cards.html %}

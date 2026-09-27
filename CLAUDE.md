@@ -5,7 +5,7 @@ Operating rules for this repo. Setup and editing instructions live in `README.md
 ## This repo is public, and everything in it is published
 
 Every file pushed here is readable by anyone on GitHub, and every page is on the open web at
-https://soheilhraad-eng.github.io. Treat every commit as publishing.
+https://soheilhrad.github.io. Treat every commit as publishing.
 
 - **This file is public too.** Describe categories to leave out; never give real examples
   of what was left out.

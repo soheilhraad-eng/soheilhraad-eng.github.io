@@ -1,7 +1,7 @@
 title: Sohi
 # Placeholder until the throughline is settled — see "Still open" in README.md.
 description: AI applications, multilingual tools and simulations, built remotely with creative people wherever they work.
-url: "https://soheilhraad-eng.github.io"
+url: "https://soheilhrad.github.io"
 baseurl: ""
 lang: en
 # Uncomment and set to your own zone, e.g. Asia/Tehran or Europe/London. Without it,
@@ -10,11 +10,11 @@ lang: en
 
 author:
   name: Sohi
-  github: soheilhraad-eng
+  github: soheilhrad
 
 # Where the home page's "Start a project" button goes. Change this to an email
 # (mailto:you@example.com), a contact form or LinkedIn once you've picked one.
-contact_url: https://github.com/soheilhraad-eng
+contact_url: https://github.com/soheilhrad
 
 # The address of the Marco chat Worker (see worker/README.md). Empty = the chat box is hidden.
 chat_endpoint: "https://marco.soheilhraad-0e6.workers.dev/"

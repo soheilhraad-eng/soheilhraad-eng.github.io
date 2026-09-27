@@ -13,4 +13,4 @@ make something feel finished.
 
 This site collects the projects and what I learn making them.
 
-You can find my code on [GitHub](https://github.com/soheilhraad-eng).
+You can find my code on [GitHub](https://github.com/soheilhrad).

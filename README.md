@@ -1,6 +1,6 @@
 # Personal Site — Setup & Reference
 
-A Jekyll site, hosted free on GitHub Pages at **https://soheilhraad-eng.github.io**.
+A Jekyll site, hosted free on GitHub Pages at **https://soheilhrad.github.io**.
 Every push to `main` republishes it within a minute or two, so editing files on
 github.com works too. Installing things locally is only for previewing before you publish.
 
@@ -62,8 +62,8 @@ it separately.
    needs the PATH the installer just updated.
 5. Get the site onto your PC. Do this once, in whichever folder you keep projects in:
    ```
-   git clone https://github.com/soheilhraad-eng/soheilhraad-eng.github.io.git
-   cd soheilhraad-eng.github.io
+   git clone https://github.com/soheilhrad/soheilhrad.github.io.git
+   cd soheilhrad.github.io
    ```
 6. Install:
    ```

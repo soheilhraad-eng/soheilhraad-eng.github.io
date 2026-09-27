@@ -20,6 +20,19 @@ en:
   in_english: in English
   try_live: Try it live
   footer_rss: RSS
+  start_project: Start a project
+  chat_title: Ask Marco
+  chat_intro: Marco is a cartographer of ideas. Tell him what you're dreaming up, and in three messages he'll help you sketch a first map.
+  chat_placeholder: What are you working on?
+  chat_send: Send
+  chat_left: "{n} of 3 messages left"
+  chat_done: That's the whole map. Want to build it?
+  chat_disclosure: Marco is an AI (Google's Gemma 4, run by Cloudflare), not a person. Your messages are sent to Cloudflare to write his replies; this site doesn't store them. Please don't share personal details.
+  chat_error: Marco can't answer right now. Please try again later.
+  chat_rate: That's a lot of messages at once. Wait a minute and try again.
+  chat_thinking: Marco is drawing…
+  chat_marco: Marco
+  chat_you: You
   months: [January, February, March, April, May, June, July, August, September, October, November, December]
   months_short: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 es:
@@ -42,6 +55,19 @@ es:
   in_english: en inglés
   try_live: Pruébalo
   footer_rss: RSS
+  start_project: Empezar un proyecto
+  chat_title: Pregunta a Marco
+  chat_intro: Marco es un cartógrafo de ideas. Cuéntale qué tienes en mente y, en tres mensajes, te ayudará a trazar un primer mapa.
+  chat_placeholder: ¿En qué estás trabajando?
+  chat_send: Enviar
+  chat_left: "Te quedan {n} de 3 mensajes"
+  chat_done: Ese es el mapa completo. ¿Quieres construirlo?
+  chat_disclosure: Marco es una IA (Gemma 4 de Google, ejecutada por Cloudflare), no una persona. Tus mensajes se envían a Cloudflare para escribir sus respuestas; este sitio no los guarda. Por favor, no compartas datos personales.
+  chat_error: Marco no puede responder ahora mismo. Inténtalo de nuevo más tarde.
+  chat_rate: Son muchos mensajes seguidos. Espera un minuto y vuelve a intentarlo.
+  chat_thinking: Marco está dibujando…
+  chat_marco: Marco
+  chat_you: Tú
   months: [enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre]
   months_short: [ene, feb, mar, abr, may, jun, jul, ago, sept, oct, nov, dic]
 fa:
@@ -64,5 +90,18 @@ fa:
   in_english: به انگلیسی
   try_live: امتحانش کنید
   footer_rss: RSS
+  start_project: شروع یک پروژه
+  chat_title: از مارکو بپرسید
+  chat_intro: مارکو نقشه‌نگار ایده‌هاست. بگویید در ذهنتان چه دارید، و او در سه پیام کمکتان می‌کند نخستین نقشه‌اش را بکشید.
+  chat_placeholder: روی چه چیزی کار می‌کنید؟
+  chat_send: ارسال
+  chat_left: "{n} پیام از ۳ پیام باقی مانده"
+  chat_done: نقشه کامل شد. می‌خواهید آن را بسازید؟
+  chat_disclosure: مارکو یک هوش مصنوعی است (Gemma 4 از گوگل، اجراشده توسط Cloudflare)، نه یک انسان. پیام‌های شما برای نوشتن پاسخ‌هایش به Cloudflare فرستاده می‌شوند؛ این سایت آن‌ها را ذخیره نمی‌کند. لطفاً اطلاعات شخصی به اشتراک نگذارید.
+  chat_error: مارکو الان نمی‌تواند پاسخ دهد. لطفاً بعداً دوباره امتحان کنید.
+  chat_rate: پیام‌ها پشت سر هم زیاد شد. یک دقیقه صبر کنید و دوباره امتحان کنید.
+  chat_thinking: مارکو در حال کشیدن نقشه است…
+  chat_marco: مارکو
+  chat_you: شما
   months: [ژانویه, فوریه, مارس, آوریل, مه, ژوئن, ژوئیه, اوت, سپتامبر, اکتبر, نوامبر, دسامبر]
   months_short: [ژانویه, فوریه, مارس, آوریل, مه, ژوئن, ژوئیه, اوت, سپتامبر, اکتبر, نوامبر, دسامبر]

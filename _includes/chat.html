@@ -1,0 +1,26 @@
+{%- if site.chat_endpoint != "" -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+<section class="chat" id="marco" aria-labelledby="marco-title"
+  data-endpoint="{{ site.chat_endpoint }}" data-lang="{{ page.lang }}"
+  data-left="{{ t.chat_left | escape }}" data-thinking="{{ t.chat_thinking | escape }}"
+  data-error="{{ t.chat_error | escape }}" data-rate="{{ t.chat_rate | escape }}"
+  data-you="{{ t.chat_you | escape }}" data-marco="{{ t.chat_marco | escape }}">
+  <div class="chat-head">
+    <svg class="chat-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 5l3.2 11L16 27l-3.2-11z" fill="currentColor"/><circle cx="16" cy="16" r="1.6" fill="var(--surface)"/></svg>
+    <div>
+      <h2 id="marco-title">{{ t.chat_title }}</h2>
+      <p class="chat-intro">{{ t.chat_intro }}</p>
+    </div>
+  </div>
+  <ol class="chat-log" aria-live="polite"></ol>
+  <form class="chat-form">
+    <label class="visually-hidden" for="marco-input">{{ t.chat_placeholder }}</label>
+    <textarea id="marco-input" rows="2" maxlength="600" dir="auto" placeholder="{{ t.chat_placeholder }}" required></textarea>
+    <button class="button" type="submit">{{ t.chat_send }}</button>
+  </form>
+  <p class="chat-status" aria-live="polite"></p>
+  <p class="chat-done" hidden>{{ t.chat_done }} <a class="button" href="{{ site.contact_url }}">{{ t.start_project }} {{ t.arrow }}</a></p>
+  <p class="chat-note">{{ t.chat_disclosure }}</p>
+</section>
+<script src="{{ '/assets/js/chat.js' | relative_url }}" defer></script>
+{%- endif -%}

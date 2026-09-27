@@ -19,6 +19,8 @@ github.com works too. Installing things locally is only for previewing before yo
 | `es/`, `fa/` | The Spanish and Persian versions of every page |
 | `_data/projects.yml` | The project cards, in all three languages |
 | `_data/i18n.yml` | Menu, buttons and other interface text, in all three languages |
+| `worker/` | Marco, the home page's AI chat: the Cloudflare Worker and how to deploy it |
+| `assets/js/chat.js` | The chat box in the browser |
 | `_layouts/`, `_includes/` | Page templates; rarely need touching |
 
 ## Languages
@@ -111,6 +113,9 @@ reason a new post goes missing. Set `timezone:` in `_config.yml` so "now" is you
    summary in each language. It appears on the home and Projects pages in all three languages.
 
 ## Still open
+
+- **Deploy Marco** (`worker/README.md`) and set `chat_endpoint:` in `_config.yml`. Until
+  then the chat box stays hidden.
 
 - **Review the Spanish and Persian text**, which was drafted by Claude. In particular, check
   that «سهی» is how you write your name in Persian.

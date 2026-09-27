@@ -31,6 +31,14 @@ by a shared `ref:`; every key in `_data/i18n.yml` and every card in `_data/proje
 needs `en`, `es` and `fa`. Spanish is Spain's Spanish. Persian is right to left and uses
 Vazirmatn, self-hosted in `assets/fonts/` (no Google Fonts or other third-party requests); write it without letter-spacing or italics.
 
+## Marco, the chat
+
+The Worker in `worker/` is the only place limits are enforced; `assets/js/chat.js` just
+mirrors them. Keep the two in step (3 messages, 600 characters). Marco's replies are
+inserted as text, never HTML. His system prompt may state only facts already public on
+this site. The chat box must keep saying, before anyone types, that Marco is an AI, which
+model, and that messages go to Cloudflare.
+
 ## Check before pushing
 
 ```

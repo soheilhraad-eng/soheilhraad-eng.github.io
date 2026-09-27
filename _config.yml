@@ -16,6 +16,9 @@ author:
 # (mailto:you@example.com), a contact form or LinkedIn once you've picked one.
 contact_url: https://github.com/soheilhraad-eng
 
+# The address of the Marco chat Worker (see worker/README.md). Empty = the chat box is hidden.
+chat_endpoint: ""
+
 permalink: /blog/:year/:month/:title/
 
 plugins:
@@ -48,3 +51,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - worker

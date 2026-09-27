@@ -1,0 +1,108 @@
+---
+---
+// A starting palette. Worth revisiting once the throughline (and any visual identity
+// that follows from it) is settled — change the tokens here, nothing else needs to move.
+
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --text: #1f1d1a;
+  --muted: #6b665e;
+  --border: #e6e1d8;
+  --accent: #8a5a12;
+  --accent-soft: #f4ecdf;
+  --radius: 10px;
+  --measure: 42rem;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Vazirmatn", sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15130f;
+    --surface: #1e1b16;
+    --text: #ece7de;
+    --muted: #a39c90;
+    --border: #332e26;
+    --accent: #e0b25c;
+    --accent-soft: #2a2319;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 1.0625rem/1.65 var(--font-body);
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+main.wrap { padding-top: 2.5rem; padding-bottom: 4rem; }
+
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; font-weight: 600; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.5rem); margin: 0 0 1rem; }
+h2 { font-size: 1.4rem; margin: 2.5rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 0 0 0.35rem; }
+
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+img { max-width: 100%; height: auto; }
+
+code { font-size: 0.9em; background: var(--accent-soft); padding: 0.1em 0.35em; border-radius: 4px; }
+pre { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: var(--radius); }
+pre code { background: none; padding: 0; }
+
+.site-header { border-bottom: 1px solid var(--border); }
+.bar {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 0.5rem 1.5rem; padding-top: 1rem; padding-bottom: 1rem;
+}
+.brand { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--text); text-decoration: none; }
+.bar nav { display: flex; gap: 1.25rem; }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover, .bar nav a[aria-current="page"] { color: var(--text); }
+.bar nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); }
+
+.hero { padding: 1rem 0 0.5rem; }
+.lede { font-size: 1.2rem; color: var(--muted); margin-top: 0; }
+
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.card {
+  display: block; padding: 1.25rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text); text-decoration: none; transition: border-color 0.15s;
+}
+.card:hover { border-color: var(--accent); }
+.card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+.button {
+  display: inline-block; padding: 0.6rem 1.1rem; border-radius: var(--radius);
+  background: var(--accent); color: var(--bg); font-weight: 600; text-decoration: none;
+}
+.button:hover { filter: brightness(1.08); }
+
+.post-list { list-style: none; padding: 0; margin: 0; }
+.post-list li { display: flex; flex-wrap: wrap; gap: 0 1rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.post-list time, .meta { color: var(--muted); font-variant-numeric: tabular-nums; }
+.post-list time { min-width: 7rem; }
+.meta { margin-top: -0.5rem; }
+.back { margin-top: 3rem; }
+
+.site-footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+.site-footer .wrap { padding-top: 1.5rem; padding-bottom: 2rem; }
+.site-footer a { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

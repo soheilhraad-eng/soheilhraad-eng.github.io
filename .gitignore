@@ -1,0 +1,8 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.bundle/
+vendor/
+# Differs between Windows and GitHub's Linux builders; GitHub Pages ignores it anyway.
+Gemfile.lock

@@ -1,0 +1,34 @@
+title: Sohi
+# Placeholder until the throughline is settled — see "Still open" in README.md.
+description: Projects, experiments and notes.
+url: "https://soheilhraad-eng.github.io"
+baseurl: ""
+lang: en
+# Uncomment and set to your own zone, e.g. Asia/Tehran or Europe/London. Without it,
+# a post dated "today" can count as future on GitHub's servers and silently not publish.
+# timezone: Europe/London
+
+author:
+  name: Sohi
+  github: soheilhraad-eng
+
+permalink: /blog/:year/:month/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+nav:
+  - title: Projects
+    url: /projects/
+  - title: Blog
+    url: /blog/
+  - title: About
+    url: /about/
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

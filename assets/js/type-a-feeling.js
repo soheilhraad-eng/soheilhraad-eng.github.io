@@ -49,6 +49,36 @@ const EMO = {
     rhythm:[1,.5,.5,1,1,.5,.5,2],contour:'up',range:[0,10],startDeg:0,ending:'high',vel:[.5,.9],rest:0,echo:.15}
 };
 
+/* Where each feeling sits on the map: valence (dark to bright, left to right) and arousal (calm to
+   intense, bottom to top), after Russell's circumplex. Touching anywhere on the map plays music
+   for that point: tempo, mode, register and brightness follow the position, so there are as many
+   tracks as there are places to touch. */
+const POS = {
+  anger:{v:-.8,a:.85}, fear:{v:-.55,a:.5}, sadness:{v:-.7,a:-.6}, longing:{v:-.4,a:-.3}, calm:{v:.35,a:-.8},
+  tenderness:{v:.55,a:-.4}, hope:{v:.5,a:.25}, wonder:{v:.3,a:.7}, joy:{v:.8,a:.6}
+};
+const DARK_TO_BRIGHT = ['locrian','phrygian','minor','dorian','major','lydian'];
+function nearest(v,a){
+  let best = 'calm', bd = 9;
+  for(const k in POS){ const d = (POS[k].v-v)**2 + (POS[k].a-a)**2; if(d<bd){ bd = d; best = k; } }
+  return best;
+}
+/* The feeling nearest the touch supplies the character (timbre, rhythm, contour); the distance
+   from it bends tempo, register, brightness, attack and mode. At a feeling's own spot the result
+   is that feeling exactly. */
+function synth(v,a,key){
+  const base = EMO[key], dv = v-POS[key].v, da = a-POS[key].a, e = Object.assign({},base);
+  e.bpm = Math.max(40,Math.min(168,Math.round(base.bpm*Math.pow(2,da*.7))));
+  e.root = base.root + Math.round(dv*3 + da*2);
+  e.bright = Math.max(900,Math.round(base.bright*(1+da*.45+dv*.3)));
+  e.attack = Math.max(.004,base.attack*(1-da*.6));
+  if(Math.abs(dv)>.22){
+    const i = base.scale==='pentaMaj' ? 4 : DARK_TO_BRIGHT.indexOf(base.scale);
+    e.scale = DARK_TO_BRIGHT[Math.max(0,Math.min(5,i+Math.round(dv*2)))];
+  }
+  return e;
+}
+
 /* Two more voices for the melody besides the one each feeling brings ('auto'). */
 const TIMBRE = {
   keys:{kind:'fm',attack:.004,decay:.5,sustain:.25,release:.6,legato:.9,vib:null,detune:0,pure:true,gainMul:1.3,brightMin:2600},
@@ -153,8 +183,8 @@ function pickStep(contour,progress,r){
 }
 
 /* Same word + same feeling always gives the same phrase. */
-function buildPhrase(word,key,v){
-  const e = EMO[key], rnd = mulberry32(fnv(norm(word)+'|'+key+(v ? '|'+v : '')));
+function buildPhrase(word,key,v,e){
+  const rnd = mulberry32(fnv(norm(word)+'|'+key+(v ? '|'+v : '')));
   const beat = 60/e.bpm, target = e.target || 6.5, len = SCALES[e.scale].length;
   const notes = []; let t = 0, deg = e.startDeg, i = 0;
   while(t < target - beat){
@@ -282,7 +312,7 @@ function voice(e,fx,base,midi,dur,vel,gainScale){
 
 function play(){
   if(!current || !ensureAudio()) return;
-  const {phrase,key} = current, e = EMO[key], lead = leadVoice(e,timbre), now = AC.currentTime;
+  const {phrase,key,e} = current, lead = leadVoice(e,timbre), now = AC.currentTime;
   if(bus){ bus.gain.cancelScheduledValues(now); bus.gain.setTargetAtTime(0,now,.03); }
   bus = AC.createGain(); bus.connect(master);
   const fx = makeFx(lead,bus), base = now + .1, id = ++playId;
@@ -349,11 +379,48 @@ function drawRoll(phrase){
   });
 }
 
-function showResult(text,hit,autoplay,v){
-  const e = EMO[hit.emo], lang = hit.lang;
+/* ---------- the map ---------- */
+const PAD = $('pad'), MARK = $('mark');
+function moveMarker(p){
+  MARK.style.insetInlineStart = 'auto'; MARK.style.right = 'auto';
+  MARK.style.left = ((p.v+1)/2*100)+'%'; MARK.style.top = ((1-p.a)/2*100)+'%'; MARK.hidden = false;
+}
+Object.keys(POS).forEach(k=>{
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'taf-dot'; b.dataset.k = k;
+  b.style.left = ((POS[k].v+1)/2*100)+'%'; b.style.top = ((1-POS[k].a)/2*100)+'%';
+  const name = T[PAGE_LANG].emotions[k].name;
+  b.innerHTML = '<span class="taf-dot-name"></span>'; b.firstChild.textContent = name;
+  b.setAttribute('aria-label',name);
+  b.addEventListener('click',ev=>{ ev.stopPropagation(); $('feeling').value = ''; ensureAudio(); showResult(k,{emo:k,lang:PAGE_LANG},true,0); });
+  PAD.appendChild(b);
+});
+function padPoint(x,y){
+  const r = PAD.getBoundingClientRect();
+  return {v:Math.max(-1,Math.min(1,(x-r.left)/r.width*2-1)), a:Math.max(-1,Math.min(1,1-(y-r.top)/r.height*2))};
+}
+function playPoint(p){
+  p = {v:Math.round(p.v*100)/100, a:Math.round(p.a*100)/100};
+  $('feeling').value = ''; ensureAudio();
+  showResult('p:'+Math.round(p.v*20)+','+Math.round(p.a*20),{emo:nearest(p.v,p.a),lang:PAGE_LANG},true,0,p);
+}
+PAD.addEventListener('click',ev=>playPoint(padPoint(ev.clientX,ev.clientY)));
+// Arrow keys move the point in steps, Enter or Space plays it.
+let kp = {v:0,a:0};
+PAD.addEventListener('keydown',ev=>{
+  if(ev.target!==PAD) return;
+  const s = .15, m = {ArrowLeft:[-s,0],ArrowRight:[s,0],ArrowUp:[0,s],ArrowDown:[0,-s]}[ev.key];
+  if(m){ ev.preventDefault(); kp = {v:Math.max(-1,Math.min(1,kp.v+m[0])),a:Math.max(-1,Math.min(1,kp.a+m[1]))}; moveMarker(kp); }
+  else if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); playPoint(kp); }
+});
+
+function showResult(text,hit,autoplay,v,pos){
+  const lang = hit.lang, p = pos || POS[hit.emo], key = pos ? nearest(p.v,p.a) : hit.emo, e = synth(p.v,p.a,key);
   const box = $('result');
   box.hidden = false; box.lang = lang; box.dir = lang==='fa' ? 'rtl' : 'ltr';
-  current = {text,key:hit.emo,lang,v:v||0,phrase:buildPhrase(text,hit.emo,v||0)};
+  hit = {emo:key,lang};
+  current = {text,key,lang,v:v||0,pos:p,e,phrase:buildPhrase(text,key,v||0,e)};
+  moveMarker(p);
   drawRoll(current.phrase);
   $('emo').textContent = T[lang].emotions[hit.emo].name;
   $('cue').textContent = T[lang].emotions[hit.emo].cue;
@@ -362,6 +429,7 @@ function showResult(text,hit,autoplay,v){
   $('share').textContent = T[lang].share;
   $('take').textContent = T[lang].take;
   $('soundLabel').textContent = T[lang].sound;
+  $('why').textContent = T[lang].why;
   ['auto','keys','strings'].forEach(k=>{ $('t-'+k).textContent = T[lang]['timbre_'+k]; });
   document.querySelectorAll('.feeling-timbre button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.t===timbre)));
   $('shareOut').textContent = '';
@@ -402,7 +470,7 @@ $('again').addEventListener('click',()=>{ ensureAudio(); play(); $('again').text
 $('take').addEventListener('click',()=>{
   if(!current) return;
   ensureAudio();
-  current.v++; current.phrase = buildPhrase(current.text,current.key,current.v);
+  current.v++; current.phrase = buildPhrase(current.text,current.key,current.v,current.e);
   drawRoll(current.phrase); play();
 });
 document.querySelectorAll('.feeling-timbre button').forEach(b=>b.addEventListener('click',()=>{
@@ -412,7 +480,7 @@ document.querySelectorAll('.feeling-timbre button').forEach(b=>b.addEventListene
 }));
 $('share').addEventListener('click',async()=>{
   if(!current) return;
-  const url = location.href.split('#')[0] + '#f=' + encodeURIComponent(current.text)
+  const url = location.href.split('#')[0] + '#' + (/^p:/.test(current.text) ? 'p=' + Math.round(current.pos.v*100) + ',' + Math.round(current.pos.a*100) : 'f=' + encodeURIComponent(current.text))
     + (current.v ? '&v='+current.v : '') + (timbre!=='auto' ? '&s='+timbre : '');
   try{ await navigator.clipboard.writeText(url); $('shareOut').textContent = T[current.lang].copied; }
   catch(err){ $('shareOut').textContent = url; }
@@ -422,8 +490,12 @@ $('share').addEventListener('click',async()=>{
    words the page already knows: an unknown word would need the network, so it waits for the
    visitor to press the button. */
 try{
-  const m = location.hash.match(/f=([^&]+)/);
-  if(m){
+  const m = location.hash.match(/f=([^&]+)/), mp = location.hash.match(/p=(-?\d+),(-?\d+)/);
+  if(mp){
+    const p = {v:Math.max(-1,Math.min(1,+mp[1]/100)), a:Math.max(-1,Math.min(1,+mp[2]/100))}, ms = location.hash.match(/s=(keys|strings)/);
+    if(ms) timbre = ms[1];
+    showResult('p:'+Math.round(p.v*20)+','+Math.round(p.a*20),{emo:nearest(p.v,p.a),lang:PAGE_LANG},false,0,p);
+  } else if(m){
     const w = decodeURIComponent(m[1]), mv = location.hash.match(/v=(\d+)/), ms = location.hash.match(/s=(keys|strings)/);
     if(ms) timbre = ms[1];
     $('feeling').value = w; handle(w,false,true,mv ? Math.min(99,+mv[1]) : 0);

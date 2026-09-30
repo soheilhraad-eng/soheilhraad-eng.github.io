@@ -27,10 +27,10 @@ en:
   slides_hint: "%n slides. Swipe, scroll sideways or use the arrow keys."
   slides_in_english: The slides are in English.
   feeling:
-    label: "Type a feeling"
-    how: "Write one word for how you feel, in English, Spanish or Persian. Press play and you will hear it as a few seconds of music."
-    try: "Try one:"
-    placeholder: "e.g. longing"
+    label: "Pick a feeling"
+    pad: "Touch the map"
+    why: "Why this sound?"
+    placeholder: "or type a feeling"
     submit: "Hear it"
     examples: "Examples"
     again: "Hear again"
@@ -109,10 +109,10 @@ es:
   slides_hint: "%n diapositivas. Desliza, desplázate a un lado o usa las flechas."
   slides_in_english: Las diapositivas están en inglés.
   feeling:
-    label: "Escribe un sentimiento"
-    how: "Escribe una palabra para lo que sientes, en inglés, español o persa. Pulsa el botón y la oirás como unos segundos de música."
-    try: "Prueba una:"
-    placeholder: "p. ej. añoranza"
+    label: "Elige un sentimiento"
+    pad: "Toca el mapa"
+    why: "¿Por qué suena así?"
+    placeholder: "o escribe un sentimiento"
     submit: "Escuchar"
     examples: "Ejemplos"
     again: "Otra vez"
@@ -191,10 +191,10 @@ fa:
   slides_hint: "%n اسلاید. بکشید، به پهلو اسکرول کنید یا از کلیدهای جهت‌نما استفاده کنید."
   slides_in_english: اسلایدها به انگلیسی هستند.
   feeling:
-    label: "یک احساس بنویسید"
-    how: "یک واژه برای حس خود بنویسید، به انگلیسی، اسپانیایی یا فارسی. دکمهٔ پخش را بزنید تا چند ثانیه موسیقی از آن بشنوید."
-    try: "یکی را امتحان کنید:"
-    placeholder: "مثلاً دلتنگی"
+    label: "یک احساس را انتخاب کنید"
+    pad: "نقشه را لمس کنید"
+    why: "چرا این صدا؟"
+    placeholder: "یا یک احساس بنویسید"
     submit: "بشنو"
     examples: "نمونه‌ها"
     again: "دوباره"

@@ -18,15 +18,15 @@
     title: Camino
     blurb: Un tutor de español sin conexión para principiantes, con 25 lecciones explicadas en persa, inglés o español. Nada sale del ordenador del alumno.
   fa:
-    title: کامینو
+    title: Camino
     blurb: معلم آفلاین اسپانیایی برای مبتدی‌ها، با ۲۵ درس که به فارسی، انگلیسی یا اسپانیایی توضیح داده می‌شوند. هیچ چیزی از رایانه زبان‌آموز بیرون نمی‌رود.
 - slug: small-town
   en:
     title: Small Town
     blurb: A small town simulated in NetLogo, showing when newcomers' settlement leads to integration and when it leads to separation.
   es:
-    title: Pueblo pequeño
+    title: Small Town
     blurb: Un pueblo pequeño simulado en NetLogo, que muestra cuándo el asentamiento de los recién llegados lleva a la integración y cuándo a la separación.
   fa:
-    title: شهر کوچک
+    title: Small Town
     blurb: شهری کوچک، شبیه‌سازی‌شده در NetLogo، که نشان می‌دهد اسکان تازه‌واردها چه زمانی به یکپارچگی می‌انجامد و چه زمانی به جدایی.

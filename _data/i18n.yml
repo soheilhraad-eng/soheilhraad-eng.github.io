@@ -13,6 +13,8 @@ en:
   lang_label: Language
   projects: Projects
   all_projects: All projects
+  home: Home
+  crumbs_label: You are here
   writing: Writing
   nothing_yet: Nothing yet.
   all_posts: All posts
@@ -96,6 +98,8 @@ es:
   lang_label: Idioma
   projects: Proyectos
   all_projects: Todos los proyectos
+  home: Inicio
+  crumbs_label: Dónde estás
   writing: Escritos
   nothing_yet: Todavía nada.
   all_posts: Todas las entradas
@@ -179,6 +183,8 @@ fa:
   lang_label: زبان
   projects: پروژه‌ها
   all_projects: همه پروژه‌ها
+  home: خانه
+  crumbs_label: مسیر صفحه
   writing: نوشته‌ها
   nothing_yet: هنوز چیزی نیست.
   all_posts: همه نوشته‌ها

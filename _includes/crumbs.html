@@ -1,0 +1,12 @@
+{%- comment -%}
+The way back: "← Home" on every inner page, and "Projects" as well on a project page.
+Not shown on the home page or the 404 (which has its own link).
+{%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+<nav class="crumbs" aria-label="{{ t.crumbs_label | escape }}">
+  <a href="{{ t.prefix | append: '/' | relative_url }}">{{ t.back_arrow }} {{ t.home }}</a>
+  {%- if page.layout == "project" %}
+  <span aria-hidden="true">/</span>
+  <a href="{{ t.prefix | append: '/projects/' | relative_url }}">{{ t.projects }}</a>
+  {%- endif %}
+</nav>

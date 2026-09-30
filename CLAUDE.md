@@ -50,6 +50,15 @@ the wordmark and the language switcher; Notes, About, GitHub and RSS are in the 
 Town, The Digital Tarot Sanctuary) are never translated. No page loads anything from another
 site before the visitor acts.
 
+**The mark** is the Split wordmark: the `o` cut in two, one half in the text colour and one in
+the accent. It and the signature ("Design of" with the name drawn in Nastaliq) are inline SVG
+outlines in `_includes/wordmark.html` and `_includes/signature.html`, coloured by the site's own
+tokens. The files (light, dark, one colour), the icon and the share image are in
+`assets/img/brand/`, `assets/img/favicon.svg`, `apple-touch-icon.png` and `og.png`. Never set the
+mark as live text; never mirror it, not even on Persian pages; never recolour it outside ink,
+paper and ochre. The Nastaliq name appears only in the signature, at 150 px wide or more. The
+artwork is drawn from outlines of Jost and Noto Nastaliq Urdu (SIL Open Font License).
+
 ## Check before pushing
 
 ```

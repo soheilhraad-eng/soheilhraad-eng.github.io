@@ -23,6 +23,8 @@ github.com works too. Installing things locally is only for previewing before yo
 | `worker/` | The Cloudflare Worker that classifies words the input doesn't know, and how to deploy it |
 | `_layouts/project.html` | The project page layout: video or button, then folded sections |
 | `assets/js/video.js` | Click-to-load for YouTube videos |
+| `_includes/wordmark.html`, `_includes/signature.html` | The logo (header) and the "Design of" signature (footer), as inline SVG that takes the site's colours |
+| `assets/img/brand/` | The logo as files: wordmark and signature in light, dark and one colour, and the icon. `favicon.svg`, `apple-touch-icon.png` and `og.png` sit in `assets/img/` |
 | `_layouts/`, `_includes/` | Page templates; rarely need touching |
 
 ## Languages

@@ -296,6 +296,9 @@ function showResult(text,hit,autoplay){
   $('shareOut').textContent = '';
   $('status').textContent = '';
   if(autoplay) play();
+  // On a small screen the card can start below the fold: bring it into view.
+  const calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  box.scrollIntoView({block:'nearest',behavior:calm?'auto':'smooth'});
 }
 
 async function handle(raw,autoplay=true,localOnly=false){

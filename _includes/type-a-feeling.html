@@ -7,14 +7,14 @@ site when the page loads, and no sound starts until the visitor presses the butt
 {%- assign f = t.feeling -%}
 <section class="feeling" aria-label="{{ f.label | escape }}">
   <form id="taf-form" class="feeling-form" autocomplete="off">
+    <label for="taf-feeling">{{ f.label }}</label>
     <div class="feeling-field">
-      <label for="taf-feeling">{{ f.label }}</label>
       <input id="taf-feeling" type="text" maxlength="40" dir="auto" enterkeyhint="go"
              placeholder="feeling · sentimiento · احساس" autocapitalize="none" spellcheck="false">
+      <button class="feeling-go" type="submit" aria-label="{{ f.submit | escape }}">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
+      </button>
     </div>
-    <button class="feeling-go" type="submit" aria-label="{{ f.submit | escape }}">
-      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
-    </button>
   </form>
   <div class="feeling-chips" role="group" aria-label="{{ f.examples | escape }}">
     <button class="taf-chip" type="button" data-w="longing" lang="en">longing</button>
@@ -26,8 +26,8 @@ site when the page loads, and no sound starts until the visitor presses the butt
     <div id="taf-result" hidden>
       <svg id="taf-roll" class="feeling-roll" viewBox="0 0 300 72" aria-hidden="true" focusable="false" preserveAspectRatio="none"></svg>
       <h2 id="taf-emo" class="feeling-emo"></h2>
-      <p id="taf-cue" class="feeling-cue"></p>
       <p id="taf-meta" class="feeling-meta"></p>
+      <p id="taf-cue" class="feeling-cue"></p>
       <div class="feeling-actions">
         <button class="feeling-link" id="taf-again" type="button"></button>
         <button class="feeling-link" id="taf-share" type="button"></button>

@@ -59,4 +59,5 @@ Nothing is requested from a third party until the visitor clicks play.
   </details>
   {%- endif %}
   {{ content }}
+  <p class="back"><a href="{{ t.prefix | append: '/projects/' | relative_url }}">{{ t.back_arrow }} {{ t.all_projects }}</a></p>
 </article>

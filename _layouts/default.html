@@ -50,6 +50,9 @@
 <body>
   {% include header.html %}
   <main class="wrap">
+    {%- if page.ref != "home" and page.permalink != "/404.html" %}
+    {% include crumbs.html %}
+    {%- endif %}
     {{ content }}
   </main>
   {% include footer.html %}

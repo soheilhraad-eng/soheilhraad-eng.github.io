@@ -49,6 +49,13 @@ const EMO = {
     rhythm:[1,.5,.5,1,1,.5,.5,2],contour:'up',range:[0,10],startDeg:0,ending:'high',vel:[.5,.9],rest:0,echo:.15}
 };
 
+/* Chords under the melody: scale-degree roots, stacked in thirds. Modal choices follow the cues
+   above: a plain I-V-vi-IV for joy, a falling minor line for sadness, a dissonant flat-II for fear. */
+const PROG = {
+  joy:[0,4,5,3], sadness:[0,5,2,6], calm:[0,3,1,0], fear:[0,1,0,4], anger:[0,1,0,6],
+  tenderness:[0,2,3,0], longing:[0,3,6,0], wonder:[0,1,0,4], hope:[0,3,4,0]
+};
+
 /* Words the page knows without asking anyone. Accents and Persian variants are normalised below. */
 const WORDS = {
   joy:{en:['joy','happy','happiness','glad','delight','cheerful','excited','elated','bliss','fun'],
@@ -161,7 +168,12 @@ function buildPhrase(word,key){
   else if(e.ending==='semitone') fin = e.root + 12*Math.round(deg/len) + 1;
   else if(e.ending==='high') fin = degToMidi(deg>=len ? len*2 : len,e);
   if(fin!==null){ const d = beat*2; notes.push({t,dur:d,midi:fin,vel:e.vel[1],final:true}); t += d; }
-  return {notes,total:t};
+  // The chords take no random numbers, so they never change the melody; the last one is home.
+  const prog = PROG[key], seg = t/prog.length, chords = prog.map((d,k)=>{
+    const r = (k===prog.length-1) ? 0 : d;
+    return {t:k*seg, dur:seg, bass:degToMidi(r,e)-24, tones:[0,2,4].map(s=>degToMidi(r+s,e)-12)};
+  });
+  return {notes,chords,total:t};
 }
 
 /* ---------- audio ---------- */
@@ -182,11 +194,23 @@ function ensureAudio(){
   return AC;
 }
 
+/* A small hall made of decaying noise, so no sound file has to be downloaded. */
+let IR=null;
+function impulse(){
+  if(IR) return IR;
+  const len = Math.floor(AC.sampleRate*2.2), buf = AC.createBuffer(2,len,AC.sampleRate), rnd = mulberry32(7);
+  for(let c=0;c<2;c++){ const d = buf.getChannelData(c); for(let i=0;i<len;i++) d[i] = (rnd()*2-1)*Math.pow(1-i/len,2.6); }
+  return IR = buf;
+}
+
 function makeFx(e,dest){
   const input = AC.createGain();
   const lp = AC.createBiquadFilter();
   lp.type='lowpass'; lp.frequency.value=e.bright; lp.Q.value=e.q||.7;
   input.connect(lp); lp.connect(dest);
+  const rv = AC.createConvolver(); rv.buffer = impulse();
+  const rw = AC.createGain(); rw.gain.value = e.reverb==null ? .2 : e.reverb;
+  lp.connect(rv); rv.connect(rw); rw.connect(dest);
   if(e.echo){
     const d = AC.createDelay(1); d.delayTime.value = .32;
     const fb = AC.createGain(); fb.gain.value = .38;
@@ -218,6 +242,12 @@ function voice(e,fx,base,midi,dur,vel,gainScale){
     }
     o.connect(g); o.start(t0); o.stop(end);
   });
+  // A quiet octave above makes a sine or triangle sound less like a test tone.
+  if(!e.pure && e.wave!=='sawtooth'){
+    const o2 = AC.createOscillator(), g2 = AC.createGain();
+    o2.type='sine'; o2.frequency.value = midiHz(midi)*2; g2.gain.value = .14;
+    o2.connect(g2); g2.connect(g); o2.start(t0); o2.stop(end);
+  }
 }
 
 function play(){
@@ -229,6 +259,13 @@ function play(){
   phrase.notes.forEach(n=>{
     voice(e,fx,base+n.t,n.midi,n.dur,n.vel,1);
     if(n.extra) voice(e,fx,base+n.t,n.extra,n.dur,n.vel,.6);
+  });
+  const padE = Object.assign({},e,{wave:'triangle',attack:.3,decay:.5,sustain:.8,release:.7,legato:1,vib:null,detune:7,
+                                   gain:e.gain*.42,pure:true,bright:Math.min(e.bright,1800)});
+  const bassE = Object.assign({},e,{wave:'sine',attack:.05,decay:.3,sustain:.8,release:.5,legato:.95,vib:null,detune:0,gain:e.gain*1.1,pure:true});
+  phrase.chords.forEach(c=>{
+    c.tones.forEach(m=>voice(padE,fx,base+c.t,m,c.dur,.7,1));
+    voice(bassE,fx,base+c.t,c.bass,c.dur,.8,1);
   });
   if(e.drone){
     const o = AC.createOscillator(), g = AC.createGain();

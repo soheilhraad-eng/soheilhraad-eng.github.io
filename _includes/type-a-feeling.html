@@ -7,16 +7,18 @@ site when the page loads, and no sound starts until the visitor presses the butt
 {%- assign f = t.feeling -%}
 <section class="feeling" aria-label="{{ f.label | escape }}">
   <form id="taf-form" class="feeling-form" autocomplete="off">
-    <label for="taf-feeling">{{ f.label }}</label>
+    <label for="taf-feeling" class="feeling-title">{{ f.label }}</label>
+    <p id="taf-how" class="feeling-how">{{ f.how }}</p>
     <div class="feeling-field">
       <input id="taf-feeling" type="text" maxlength="40" dir="auto" enterkeyhint="go"
-             placeholder="feeling · sentimiento · احساس" autocapitalize="none" spellcheck="false">
+             placeholder="{{ f.placeholder | escape }}" aria-describedby="taf-how" autocapitalize="none" spellcheck="false">
       <button class="feeling-go" type="submit" aria-label="{{ f.submit | escape }}">
         <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
       </button>
     </div>
   </form>
   <div class="feeling-chips" role="group" aria-label="{{ f.examples | escape }}">
+    <span class="feeling-try" aria-hidden="true">{{ f.try }}</span>
     <button class="taf-chip" type="button" data-w="longing" lang="en">longing</button>
     <button class="taf-chip" type="button" data-w="calma" lang="es">calma</button>
     <button class="taf-chip" type="button" data-w="ترس" lang="fa" dir="rtl">ترس</button>

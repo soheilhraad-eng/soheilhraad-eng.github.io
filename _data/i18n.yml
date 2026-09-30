@@ -19,6 +19,7 @@ en:
   in_english: in English
   play_video: Play video
   detail_design: The design decision
+  shots_label: Screenshots
   detail_does: What it does
   detail_built: "How it's built"
   footer_rss: RSS
@@ -101,6 +102,7 @@ es:
   in_english: en inglés
   play_video: Reproducir vídeo
   detail_design: La decisión de diseño
+  shots_label: Capturas de pantalla
   detail_does: Qué hace
   detail_built: "Cómo se construye"
   footer_rss: RSS
@@ -183,6 +185,7 @@ fa:
   in_english: به انگلیسی
   play_video: پخش ویدیو
   detail_design: تصمیم طراحی
+  shots_label: تصاویر برنامه
   detail_does: چه کار می‌کند
   detail_built: "چطور ساخته شده"
   footer_rss: RSS

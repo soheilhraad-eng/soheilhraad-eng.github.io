@@ -10,55 +10,24 @@ video:      # TODO(owner): a demo video, or leave empty and set cta_url to a Net
 poster:     # TODO(owner): image path; also becomes this page's og:image (add the same path as image:)
 cta_label:  # TODO(owner): e.g. Run it in the browser
 cta_url:    # TODO(owner): NetLogo Web link, if the model runs there
+images:     # TODO(owner): screenshots, e.g. - {src: /assets/img/projects/tarot-1.jpg, alt: "The reading table"}
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 
-<details class="fold" markdown="1">
+<details class="fold" markdown="1" open>
 <summary>{{ t.detail_does }}</summary>
 
-### The question
-
-How do three things interact: how receptive the host community is, how prepared each newcomer
-is, and how much capacity local institutions have? And which of those levers actually shifts
-the balance between integration and separation?
-
-### How it works
-
-The model is a small town. Newcomers settle among long-standing residents, and every person in it is an agent who forms social ties over time. The town's local services can take only so many people at once. A migrant's outcome isn't
-assigned or scored. It's **read from their network**: whom they are actually connected to,
-within their own community and across to the host community. Integration, separation and the
-other outcomes are patterns in those ties, not labels.
-
-The model is grounded in established theory: Berry's acculturation framework, Bourhis's
-interactive acculturation model, contact theory, and the rejection–identification model.
+- **Newcomers settle among residents**, and every person is an agent who forms ties over time.
+- **Outcomes are read from the network**, not assigned: integration and separation are patterns of ties.
+- **Three levers**: how receptive the town is, how prepared newcomers are, and how much capacity local services have.
 
 </details>
 
 <details class="fold" markdown="1">
 <summary>{{ t.detail_built }}</summary>
 
-### What sets it apart
-
-Its closest published relative is Paolillo and Jager's MigrAgent (*Social Science Computer
-Review*, 2020), which also defines acculturation outcomes from network ties. This model was
-designed independently and arrived at the same core idea. It then adds two things that are
-rare or missing in the published work:
-
-- **Acculturative stress**, with buffering and feedback. Stress builds from difficult
-  experiences, social support cushions it, and it changes how people behave in turn.
-- **Institutional capacity as a lever.** Local services can help settlement, but they get
-  congested as demand rises, which feeds back into outcomes.
-
-### Where it's going
-
-The design is in place. The next stage is evidence:
-
-- Full reproducibility, and a write-up in the ODD protocol, the standard format for describing
-  agent-based models.
-- Systematic experiments across the main parameters, with global sensitivity analysis to show
-  which settings really drive the results.
-- Calibrating against published empirical patterns, so the model reproduces what surveys
-  actually observe.
-- A public, citable release on CoMSES, followed by a working paper.
+- **Grounded in theory**: Berry, Bourhis, contact theory and rejection–identification.
+- **Adds two rare things**: acculturative stress with buffering, and service capacity that congests as demand grows.
+- **Next**: an ODD write-up, sensitivity analysis, calibration, and a public CoMSES release.
 
 </details>

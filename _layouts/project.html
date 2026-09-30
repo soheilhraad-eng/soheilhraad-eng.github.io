@@ -9,6 +9,7 @@ else is folded in <details>, closed by default, with no script. Front matter:
   video       a YouTube id, or a path to an .mp4 under /assets/video/  (empty = no video)
   poster      an image path: the video's still frame (also set `image:` to the same path for the
               link preview)
+  images      a list of {src, alt}: screenshots in a swipeable strip under the video
   cta_label / cta_url   the button (empty = no button)
 Nothing is requested from a third party until the visitor clicks play.
 {%- endcomment -%}
@@ -43,6 +44,13 @@ Nothing is requested from a third party until the visitor clicks play.
     <p class="project-cta"><a class="button" href="{{ page.cta_url }}">{{ page.cta_label }} {{ t.arrow }}</a></p>
     {%- endif %}
   </div>
+  {%- endif %}
+  {%- if page.images and page.images.size > 0 %}
+  <ul class="project-shots" aria-label="{{ t.shots_label | escape }}" tabindex="0">
+    {%- for im in page.images %}
+    <li><img src="{{ im.src | relative_url }}" alt="{{ im.alt | escape }}" loading="lazy" decoding="async"></li>
+    {%- endfor %}
+  </ul>
   {%- endif %}
   {%- if page.decision %}
   <details class="fold">

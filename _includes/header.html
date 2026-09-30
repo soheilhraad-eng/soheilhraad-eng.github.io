@@ -1,7 +1,7 @@
 {%- assign t = site.data.i18n[page.lang] -%}
 <header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="{{ t.prefix | append: '/' | relative_url }}">{{ site.title }}</a>
+    <a class="brand" href="{{ t.prefix | append: '/' | relative_url }}" aria-label="{{ site.title }}">{% include wordmark.html %}</a>
     <nav class="langs" aria-label="{{ t.lang_label }}">
       {%- for l in site.languages -%}
         {%- assign twin = nil -%}

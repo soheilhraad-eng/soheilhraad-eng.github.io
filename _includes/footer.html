@@ -1,11 +1,12 @@
 {%- assign t = site.data.i18n[page.lang] -%}
 {%- comment -%}
-The brand line is Latin-script text with one Persian word in it, so it is kept left-to-right as a
-unit (also on the Persian pages), and the Persian word is wrapped so its punctuation doesn't flip.
+The signature is "Design of" with the name drawn in Nastaliq, as an SVG that takes its colours
+from the site. The same words are kept as text for screen readers and search, left-to-right as a
+unit (also on the Persian pages), with the Persian word wrapped so its punctuation doesn't flip.
 {%- endcomment -%}
 <footer class="site-footer">
   <div class="wrap">
-    <p><bdi dir="ltr">© {{ site.time | date: "%Y" }} {{ site.title }} · {{ site.full_name | replace: "سهی", '<span lang="fa" dir="rtl">سهی</span>' }}</bdi></p>
+    <p class="signature"><bdi dir="ltr"><span class="visually-hidden">© {{ site.time | date: "%Y" }} {{ site.title }} · {{ site.full_name | replace: "سهی", '<span lang="fa" dir="rtl">سهی</span>' }}</span><span aria-hidden="true">© {{ site.time | date: "%Y" }}</span> {% include signature.html %}</bdi></p>
     <nav aria-label="{{ t.footer_label }}">
       <a href="{{ t.prefix | append: '/blog/' | relative_url }}">{{ t.footer_notes }}</a>
       <a href="{{ t.prefix | append: '/about/' | relative_url }}">{{ t.footer_about }}</a>

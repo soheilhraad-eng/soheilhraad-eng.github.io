@@ -17,9 +17,10 @@
     {%- assign full_title = site.title -%}
   {%- endif %}
   <title>{{ full_title | escape }}</title>
-  {%- capture seo_out %}{% seo title=false %}{% endcapture %}
-  {%- assign seo_lines = seo_out | split: "
-" %}
+  {%- capture newline %}
+{% endcapture -%}
+  {%- capture seo_out %}{% seo title=false %}{% endcapture -%}
+  {%- assign seo_lines = seo_out | split: newline %}
   {%- for line in seo_lines -%}
     {%- unless line contains 'name="twitter:site"' or line contains 'name="twitter:creator"' or line == "" %}
   {{ line | strip }}

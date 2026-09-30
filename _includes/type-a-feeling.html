@@ -37,5 +37,5 @@ site when the page loads, and no sound starts until the visitor presses the butt
   </div>
   <p class="feeling-note">{{ f.note }}</p>
 </section>
-<script type="application/json" id="taf-data">{"endpoint": {{ site.classify_endpoint | default: "" | jsonify }}, "strings": {"en": {{ site.data.i18n.en.feeling | jsonify }}, "es": {{ site.data.i18n.es.feeling | jsonify }}, "fa": {{ site.data.i18n.fa.feeling | jsonify }}}}</script>
+<script type="application/json" id="taf-data">{"endpoint": {{ site.classify_endpoint | default: "" | jsonify }}, "strings": {"en": {{ site.data.i18n.en.feeling | jsonify }}, "es": {{ site.data.i18n.es.feeling | jsonify }}, "fa": {{ site.data.i18n.fa.feeling | jsonify }} } }</script>
 <script src="{{ '/assets/js/type-a-feeling.js' | relative_url }}" defer></script>

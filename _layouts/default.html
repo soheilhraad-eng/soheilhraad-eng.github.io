@@ -4,7 +4,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% seo %}
+  {%- comment -%}
+  Titles are "{page title} — dos" (the home page is "dos — Design of سهی"), so the plugin's
+  own <title> is switched off. Its twitter:site and twitter:creator lines are dropped: no
+  handle exists yet, and the plugin would otherwise print an empty "@" and a guessed one.
+  {%- endcomment -%}
+  {%- if page.ref == "home" -%}
+    {%- assign full_title = site.title | append: " — " | append: site.full_name -%}
+  {%- elsif page.title -%}
+    {%- assign full_title = page.title | append: " — " | append: site.title -%}
+  {%- else -%}
+    {%- assign full_title = site.title -%}
+  {%- endif %}
+  <title>{{ full_title | escape }}</title>
+  {%- capture newline %}
+{% endcapture -%}
+  {%- capture seo_out %}{% seo title=false %}{% endcapture -%}
+  {%- assign seo_lines = seo_out | split: newline %}
+  {%- for line in seo_lines -%}
+    {%- unless line contains 'name="twitter:site"' or line contains 'name="twitter:creator"' or line == "" %}
+  {{ line | strip }}
+    {%- endunless -%}
+  {%- endfor %}
   <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
   <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
   <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">

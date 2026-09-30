@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+description: About dos — Design of سهی.
 permalink: /about/
 ref: about
 ---

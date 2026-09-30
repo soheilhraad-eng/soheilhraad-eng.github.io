@@ -1,20 +1,28 @@
 ---
-layout: page
+layout: project
 title: Small Town
 description: A small town, simulated in NetLogo. Newcomers settle, ties form, and integration or separation emerges from host receptivity, individual preparedness and the capacity of local services.
+lede: "A small town, simulated in NetLogo. Newcomers arrive, ties form, and the town shows when settlement leads to integration and when it leads to separation."
+decision: "Outcomes are not assigned or scored. They are read from each person's network: who they are actually connected to, inside their own community and across to the host one."
 permalink: /projects/small-town/
 ref: small-town
+video:      # TODO(owner): a demo video, or leave empty and set cta_url to a NetLogo Web link
+poster:     # TODO(owner): image path; also becomes this page's og:image (add the same path as image:)
+cta_label:  # TODO(owner): e.g. Run it in the browser
+cta_url:    # TODO(owner): NetLogo Web link, if the model runs there
 ---
+{%- assign t = site.data.i18n[page.lang] -%}
 
-<p class="lede">A small town, simulated in NetLogo. Newcomers arrive, ties form, and the town shows when settlement leads to integration and when it leads to separation.</p>
+<details class="fold" markdown="1">
+<summary>{{ t.detail_does }}</summary>
 
-## The question
+### The question
 
 How do three things interact: how receptive the host community is, how prepared each newcomer
 is, and how much capacity local institutions have? And which of those levers actually shifts
 the balance between integration and separation?
 
-## How it works
+### How it works
 
 The model is a small town. Newcomers settle among long-standing residents, and every person in it is an agent who forms social ties over time. The town's local services can take only so many people at once. A migrant's outcome isn't
 assigned or scored. It's **read from their network**: whom they are actually connected to,
@@ -24,7 +32,12 @@ other outcomes are patterns in those ties, not labels.
 The model is grounded in established theory: Berry's acculturation framework, Bourhis's
 interactive acculturation model, contact theory, and the rejection–identification model.
 
-## What sets it apart
+</details>
+
+<details class="fold" markdown="1">
+<summary>{{ t.detail_built }}</summary>
+
+### What sets it apart
 
 Its closest published relative is Paolillo and Jager's MigrAgent (*Social Science Computer
 Review*, 2020), which also defines acculturation outcomes from network ties. This model was
@@ -36,7 +49,7 @@ rare or missing in the published work:
 - **Institutional capacity as a lever.** Local services can help settlement, but they get
   congested as demand rises, which feeds back into outcomes.
 
-## Where it's going
+### Where it's going
 
 The design is in place. The next stage is evidence:
 
@@ -47,3 +60,5 @@ The design is in place. The next stage is evidence:
 - Calibrating against published empirical patterns, so the model reproduces what surveys
   actually observe.
 - A public, citable release on CoMSES, followed by a working paper.
+
+</details>

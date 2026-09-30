@@ -1,0 +1,59 @@
+# Builds the site the way GitHub Pages does and checks the head tags. It publishes nothing:
+# it only reports a green tick or a red cross, and keeps the built site as a zip you can download.
+name: Build check
+
+on:
+  push:
+    branches: [dos-rework]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      JEKYLL_ENV: production
+      PAGES_REPO_NWO: ${{ github.repository }}
+      JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build
+        run: |
+          bundle exec jekyll build 2>&1 | tee build.log
+          if grep -i "warning" build.log; then echo "::error::The build printed warnings (see above)"; exit 1; fi
+
+      - name: Check the head tags
+        run: |
+          fail=0
+          for f in _site/index.html _site/es/index.html _site/fa/index.html _site/projects/tarot-app/index.html _site/es/projects/camino/index.html _site/fa/projects/small-town/index.html; do
+            echo "== $f"
+            grep -o "<title>[^<]*</title>" "$f" || { echo "::error::no <title> in $f"; fail=1; }
+            grep -o "<html[^>]*>" "$f"
+            grep -o '<link rel="canonical"[^>]*>' "$f" || { echo "::error::no canonical in $f"; fail=1; }
+            grep -o '<meta name="description"[^>]*>' "$f" || { echo "::error::no description in $f"; fail=1; }
+            if grep -qE 'twitter:(site|creator)|@Sohi' "$f"; then echo "::error::twitter:site/creator or @Sohi found in $f"; fail=1; fi
+            if grep -q "fonts.googleapis.com" "$f"; then echo "::error::Google Fonts found in $f"; fail=1; fi
+          done
+          grep -q '<html lang="fa" dir="rtl"' _site/fa/index.html || { echo "::error::fa page is not lang=fa dir=rtl"; fail=1; }
+          exit $fail
+
+      - name: Every old address still exists
+        run: |
+          for p in blog about projects projects/tarot-app projects/camino projects/small-town es es/blog es/about es/projects es/projects/tarot-app es/projects/camino es/projects/small-town fa fa/blog fa/about fa/projects fa/projects/tarot-app fa/projects/camino fa/projects/small-town blog/2025/11/the-wall-of-paper es/blog/2025/11/the-wall-of-paper fa/blog/2025/11/the-wall-of-paper; do
+            test -f "_site/$p/index.html" || { echo "::error::missing /$p/"; exit 1; }
+          done
+          test -f _site/404.html
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: built-site
+          path: _site

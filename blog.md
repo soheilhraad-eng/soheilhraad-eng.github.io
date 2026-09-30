@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Blog
+title: Notes
+description: Notes on building small tools for people between languages.
 permalink: /blog/
 ref: blog
 ---

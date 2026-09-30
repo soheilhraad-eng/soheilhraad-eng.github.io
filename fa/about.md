@@ -1,6 +1,7 @@
 ---
 layout: page
 title: درباره من
+description: درباره dos — Design of سهی.
 permalink: /fa/about/
 ref: about
 ---

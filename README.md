@@ -12,15 +12,17 @@ github.com works too. Installing things locally is only for previewing before yo
 | `about.md` | About page |
 | `projects.md` | Project list, which links to each project page |
 | `tarot-app.md` | The Tarot project page, and a template for new ones |
-| `blog.md` | Blog index, which lists `_posts/` automatically |
+| `blog.md` | Notes index (the URL is still `/blog/`), which lists `_posts/` automatically |
 | `_posts/` | Blog posts |
-| `_config.yml` | Site title, description, menu, time zone |
+| `_config.yml` | Site title, description, contact email, classifier address, time zone |
 | `assets/css/style.scss` | All the styling; colours are the variables at the top |
 | `es/`, `fa/` | The Spanish and Persian versions of every page |
 | `_data/projects.yml` | The project cards, in all three languages |
 | `_data/i18n.yml` | Menu, buttons and other interface text, in all three languages |
-| `worker/` | Marco, the home page's AI chat: the Cloudflare Worker and how to deploy it |
-| `assets/js/chat.js` | The chat box in the browser |
+| `_includes/type-a-feeling.html`, `assets/js/type-a-feeling.js` | The one input on the home page ("Type a feeling"); its text is under `feeling:` in `_data/i18n.yml` |
+| `worker/` | The Cloudflare Worker that classifies words the input doesn't know, and how to deploy it |
+| `_layouts/project.html` | The project page layout: video or button, then folded sections |
+| `assets/js/video.js` | Click-to-load for YouTube videos |
 | `_layouts/`, `_includes/` | Page templates; rarely need touching |
 
 ## Languages
@@ -117,10 +119,15 @@ the first one, and put `{% include slides.html %}` where the carousel should go.
 ## Add a project
 
 1. Copy `tarot-app.md`, `es/tarot-app.md` and `fa/tarot-app.md`, rename them (e.g.
-   `my-thing.md`), and change their `title`, `description`, text, and `permalink` (e.g.
-   `/projects/my-thing/`, `/es/projects/my-thing/`, `/fa/projects/my-thing/`). Give all three
-   the same new `ref:`.
-2. Add a card for it to `_data/projects.yml`, with `slug: my-thing` and a title and one-line
+   `my-thing.md`), and change their `title`, `description`, `lede`, `decision`, text, and
+   `permalink` (e.g. `/projects/my-thing/`, `/es/projects/my-thing/`, `/fa/projects/my-thing/`).
+   Give all three the same new `ref:`.
+2. Fill the front matter that decides what is visible: `video` (a YouTube id, or a path to an
+   `.mp4` under `assets/video/`, with `<name>.en.vtt`, `.es.vtt` and `.fa.vtt` captions beside
+   it), `poster` (an image; also set `image:` to the same path so the link preview uses it),
+   and `cta_label` / `cta_url` for a button. Leave a key empty and that element disappears
+   without leaving a gap. The text goes in two folds, "What it does" and "How it's built".
+3. Add an entry for it to `_data/projects.yml`, with `slug: my-thing` and a title and one-line
    summary in each language. It appears on the home and Projects pages in all three languages.
 
 ## Private notes

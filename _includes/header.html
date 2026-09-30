@@ -1,16 +1,7 @@
 {%- assign t = site.data.i18n[page.lang] -%}
-{%- assign nav = "projects,blog,about" | split: "," -%}
 <header class="site-header">
   <div class="wrap bar">
     <a class="brand" href="{{ t.prefix | append: '/' | relative_url }}">{{ site.title }}</a>
-    <nav aria-label="{{ t.nav_label }}">
-      {%- for key in nav -%}
-        {%- capture url %}{{ t.prefix }}/{{ key }}/{% endcapture -%}
-        {%- assign label_key = "nav_" | append: key -%}
-        {%- assign current = page.url | slice: 0, url.size %}
-      <a href="{{ url | relative_url }}"{% if current == url %} aria-current="page"{% endif %}>{{ t[label_key] }}</a>
-      {%- endfor %}
-    </nav>
     <nav class="langs" aria-label="{{ t.lang_label }}">
       {%- for l in site.languages -%}
         {%- assign twin = nil -%}

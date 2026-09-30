@@ -1,0 +1,41 @@
+{%- comment -%}
+"Type a feeling": one input, one short phrase of sound. Interface text is in _data/i18n.yml
+under `feeling:`; the engine is assets/js/type-a-feeling.js. Nothing is requested from another
+site when the page loads, and no sound starts until the visitor presses the button or Enter.
+{%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign f = t.feeling -%}
+<section class="feeling" aria-label="{{ f.label | escape }}">
+  <form id="taf-form" class="feeling-form" autocomplete="off">
+    <div class="feeling-field">
+      <label for="taf-feeling">{{ f.label }}</label>
+      <input id="taf-feeling" type="text" maxlength="40" dir="auto" enterkeyhint="go"
+             placeholder="feeling · sentimiento · احساس" autocapitalize="none" spellcheck="false">
+    </div>
+    <button class="feeling-go" type="submit" aria-label="{{ f.submit | escape }}">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
+    </button>
+  </form>
+  <div class="feeling-chips" role="group" aria-label="{{ f.examples | escape }}">
+    <button class="taf-chip" type="button" data-w="longing" lang="en">longing</button>
+    <button class="taf-chip" type="button" data-w="calma" lang="es">calma</button>
+    <button class="taf-chip" type="button" data-w="ترس" lang="fa" dir="rtl">ترس</button>
+  </div>
+  <p id="taf-status" class="feeling-status" role="status" aria-live="polite"></p>
+  <div class="feeling-live" aria-live="polite">
+    <div id="taf-result" hidden>
+      <svg id="taf-roll" class="feeling-roll" viewBox="0 0 300 72" aria-hidden="true" focusable="false" preserveAspectRatio="none"></svg>
+      <h2 id="taf-emo" class="feeling-emo"></h2>
+      <p id="taf-cue" class="feeling-cue"></p>
+      <p id="taf-meta" class="feeling-meta"></p>
+      <div class="feeling-actions">
+        <button class="feeling-link" id="taf-again" type="button"></button>
+        <button class="feeling-link" id="taf-share" type="button"></button>
+      </div>
+      <span id="taf-shareOut" class="feeling-shareout"></span>
+    </div>
+  </div>
+  <p class="feeling-note">{{ f.note }}</p>
+</section>
+<script type="application/json" id="taf-data">{"endpoint": {{ site.classify_endpoint | default: "" | jsonify }}, "strings": {"en": {{ site.data.i18n.en.feeling | jsonify }}, "es": {{ site.data.i18n.es.feeling | jsonify }}, "fa": {{ site.data.i18n.fa.feeling | jsonify }} } }</script>
+<script src="{{ '/assets/js/type-a-feeling.js' | relative_url }}" defer></script>

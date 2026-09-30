@@ -23,6 +23,10 @@ contact_url: https://github.com/soheilhrad
 # The address of the Marco chat Worker (see worker/README.md). Empty = the chat box is hidden.
 chat_endpoint: "https://marco.soheilhraad-0e6.workers.dev/"
 
+# The Worker that classifies words "Type a feeling" doesn't know (see worker/README.md).
+# Empty = unknown words are simply not understood, and nothing is ever sent.
+classify_endpoint: "https://marco.soheilhraad-0e6.workers.dev/"
+
 permalink: /blog/:year/:month/:title/
 
 plugins:

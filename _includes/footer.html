@@ -1,8 +1,15 @@
 {%- assign t = site.data.i18n[page.lang] -%}
+{%- assign year = site.time | date: "%Y" -%}
+{%- if page.lang == "fa" -%}{%- assign year = year | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}{%- endif -%}
+{%- comment -%}The Persian in "Design of سهی" is wrapped so its punctuation doesn't flip in LTR pages.{%- endcomment -%}
 <footer class="site-footer">
   <div class="wrap">
-    <p>© {% if page.lang == "fa" %}{{ site.time | date: "%Y" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" }}{% else %}{{ site.time | date: "%Y" }}{% endif %} {{ site.author.name }} ·
-      <a href="https://github.com/{{ site.author.github }}">GitHub</a> ·
-      <a href="{{ '/feed.xml' | relative_url }}">{{ t.footer_rss }}</a></p>
+    <p>© {{ year }} {{ site.title }} · {{ site.full_name | replace: "سهی", '<span lang="fa" dir="rtl">سهی</span>' }}</p>
+    <nav aria-label="{{ t.footer_label }}">
+      <a href="{{ t.prefix | append: '/blog/' | relative_url }}">{{ t.footer_notes }}</a>
+      <a href="{{ t.prefix | append: '/about/' | relative_url }}">{{ t.footer_about }}</a>
+      <a href="https://github.com/{{ site.author.github }}">GitHub</a>
+      <a href="{{ '/feed.xml' | relative_url }}">{{ t.footer_rss }}</a>
+    </nav>
   </div>
 </footer>

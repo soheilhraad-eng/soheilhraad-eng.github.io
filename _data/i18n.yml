@@ -7,10 +7,9 @@ en:
   prefix: ""
   arrow: "→"
   back_arrow: "←"
-  nav_projects: Projects
-  nav_blog: Blog
-  nav_about: About
-  nav_label: Main
+  footer_notes: Notes
+  footer_about: About
+  footer_label: Footer
   lang_label: Language
   projects: Projects
   all_projects: All projects
@@ -65,10 +64,9 @@ es:
   prefix: /es
   arrow: "→"
   back_arrow: "←"
-  nav_projects: Proyectos
-  nav_blog: Blog
-  nav_about: Sobre mí
-  nav_label: Principal
+  footer_notes: Notas
+  footer_about: Sobre mí
+  footer_label: Pie de página
   lang_label: Idioma
   projects: Proyectos
   all_projects: Todos los proyectos
@@ -123,10 +121,9 @@ fa:
   prefix: /fa
   arrow: "←"
   back_arrow: "→"
-  nav_projects: پروژه‌ها
-  nav_blog: وبلاگ
-  nav_about: درباره من
-  nav_label: اصلی
+  footer_notes: یادداشت‌ها
+  footer_about: درباره من
+  footer_label: پایین صفحه
   lang_label: زبان
   projects: پروژه‌ها
   all_projects: همه پروژه‌ها

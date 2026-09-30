@@ -89,18 +89,25 @@ pre { overflow-x: auto; background: var(--surface); border: 1px solid var(--bord
 pre code { background: none; padding: 0; }
 
 .site-header { border-bottom: 1px solid var(--border); }
+// The header is the wordmark and the language switcher, nothing else. Links are at least
+// 44px tall so they are easy to tap.
 .bar {
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
-  gap: 0.5rem 1.5rem; padding-top: 1rem; padding-bottom: 1rem;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 0 1.5rem; padding-top: 0.25rem; padding-bottom: 0.25rem;
 }
-.brand { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--text); text-decoration: none; }
-.bar nav { display: flex; gap: 1.25rem; }
-.bar .langs { gap: 0.75rem; font-size: 0.9rem; }
-.bar .langs a[aria-current] { color: var(--text); text-decoration: none; font-weight: 600; }
+.brand {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--text); text-decoration: none;
+}
+.bar nav { display: flex; }
+.bar .langs a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.5rem;
+  font-size: 0.9rem; color: var(--muted); text-decoration: none;
+}
+.bar .langs a:hover { color: var(--text); }
+.bar .langs a[aria-current] { color: var(--text); font-weight: 600; }
 .bar .langs a[aria-current]:hover { cursor: default; }
-.bar nav a { color: var(--muted); text-decoration: none; }
-.bar nav a:hover, .bar nav a[aria-current="page"] { color: var(--text); }
-.bar nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); }
 
 .hero { padding: 2.5rem 0 1.5rem; }
 .hero h1 { font-size: clamp(2.1rem, 6vw, 3.1rem); letter-spacing: -0.01em; max-width: 18ch; }
@@ -141,8 +148,13 @@ pre code { background: none; padding: 0; }
 .tag { font-size: 0.8rem; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 0 0.5em; align-self: center; }
 
 .site-footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
-.site-footer .wrap { padding-top: 1.5rem; padding-bottom: 2rem; }
-.site-footer a { color: var(--muted); }
+.site-footer .wrap { padding-top: 1.25rem; padding-bottom: 2rem; }
+.site-footer p { margin: 0 0 0.25rem; }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 0 0.5rem; margin-inline-start: -0.5rem; }
+.site-footer nav a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.5rem; color: var(--muted);
+}
+.site-footer nav a:hover { color: var(--text); }
 
 .post p { margin: 0 0 1.1rem; }
 

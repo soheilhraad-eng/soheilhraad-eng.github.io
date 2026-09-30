@@ -37,7 +37,7 @@ Nothing is requested from a third party until the visitor clicks play.
         <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="30" fill="currentColor" opacity="0.9"/><path d="M26 20v24l20-12z" fill="var(--bg)"/></svg>
       </button>
     </div>
-    <script src="{{ '/assets/js/video.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/video.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
     {%- endif %}
     {%- if page.cta_url and page.cta_label %}
     <p class="project-cta"><a class="button" href="{{ page.cta_url }}">{{ page.cta_label }} {{ t.arrow }}</a></p>

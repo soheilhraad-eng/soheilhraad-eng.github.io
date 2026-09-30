@@ -343,3 +343,12 @@ video.project-video { background: #000; }
 .fold > :not(summary) { margin-inline-start: 1.5rem; }
 .fold h3 { margin-top: var(--space-3); }
 .fold > :last-child { margin-bottom: var(--space-3); }
+
+// Screenshots on a project page: a strip you swipe or scroll sideways.
+.project-shots {
+  list-style: none; display: flex; gap: var(--space-2); margin: var(--space-3) 0 var(--space-4); padding: 0 0 var(--space-1);
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin;
+}
+.project-shots:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.project-shots li { flex: 0 0 min(80%, 22rem); scroll-snap-align: start; }
+.project-shots img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }

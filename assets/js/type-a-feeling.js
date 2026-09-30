@@ -49,6 +49,19 @@ const EMO = {
     rhythm:[1,.5,.5,1,1,.5,.5,2],contour:'up',range:[0,10],startDeg:0,ending:'high',vel:[.5,.9],rest:0,echo:.15}
 };
 
+/* Two more voices for the melody besides the one each feeling brings ('auto'). */
+const TIMBRE = {
+  keys:{kind:'fm',attack:.004,decay:.5,sustain:.25,release:.6,legato:.9,vib:null,detune:0,pure:true,gainMul:1.3,brightMin:2600},
+  strings:{wave:'sawtooth',detune:9,attack:.09,decay:.3,sustain:.75,release:.7,legato:1,vib:{rate:5.5,cents:10},pure:true,gainMul:.6,brightMin:1400,brightMax:2600}
+};
+function leadVoice(e,timbre){
+  const tb = TIMBRE[timbre]; if(!tb) return e;
+  const o = Object.assign({},e,tb);
+  o.gain = e.gain*tb.gainMul;
+  o.bright = Math.min(tb.brightMax||1e9, Math.max(tb.brightMin, e.bright));
+  return o;
+}
+
 /* Chords under the melody: scale-degree roots, stacked in thirds. Modal choices follow the cues
    above: a plain I-V-vi-IV for joy, a falling minor line for sadness, a dissonant flat-II for fear. */
 const PROG = {
@@ -140,8 +153,8 @@ function pickStep(contour,progress,r){
 }
 
 /* Same word + same feeling always gives the same phrase. */
-function buildPhrase(word,key){
-  const e = EMO[key], rnd = mulberry32(fnv(norm(word)+'|'+key));
+function buildPhrase(word,key,v){
+  const e = EMO[key], rnd = mulberry32(fnv(norm(word)+'|'+key+(v ? '|'+v : '')));
   const beat = 60/e.bpm, target = e.target || 6.5, len = SCALES[e.scale].length;
   const notes = []; let t = 0, deg = e.startDeg, i = 0;
   while(t < target - beat){
@@ -178,7 +191,7 @@ function buildPhrase(word,key){
 
 /* ---------- audio ---------- */
 const $ = id => document.getElementById('taf-' + id);
-let AC=null, master=null, bus=null, playId=0, current=null;
+let AC=null, master=null, bus=null, playId=0, current=null, timbre='auto';
 const midiHz = m => 440*Math.pow(2,(m-69)/12);
 
 function ensureAudio(){
@@ -220,7 +233,24 @@ function makeFx(e,dest){
   return input;
 }
 
+function fmVoice(e,fx,t0,midi,dur,vel,gainScale){
+  const f = midiHz(midi), hold = Math.max(dur*e.legato,.2), peak = e.gain*vel*(gainScale||1), end = t0+hold+e.release+.05;
+  const g = AC.createGain();
+  g.gain.setValueAtTime(.0001,t0);
+  g.gain.exponentialRampToValueAtTime(peak,t0+e.attack);
+  g.gain.exponentialRampToValueAtTime(peak*e.sustain,t0+e.attack+e.decay);
+  g.gain.setValueAtTime(peak*e.sustain,t0+hold);
+  g.gain.exponentialRampToValueAtTime(.0001,t0+hold+e.release);
+  g.connect(fx);
+  const car = AC.createOscillator(), mod = AC.createOscillator(), mg = AC.createGain();
+  car.type = 'sine'; mod.type = 'sine'; car.frequency.value = f; mod.frequency.value = f;
+  mg.gain.setValueAtTime(f*1.6*vel,t0); mg.gain.exponentialRampToValueAtTime(f*.08,t0+.5);
+  mod.connect(mg); mg.connect(car.frequency); car.connect(g);
+  car.start(t0); mod.start(t0); car.stop(end); mod.stop(end);
+}
+
 function voice(e,fx,base,midi,dur,vel,gainScale){
+  if(e.kind==='fm') return fmVoice(e,fx,base,midi,dur,vel,gainScale);
   const t0 = base, a = e.attack, hold = Math.max(dur*e.legato, a+e.decay+.02);
   const peak = e.gain*vel*(gainScale||1);
   const g = AC.createGain();
@@ -252,13 +282,13 @@ function voice(e,fx,base,midi,dur,vel,gainScale){
 
 function play(){
   if(!current || !ensureAudio()) return;
-  const {phrase,key} = current, e = EMO[key], now = AC.currentTime;
+  const {phrase,key} = current, e = EMO[key], lead = leadVoice(e,timbre), now = AC.currentTime;
   if(bus){ bus.gain.cancelScheduledValues(now); bus.gain.setTargetAtTime(0,now,.03); }
   bus = AC.createGain(); bus.connect(master);
-  const fx = makeFx(e,bus), base = now + .1, id = ++playId;
+  const fx = makeFx(lead,bus), base = now + .1, id = ++playId;
   phrase.notes.forEach(n=>{
-    voice(e,fx,base+n.t,n.midi,n.dur,n.vel,1);
-    if(n.extra) voice(e,fx,base+n.t,n.extra,n.dur,n.vel,.6);
+    voice(lead,fx,base+n.t,n.midi,n.dur,n.vel,1);
+    if(n.extra) voice(lead,fx,base+n.t,n.extra,n.dur,n.vel,.6);
   });
   const padE = Object.assign({},e,{wave:'triangle',attack:.3,decay:.5,sustain:.8,release:.7,legato:1,vib:null,detune:7,
                                    gain:e.gain*.42,pure:true,bright:Math.min(e.bright,1800)});
@@ -319,17 +349,21 @@ function drawRoll(phrase){
   });
 }
 
-function showResult(text,hit,autoplay){
+function showResult(text,hit,autoplay,v){
   const e = EMO[hit.emo], lang = hit.lang;
   const box = $('result');
   box.hidden = false; box.lang = lang; box.dir = lang==='fa' ? 'rtl' : 'ltr';
-  current = {text,key:hit.emo,lang,phrase:buildPhrase(text,hit.emo)};
+  current = {text,key:hit.emo,lang,v:v||0,phrase:buildPhrase(text,hit.emo,v||0)};
   drawRoll(current.phrase);
   $('emo').textContent = T[lang].emotions[hit.emo].name;
   $('cue').textContent = T[lang].emotions[hit.emo].cue;
   $('meta').textContent = T[lang].modes[e.scale] + ' · ' + localDigits(e.bpm,lang) + ' bpm';
   $('again').textContent = autoplay ? T[lang].again : T[lang].hear;
   $('share').textContent = T[lang].share;
+  $('take').textContent = T[lang].take;
+  $('soundLabel').textContent = T[lang].sound;
+  ['auto','keys','strings'].forEach(k=>{ $('t-'+k).textContent = T[lang]['timbre_'+k]; });
+  document.querySelectorAll('.feeling-timbre button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.t===timbre)));
   $('shareOut').textContent = '';
   $('status').textContent = '';
   if(autoplay) play();
@@ -338,7 +372,7 @@ function showResult(text,hit,autoplay){
   box.scrollIntoView({block:'nearest',behavior:calm?'auto':'smooth'});
 }
 
-async function handle(raw,autoplay=true,localOnly=false){
+async function handle(raw,autoplay=true,localOnly=false,v=0){
   const text = raw.trim().slice(0,40);
   if(!text) return;
   $('status').textContent = '';
@@ -357,7 +391,7 @@ async function handle(raw,autoplay=true,localOnly=false){
     $('status').textContent = T[PAGE_LANG].unknown;
     return;
   }
-  showResult(text,hit,autoplay);
+  showResult(text,hit,autoplay,v);
 }
 
 $('form').addEventListener('submit',ev=>{ ev.preventDefault(); ensureAudio(); handle($('feeling').value); });
@@ -365,9 +399,21 @@ document.querySelectorAll('.taf-chip').forEach(c=>c.addEventListener('click',()=
   $('feeling').value = c.dataset.w; ensureAudio(); handle(c.dataset.w);
 }));
 $('again').addEventListener('click',()=>{ ensureAudio(); play(); $('again').textContent = T[current.lang].again; });
+$('take').addEventListener('click',()=>{
+  if(!current) return;
+  ensureAudio();
+  current.v++; current.phrase = buildPhrase(current.text,current.key,current.v);
+  drawRoll(current.phrase); play();
+});
+document.querySelectorAll('.feeling-timbre button').forEach(b=>b.addEventListener('click',()=>{
+  timbre = b.dataset.t;
+  document.querySelectorAll('.feeling-timbre button').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+  if(current){ ensureAudio(); play(); }
+}));
 $('share').addEventListener('click',async()=>{
   if(!current) return;
-  const url = location.href.split('#')[0] + '#f=' + encodeURIComponent(current.text);
+  const url = location.href.split('#')[0] + '#f=' + encodeURIComponent(current.text)
+    + (current.v ? '&v='+current.v : '') + (timbre!=='auto' ? '&s='+timbre : '');
   try{ await navigator.clipboard.writeText(url); $('shareOut').textContent = T[current.lang].copied; }
   catch(err){ $('shareOut').textContent = url; }
 });
@@ -377,6 +423,10 @@ $('share').addEventListener('click',async()=>{
    visitor to press the button. */
 try{
   const m = location.hash.match(/f=([^&]+)/);
-  if(m){ const w = decodeURIComponent(m[1]); $('feeling').value = w; handle(w,false,true); }
+  if(m){
+    const w = decodeURIComponent(m[1]), mv = location.hash.match(/v=(\d+)/), ms = location.hash.match(/s=(keys|strings)/);
+    if(ms) timbre = ms[1];
+    $('feeling').value = w; handle(w,false,true,mv ? Math.min(99,+mv[1]) : 0);
+  }
 }catch(err){}
 })();

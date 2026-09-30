@@ -38,7 +38,12 @@ en:
     share: "Copy link"
     copied: "Copied"
     unknown: "I don't know that feeling yet. Try another word: longing, calm, fear."
-    note: "Words it knows are matched on your device. Any other word is sent to Cloudflare, whose AI model (Google's Gemma 4) classifies it; this site doesn't store it. The cues come from music-emotion research, mostly with Western listeners. Other traditions differ."
+    note: "Known words are matched on your device. Other words go to an AI model at Cloudflare to be classified; this site stores nothing. Based on music-emotion research, mostly with Western listeners."
+    sound: "Sound"
+    timbre_auto: "Auto"
+    timbre_keys: "Keys"
+    timbre_strings: "Strings"
+    take: "Another take"
     emotions:
       joy:
         name: "Joy"
@@ -115,7 +120,12 @@ es:
     share: "Copiar enlace"
     copied: "Copiado"
     unknown: "Todavía no conozco ese sentimiento. Prueba con otra palabra: añoranza, calma, miedo."
-    note: "Las palabras que conoce se reconocen en tu dispositivo. Cualquier otra se envía a Cloudflare, cuyo modelo de IA (Gemma 4 de Google) la clasifica; este sitio no la guarda. Las señales proceden de la investigación sobre música y emoción, sobre todo con oyentes occidentales. Otras tradiciones difieren."
+    note: "Las palabras conocidas se reconocen en tu dispositivo. Las demás se envían a un modelo de IA de Cloudflare para clasificarlas; este sitio no guarda nada. Se basa en investigación sobre música y emoción, sobre todo con oyentes occidentales."
+    sound: "Sonido"
+    timbre_auto: "Auto"
+    timbre_keys: "Teclas"
+    timbre_strings: "Cuerdas"
+    take: "Otra versión"
     emotions:
       joy:
         name: "Alegría"
@@ -192,7 +202,12 @@ fa:
     share: "کپی پیوند"
     copied: "کپی شد"
     unknown: "این احساس را هنوز نمی‌شناسم. کلمهٔ دیگری امتحان کنید: دلتنگی، آرامش، ترس."
-    note: "واژه‌هایی که می‌شناسد روی دستگاه شما تطبیق داده می‌شوند. هر واژهٔ دیگر به Cloudflare فرستاده می‌شود و مدل هوش مصنوعی آن (Gemma 4 از گوگل) آن را دسته‌بندی می‌کند؛ این سایت آن را ذخیره نمی‌کند. این نشانه‌ها از پژوهش‌های موسیقی و هیجان می‌آیند که بیشتر با شنوندگان غربی انجام شده‌اند. سنت‌های دیگر متفاوت‌اند."
+    note: "واژه‌های آشنا روی دستگاه شما شناسایی می‌شوند. واژه‌های دیگر برای دسته‌بندی به یک مدل هوش مصنوعی در Cloudflare می‌روند؛ این سایت چیزی ذخیره نمی‌کند. بر پایهٔ پژوهش‌های موسیقی و هیجان، بیشتر با شنوندگان غربی."
+    sound: "صدا"
+    timbre_auto: "خودکار"
+    timbre_keys: "کلید"
+    timbre_strings: "زهی"
+    take: "یک نسخهٔ دیگر"
     emotions:
       joy:
         name: "شادی"

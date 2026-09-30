@@ -30,8 +30,17 @@ site when the page loads, and no sound starts until the visitor presses the butt
       <h2 id="taf-emo" class="feeling-emo"></h2>
       <p id="taf-meta" class="feeling-meta"></p>
       <p id="taf-cue" class="feeling-cue"></p>
+      <div class="feeling-sound" role="group" aria-labelledby="taf-soundLabel">
+        <span id="taf-soundLabel" class="feeling-sound-label"></span>
+        <span class="feeling-timbre">
+          <button type="button" data-t="auto" id="taf-t-auto" aria-pressed="true"></button>
+          <button type="button" data-t="keys" id="taf-t-keys" aria-pressed="false"></button>
+          <button type="button" data-t="strings" id="taf-t-strings" aria-pressed="false"></button>
+        </span>
+      </div>
       <div class="feeling-actions">
         <button class="feeling-link" id="taf-again" type="button"></button>
+        <button class="feeling-link" id="taf-take" type="button"></button>
         <button class="feeling-link" id="taf-share" type="button"></button>
       </div>
       <span id="taf-shareOut" class="feeling-shareout"></span>

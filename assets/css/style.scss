@@ -14,6 +14,12 @@
   --accent-soft: #f4ecdf;
   --radius: 10px;
   --measure: 42rem;
+  // One spacing scale for the whole site: gaps between things are always one of these.
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Vazirmatn", sans-serif;
   --font-display: Georgia, "Times New Roman", serif;
 }
@@ -71,9 +77,11 @@ body {
   padding: 0 16px;
 }
 
-main.wrap { padding-top: 2.5rem; padding-bottom: 4rem; }
+main.wrap { padding-top: var(--space-4); padding-bottom: var(--space-5); }
+@media (max-width: 520px) { main.wrap { padding-top: var(--space-3); } }
 
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; font-weight: 600; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; font-weight: 600; text-wrap: balance; }
+p { text-wrap: pretty; }
 h1 { font-size: clamp(1.9rem, 5vw, 2.5rem); margin: 0 0 1rem; }
 h2 { font-size: 1.4rem; margin: 2.5rem 0 0.75rem; }
 h3 { font-size: 1.1rem; margin: 0 0 0.35rem; }
@@ -109,9 +117,10 @@ pre code { background: none; padding: 0; }
 .bar .langs a[aria-current] { color: var(--text); font-weight: 600; }
 .bar .langs a[aria-current]:hover { cursor: default; }
 
-.intro { padding: 1rem 0 0; }
-.intro h1 { font-size: clamp(2rem, 6vw, 2.9rem); letter-spacing: -0.01em; line-height: 1.15; max-width: 20ch; }
-.lede { font-size: 1.2rem; color: var(--muted); margin-top: 0; }
+.intro { margin: 0 0 var(--space-4); }
+.intro h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); letter-spacing: -0.01em; line-height: 1.2; margin: 0 0 var(--space-2); }
+[lang="fa"] .intro h1 { line-height: 1.5; }
+.lede { font-size: 1.1rem; color: var(--muted); margin: 0; max-width: 36rem; }
 
 // The projects on the home and Projects pages: a plain list, name and one line, no cards.
 .works { list-style: none; margin: 0 0 2.5rem; padding: 0; }

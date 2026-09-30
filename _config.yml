@@ -16,13 +16,6 @@ author:
 # while this is empty.
 email: ""
 
-# Where the home page's "Start a project" button goes. Change this to an email
-# (mailto:you@example.com), a contact form or LinkedIn once you've picked one.
-contact_url: https://github.com/soheilhrad
-
-# The address of the Marco chat Worker (see worker/README.md). Empty = the chat box is hidden.
-chat_endpoint: "https://marco.soheilhraad-0e6.workers.dev/"
-
 # The Worker that classifies words "Type a feeling" doesn't know (see worker/README.md).
 # Empty = unknown words are simply not understood, and nothing is ever sent.
 classify_endpoint: "https://marco.soheilhraad-0e6.workers.dev/"

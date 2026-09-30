@@ -17,7 +17,10 @@ en:
   nothing_yet: Nothing yet.
   all_posts: All posts
   in_english: in English
-  try_live: Try it live
+  play_video: Play video
+  detail_design: The design decision
+  detail_does: What it does
+  detail_built: "How it's built"
   footer_rss: RSS
   write_to_us: Write to us
   start_project: Start a project
@@ -121,7 +124,10 @@ es:
   nothing_yet: Todavía nada.
   all_posts: Todas las entradas
   in_english: en inglés
-  try_live: Pruébalo
+  play_video: Reproducir vídeo
+  detail_design: La decisión de diseño
+  detail_does: Qué hace
+  detail_built: "Cómo se construye"
   footer_rss: RSS
   write_to_us: Escríbenos
   start_project: Empezar un proyecto
@@ -225,7 +231,10 @@ fa:
   nothing_yet: هنوز چیزی نیست.
   all_posts: همه نوشته‌ها
   in_english: به انگلیسی
-  try_live: امتحانش کنید
+  play_video: پخش ویدیو
+  detail_design: تصمیم طراحی
+  detail_does: چه کار می‌کند
+  detail_built: "چطور ساخته شده"
   footer_rss: RSS
   write_to_us: برای ما بنویسید
   start_project: شروع یک پروژه

@@ -1,0 +1,54 @@
+---
+layout: default
+---
+{%- comment -%}
+A project page, in layers: title, one sentence, then a video OR a button (or both); everything
+else is folded in <details>, closed by default, with no script. Front matter:
+  lede        the one sentence
+  decision    "The design decision", the first fold
+  video       a YouTube id, or a path to an .mp4 under /assets/video/  (empty = no video)
+  poster      an image path: the video's still frame (also set `image:` to the same path for the
+              link preview)
+  cta_label / cta_url   the button (empty = no button)
+Nothing is requested from a third party until the visitor clicks play.
+{%- endcomment -%}
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign video = page.video | append: "" -%}
+{%- assign local_video = false -%}
+{%- if video contains ".mp4" -%}{%- assign local_video = true -%}{%- endif -%}
+<article class="page project">
+  <h1>{{ page.title }}</h1>
+  {%- if page.lede %}
+  <p class="lede">{{ page.lede }}</p>
+  {%- endif %}
+  {%- if video != "" or page.cta_url %}
+  <div class="project-media">
+    {%- if video != "" and local_video %}
+    <video class="project-video" controls preload="none"{% if page.poster %} poster="{{ page.poster | relative_url }}"{% endif %}>
+      <source src="{{ video | relative_url }}" type="video/mp4">
+      {%- for l in site.languages %}
+      <track kind="captions" srclang="{{ l }}" label="{{ site.data.i18n[l].name }}" src="{{ video | replace: '.mp4', '' | append: '.' | append: l | append: '.vtt' | relative_url }}"{% if l == page.lang %} default{% endif %}>
+      {%- endfor %}
+    </video>
+    {%- elsif video != "" %}
+    <div class="project-video click-to-load" data-youtube="{{ video | escape }}" data-title="{{ page.title | escape }}">
+      <button type="button" class="project-play" aria-label="{{ t.play_video | escape }}: {{ page.title | escape }}">
+        {%- if page.poster %}<img src="{{ page.poster | relative_url }}" alt="" loading="lazy">{% endif %}
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="30" fill="currentColor" opacity="0.9"/><path d="M26 20v24l20-12z" fill="var(--bg)"/></svg>
+      </button>
+    </div>
+    <script src="{{ '/assets/js/video.js' | relative_url }}" defer></script>
+    {%- endif %}
+    {%- if page.cta_url and page.cta_label %}
+    <p class="project-cta"><a class="button" href="{{ page.cta_url }}">{{ page.cta_label }} {{ t.arrow }}</a></p>
+    {%- endif %}
+  </div>
+  {%- endif %}
+  {%- if page.decision %}
+  <details class="fold">
+    <summary>{{ t.detail_design }}</summary>
+    <p>{{ page.decision }}</p>
+  </details>
+  {%- endif %}
+  {{ content }}
+</article>

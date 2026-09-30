@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Sobre mí
+description: Sobre dos — Design of سهی.
 permalink: /es/about/
 ref: about
 ---

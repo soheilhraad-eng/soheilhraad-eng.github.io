@@ -5,4 +5,4 @@ description: "Three projects: an AI tarot app, an offline Spanish tutor and a si
 permalink: /projects/
 ref: projects
 ---
-{% include project-cards.html %}
+{% include project-list.html %}

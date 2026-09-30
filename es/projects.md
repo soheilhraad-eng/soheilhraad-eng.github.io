@@ -5,4 +5,4 @@ description: "Tres proyectos: una aplicaci√≥n de tarot con IA, un tutor de espa√
 permalink: /es/projects/
 ref: projects
 ---
-{% include project-cards.html %}
+{% include project-list.html %}

@@ -1,20 +1,19 @@
 ---
 layout: default
-title: Home
+title: "dos — Design of سهی"
+description: "Small tools for people between languages. Apps, simulations and tools in English, Español and فارسی, designed and built end to end. Commissions welcome."
 ref: home
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
-<section class="hero">
-  <p class="eyebrow">Open to collaboration</p>
-  <h1>Building with creative minds, wherever they work.</h1>
-  <p class="lede">AI applications, multilingual tools and simulations, designed and built end to end, remotely, in English, Spanish and Persian.</p>
-  <p class="actions">
-    <a class="button" href="{{ site.contact_url }}">{{ t.start_project }} {{ t.arrow }}</a>
-    <a class="button secondary" href="{{ t.prefix | append: '/projects/' | relative_url }}">See the work</a>
-  </p>
+<section class="intro">
+  <h1>Small tools for people between languages.</h1>
+  <p class="lede">Apps, simulations and tools in English, Español and <span lang="fa" dir="rtl">فارسی</span>, designed and built end to end. Commissions welcome.</p>
 </section>
 
-{% include chat.html %}
+{% include type-a-feeling.html %}
 
-<h2>{{ t.projects }}</h2>
-{% include project-cards.html %}
+{% include project-list.html %}
+
+{%- if site.email and site.email != "" %}
+<p class="contact"><a href="mailto:{{ site.email }}">{{ t.write_to_us }}</a></p>
+{%- endif %}

@@ -1,21 +1,20 @@
 ---
 layout: default
-title: Inicio
+title: "dos — Design of سهی"
+description: "Herramientas pequeñas para gente entre idiomas. Aplicaciones, simulaciones y herramientas en English, Español y فارسی, diseñadas y construidas de principio a fin. Encargos bienvenidos."
 ref: home
 permalink: /es/
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
-<section class="hero">
-  <p class="eyebrow">Abierto a colaborar</p>
-  <h1>Construyendo con mentes creativas, trabajen donde trabajen.</h1>
-  <p class="lede">Aplicaciones de IA, herramientas multilingües y simulaciones, diseñadas y construidas de principio a fin, en remoto, en español, inglés y persa.</p>
-  <p class="actions">
-    <a class="button" href="{{ site.contact_url }}">{{ t.start_project }} {{ t.arrow }}</a>
-    <a class="button secondary" href="{{ t.prefix | append: '/projects/' | relative_url }}">Ver el trabajo</a>
-  </p>
+<section class="intro">
+  <h1>Herramientas pequeñas para gente entre idiomas.</h1>
+  <p class="lede">Aplicaciones, simulaciones y herramientas en English, Español y <span lang="fa" dir="rtl">فارسی</span>, diseñadas y construidas de principio a fin. Encargos bienvenidos.</p>
 </section>
 
-{% include chat.html %}
+{% include type-a-feeling.html %}
 
-<h2>{{ t.projects }}</h2>
-{% include project-cards.html %}
+{% include project-list.html %}
+
+{%- if site.email and site.email != "" %}
+<p class="contact"><a href="mailto:{{ site.email }}">{{ t.write_to_us }}</a></p>
+{%- endif %}

@@ -47,7 +47,7 @@
   --font-display: "Vazirmatn", system-ui, sans-serif;
 }
 [lang="fa"] em, [lang="fa"] i { font-style: normal; }
-[lang="fa"] .eyebrow, [lang="fa"] .hero h1 { letter-spacing: 0; }
+[lang="fa"] .intro h1 { letter-spacing: 0; }
 // A Persian block inside a page in another language (the 404) still needs the font.
 :not(:root)[lang="fa"] { font-family: "Vazirmatn", system-ui, sans-serif; }
 
@@ -109,27 +109,22 @@ pre code { background: none; padding: 0; }
 .bar .langs a[aria-current] { color: var(--text); font-weight: 600; }
 .bar .langs a[aria-current]:hover { cursor: default; }
 
-.hero { padding: 2.5rem 0 1.5rem; }
-.hero h1 { font-size: clamp(2.1rem, 6vw, 3.1rem); letter-spacing: -0.01em; max-width: 18ch; }
-.eyebrow {
-  margin: 0 0 1rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--accent);
-}
-.eyebrow::before {
-  content: ""; display: inline-block; width: 0.5em; height: 0.5em; margin-inline-end: 0.6em;
-  border-radius: 50%; background: currentColor; vertical-align: 0.1em;
-}
-.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.intro { padding: 1rem 0 0; }
+.intro h1 { font-size: clamp(2rem, 6vw, 2.9rem); letter-spacing: -0.01em; line-height: 1.15; max-width: 20ch; }
 .lede { font-size: 1.2rem; color: var(--muted); margin-top: 0; }
 
-.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
-.card {
-  display: block; padding: 1.25rem; background: var(--surface);
-  border: 1px solid var(--border); border-radius: var(--radius);
-  color: var(--text); text-decoration: none; transition: border-color 0.15s;
+// The projects on the home and Projects pages: a plain list, name and one line, no cards.
+.works { list-style: none; margin: 0 0 2.5rem; padding: 0; }
+.works li { padding: 0.9rem 0; border-top: 1px solid var(--border); }
+.works li:last-child { border-bottom: 1px solid var(--border); }
+.works a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; text-decoration: none;
 }
-.card:hover { border-color: var(--accent); }
-.card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.works a:hover { text-decoration: underline; }
+.works span { display: block; color: var(--muted); font-size: 0.95rem; }
+.contact { margin: 0; }
+.contact a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); }
 
 .button {
   display: inline-block; padding: 0.6rem 1.1rem; border-radius: var(--radius);

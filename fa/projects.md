@@ -5,4 +5,4 @@ description: "سه پروژه: یک اپلیکیشن فال تاروت با هو
 permalink: /fa/projects/
 ref: projects
 ---
-{% include project-cards.html %}
+{% include project-list.html %}

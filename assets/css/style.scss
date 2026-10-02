@@ -269,6 +269,8 @@ pre code { background: none; padding: 0; }
 @media (max-width: 520px) { #taf-result { padding: var(--space-2); } }
 .feeling-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-2); }
 .feeling-emo { margin: 0; font-size: 1.75rem; line-height: 1.2; }
+// "strong" / "light" belongs to the name but reads as a detail; it never breaks away from it.
+.feeling-emo-mod { font-size: 1rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
 .feeling-play {
   flex: none; display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px; padding: 0 1.1rem;
   border-radius: 999px; border: 2px solid var(--text); background: transparent; color: var(--text);
@@ -331,6 +333,8 @@ pre code { background: none; padding: 0; }
 }
 // Each label keeps its arrow beside its own word, also when the word is Persian.
 .feeling-legend span { unicode-bidi: isolate; }
+// On a phone, left and right stay on one line (as on the map); up and down get their own line.
+@media (max-width: 520px) { .feeling-legend > span:nth-child(2) { order: 3; flex-basis: 100%; text-align: center; } }
 .taf-dot {
   position: absolute; translate: -50% -50%; min-width: 44px; min-height: 44px; padding: 0.25rem 0.6rem;
   display: grid; place-items: center; font: inherit; font-size: 0.95rem; font-weight: 600; color: var(--text);

@@ -471,8 +471,8 @@ function showResult(text,hit,autoplay,v,pos){
   const lang = hit.lang, at = pos || hit.pos, p = at || POS[hit.emo];
   const key = hit.keep ? hit.emo : (at ? nearest(p.v,p.a) : hit.emo), e = synth(p.v,p.a,key);
   const names = T[lang].emotions;
-  const label = hit.second ? names[hit.emo].name + ' + ' + names[hit.second].name
-    : names[key].name + (hit.intensity ? ' · ' + T[lang][hit.intensity>0 ? 'intense' : 'gentle'] : '');
+  const label = hit.second ? names[hit.emo].name + ' + ' + names[hit.second].name : names[key].name;
+  const mod = !hit.second && hit.intensity ? T[lang][hit.intensity>0 ? 'intense' : 'gentle'] : '';
   const box = $('result');
   box.hidden = false; box.lang = lang; box.dir = lang==='fa' ? 'rtl' : 'ltr';
   hit = {emo:key,lang};
@@ -482,6 +482,7 @@ function showResult(text,hit,autoplay,v,pos){
   document.querySelectorAll('.taf-dot').forEach(d=>d.setAttribute('aria-current', String(d.dataset.k===key)));
   drawRoll(current.phrase);
   $('emo').textContent = label;
+  if(mod){ const m = document.createElement('span'); m.className = 'feeling-emo-mod'; m.textContent = ' · ' + mod; $('emo').appendChild(m); }
   $('cue').textContent = T[lang].emotions[hit.emo].cue;
   $('meta').textContent = T[lang].modes[e.scale] + ' · ' + localDigits(e.bpm,lang) + ' bpm';
   if(!autoplay){ playId++; setPlaying(false); }

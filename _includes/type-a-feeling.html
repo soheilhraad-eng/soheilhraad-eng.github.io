@@ -2,46 +2,69 @@
 "Type a feeling": one input, one short phrase of sound. Interface text is in _data/i18n.yml
 under `feeling:`; the engine is assets/js/type-a-feeling.js. Nothing is requested from another
 site when the page loads, and no sound starts until the visitor presses the button or Enter.
+Layers: the field and its examples first; the answer card under it; the map (for people who
+want to explore) and "how it's made" stay folded until asked for.
 {%- endcomment -%}
 {%- assign t = site.data.i18n[page.lang] -%}
 {%- assign f = t.feeling -%}
-<section class="feeling" aria-label="{{ f.label | escape }}">
-  <h2 class="feeling-title">{{ f.label }}</h2>
-  <div id="taf-pad" class="feeling-pad" role="group" tabindex="0" aria-label="{{ f.pad | escape }}">
-    <span id="taf-mark" class="feeling-mark" hidden aria-hidden="true"></span>
-  </div>
+<section class="feeling" aria-labelledby="taf-title">
   <form id="taf-form" class="feeling-form" autocomplete="off">
+    <h2 class="feeling-title" id="taf-title"><label for="taf-feeling">{{ f.label }}</label></h2>
     <div class="feeling-field">
       <input id="taf-feeling" type="text" maxlength="40" dir="auto" enterkeyhint="go"
-             placeholder="{{ f.placeholder | escape }}" aria-label="{{ f.placeholder | escape }}" autocapitalize="none" spellcheck="false">
-      <button class="feeling-go" type="submit" aria-label="{{ f.submit | escape }}">
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
+             placeholder="{{ f.placeholder | escape }}" autocapitalize="none" spellcheck="false">
+      <button class="feeling-go" type="submit">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>{{ f.submit }}</span>
       </button>
     </div>
+    <p class="feeling-chips"><span class="feeling-try">{{ f.examples }}</span>
+      {%- for c in f.chips %}
+      <button class="taf-chip" type="button" data-w="{{ c | escape }}" dir="auto">{{ c }}</button>
+      {%- endfor %}
+    </p>
   </form>
   <p id="taf-status" class="feeling-status" role="status" aria-live="polite"></p>
   <div class="feeling-live" aria-live="polite">
     <div id="taf-result" hidden>
-      <svg id="taf-roll" class="feeling-roll" viewBox="0 0 300 72" aria-hidden="true" focusable="false" preserveAspectRatio="none"></svg>
-      <h3 id="taf-emo" class="feeling-emo"></h3>
-      <p id="taf-meta" class="feeling-meta"></p>
-      <div class="feeling-sound" role="group" aria-labelledby="taf-soundLabel">
-        <span id="taf-soundLabel" class="feeling-sound-label"></span>
-        <span class="feeling-timbre">
-          <button type="button" data-t="auto" id="taf-t-auto" aria-pressed="true"></button>
-          <button type="button" data-t="keys" id="taf-t-keys" aria-pressed="false"></button>
-          <button type="button" data-t="strings" id="taf-t-strings" aria-pressed="false"></button>
-        </span>
+      <div class="feeling-head">
+        <h3 id="taf-emo" class="feeling-emo"></h3>
+        <button class="feeling-play" id="taf-play" type="button" aria-pressed="false">
+          <svg class="i-play" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
+          <svg class="i-stop" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="9" height="9" rx="1.5" fill="currentColor"/></svg>
+          <span id="taf-playLabel"></span>
+        </button>
       </div>
+      <svg id="taf-roll" class="feeling-roll" viewBox="0 0 300 72" aria-hidden="true" focusable="false" preserveAspectRatio="none"></svg>
       <div class="feeling-actions">
-        <button class="feeling-link" id="taf-again" type="button"></button>
         <button class="feeling-link" id="taf-take" type="button"></button>
         <button class="feeling-link" id="taf-share" type="button"></button>
+        <span id="taf-shareOut" class="feeling-shareout"></span>
       </div>
-      <span id="taf-shareOut" class="feeling-shareout"></span>
-      <details class="feeling-why"><summary id="taf-why"></summary><p id="taf-cue" class="feeling-cue"></p></details>
+      <details class="feeling-fold feeling-why">
+        <summary id="taf-why"></summary>
+        <p id="taf-meta" class="feeling-meta"></p>
+        <p id="taf-cue" class="feeling-cue"></p>
+        <div class="feeling-sound" role="group" aria-labelledby="taf-soundLabel">
+          <span id="taf-soundLabel" class="feeling-sound-label"></span>
+          <span class="feeling-timbre">
+            <button type="button" data-t="auto" id="taf-t-auto" aria-pressed="true"></button>
+            <button type="button" data-t="keys" id="taf-t-keys" aria-pressed="false"></button>
+            <button type="button" data-t="strings" id="taf-t-strings" aria-pressed="false"></button>
+          </span>
+        </div>
+      </details>
     </div>
   </div>
+  <details class="feeling-fold feeling-map">
+    <summary>{{ f.map }}</summary>
+    <p class="feeling-map-hint">{{ f.map_hint }}</p>
+    <div id="taf-pad" class="feeling-pad" role="group" tabindex="0" aria-label="{{ f.pad | escape }}">
+      <span id="taf-mark" class="feeling-mark" hidden aria-hidden="true"></span>
+    </div>
+    {%- comment -%} The map is always laid out left to right, so its legend is too (also on Persian pages). {%- endcomment %}
+    <p class="feeling-legend" aria-hidden="true"><span>← {{ f.axis_dark }}</span><span><span>↑ {{ f.axis_intense }}</span> · <span>↓ {{ f.axis_calm }}</span></span><span>{{ f.axis_bright }} →</span></p>
+  </details>
   <p class="feeling-note">{{ f.note }}</p>
 </section>
 <script type="application/json" id="taf-data">{"endpoint": {{ site.classify_endpoint | default: "" | jsonify }}, "strings": {"en": {{ site.data.i18n.en.feeling | jsonify }}, "es": {{ site.data.i18n.es.feeling | jsonify }}, "fa": {{ site.data.i18n.fa.feeling | jsonify }} } }</script>

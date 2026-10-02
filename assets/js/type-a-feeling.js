@@ -310,11 +310,30 @@ function voice(e,fx,base,midi,dur,vel,gainScale){
   }
 }
 
+/* The card's one main button shows what pressing it will do: Play when silent, Stop while sounding. */
+function setPlaying(on){
+  const b = $('play'), lang = current ? current.lang : PAGE_LANG;
+  b.setAttribute('aria-pressed', String(on));
+  $('playLabel').textContent = T[lang][on ? 'stop' : 'play'];
+}
+function fadeOut(){
+  if(!bus || !AC) return;
+  const old = bus, now = AC.currentTime;
+  old.gain.cancelScheduledValues(now); old.gain.setTargetAtTime(0,now,.03);
+  setTimeout(()=>old.disconnect(),400);
+  bus = null;
+}
+function stop(){
+  playId++; fadeOut(); setPlaying(false);
+  document.querySelectorAll('#taf-roll rect').forEach(r=>r.style.opacity=.55);
+}
+
 function play(){
   if(!current || !ensureAudio()) return;
   const {phrase,key,e} = current, lead = leadVoice(e,timbre), now = AC.currentTime;
-  if(bus){ bus.gain.cancelScheduledValues(now); bus.gain.setTargetAtTime(0,now,.03); }
+  fadeOut();
   bus = AC.createGain(); bus.connect(master);
+  setPlaying(true);
   const fx = makeFx(lead,bus), base = now + .1, id = ++playId;
   phrase.notes.forEach(n=>{
     voice(lead,fx,base+n.t,n.midi,n.dur,n.vel,1);
@@ -342,7 +361,7 @@ function play(){
     const t = AC.currentTime - base;
     rects.forEach((r,i)=>{ const n = phrase.notes[i]; r.style.opacity = (t>=n.t && t<n.t+n.dur*.98) ? 1 : .45; });
     if(t < phrase.total+1.5) requestAnimationFrame(frame);
-    else rects.forEach(r=>r.style.opacity=.55);
+    else { rects.forEach(r=>r.style.opacity=.55); setPlaying(false); }
   })();
 }
 
@@ -421,11 +440,13 @@ function showResult(text,hit,autoplay,v,pos){
   hit = {emo:key,lang};
   current = {text,key,lang,v:v||0,pos:p,e,phrase:buildPhrase(text,key,v||0,e)};
   moveMarker(p);
+  // The nearest feeling on the map is marked, so the map and the answer always agree.
+  document.querySelectorAll('.taf-dot').forEach(d=>d.setAttribute('aria-current', String(d.dataset.k===key)));
   drawRoll(current.phrase);
   $('emo').textContent = T[lang].emotions[hit.emo].name;
   $('cue').textContent = T[lang].emotions[hit.emo].cue;
   $('meta').textContent = T[lang].modes[e.scale] + ' · ' + localDigits(e.bpm,lang) + ' bpm';
-  $('again').textContent = autoplay ? T[lang].again : T[lang].hear;
+  if(!autoplay){ playId++; setPlaying(false); }
   $('share').textContent = T[lang].share;
   $('take').textContent = T[lang].take;
   $('soundLabel').textContent = T[lang].sound;
@@ -455,7 +476,7 @@ async function handle(raw,autoplay=true,localOnly=false,v=0){
     }
   }
   if(!hit){
-    $('result').hidden = true; playId++;
+    stop(); $('result').hidden = true;
     $('status').textContent = T[PAGE_LANG].unknown;
     return;
   }
@@ -466,7 +487,11 @@ $('form').addEventListener('submit',ev=>{ ev.preventDefault(); ensureAudio(); ha
 document.querySelectorAll('.taf-chip').forEach(c=>c.addEventListener('click',()=>{
   $('feeling').value = c.dataset.w; ensureAudio(); handle(c.dataset.w);
 }));
-$('again').addEventListener('click',()=>{ ensureAudio(); play(); $('again').textContent = T[current.lang].again; });
+$('play').addEventListener('click',()=>{
+  if(!current) return;
+  if($('play').getAttribute('aria-pressed')==='true') stop();
+  else { ensureAudio(); play(); }
+});
 $('take').addEventListener('click',()=>{
   if(!current) return;
   ensureAudio();
@@ -494,6 +519,7 @@ try{
   if(mp){
     const p = {v:Math.max(-1,Math.min(1,+mp[1]/100)), a:Math.max(-1,Math.min(1,+mp[2]/100))}, ms = location.hash.match(/s=(keys|strings)/);
     if(ms) timbre = ms[1];
+    PAD.closest('details').open = true;
     showResult('p:'+Math.round(p.v*20)+','+Math.round(p.a*20),{emo:nearest(p.v,p.a),lang:PAGE_LANG},false,0,p);
   } else if(m){
     const w = decodeURIComponent(m[1]), mv = location.hash.match(/v=(\d+)/), ms = location.hash.match(/s=(keys|strings)/);

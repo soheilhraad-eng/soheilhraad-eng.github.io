@@ -218,13 +218,13 @@ pre code { background: none; padding: 0; }
 .slides figcaption { margin-top: 0.4rem; font-size: 0.8rem; color: var(--muted); }
 
 // "Type a feeling" (_includes/type-a-feeling.html). Colours are the site's own tokens.
+// One input first; the answer under it; the map and the details folded for whoever wants more.
 .feeling { margin: 0 0 var(--space-4); padding: var(--space-3); background: var(--accent-soft); border-radius: calc(var(--radius) + 6px); }
 @media (max-width: 520px) { .feeling { padding: var(--space-2); } }
-// The input is one field with its button inside it, so what to do is obvious: type, press.
+// The heading is the instruction and the field's label: what to do, and what you get back.
 .feeling-title { display: block; margin: 0 0 var(--space-2); font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+.feeling-title label { cursor: text; }
 [lang="fa"] .feeling-title { letter-spacing: 0; }
-.feeling-how { margin: 0 0 var(--space-2); color: var(--muted); font-size: 1rem; line-height: 1.5; max-width: 34rem; }
-.feeling-try { color: var(--muted); font-size: 0.9rem; align-self: center; }
 .feeling-field {
   display: flex; align-items: center; gap: var(--space-1);
   padding-block: 0.375rem; padding-inline: var(--space-3) 0.375rem;
@@ -236,61 +236,74 @@ pre code { background: none; padding: 0; }
   font: inherit; font-size: 1.2rem; padding: 0;
 }
 .feeling input::placeholder { color: var(--muted); opacity: 1; font-size: 1rem; }
+// The button says what it does ("Hear it") next to a speaker, so it reads as "listen", not "send".
 .feeling-go {
-  flex: none; width: 48px; height: 48px; border-radius: 50%; border: 0;
-  background: var(--accent); color: var(--bg); cursor: pointer; display: grid; place-items: center;
+  flex: none; display: inline-flex; align-items: center; gap: 0.45rem; height: 48px; padding: 0 1.1rem;
+  border-radius: 999px; border: 0; background: var(--accent); color: var(--bg);
+  font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; white-space: nowrap;
 }
-// The play triangle always points right, as on every player, and the button stays on the right,
-// so the field lays itself out left-to-right; the typed text still follows its own language.
+// The button stays at the end of the field in every language; the typed text follows its own direction.
 .feeling-field { direction: ltr; }
 [dir="rtl"] .feeling input[type="text"] { direction: rtl; text-align: right; }
 .feeling-go:hover { filter: brightness(1.1); }
 .feeling :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .feeling-go:focus-visible { outline-offset: 3px; }
-.feeling-chips { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-2); }
+@media (max-width: 380px) { .feeling-go { padding: 0 0.85rem; } .feeling-field { padding-inline-start: var(--space-2); } }
+// Three examples, one per language: the tool understands all three, like the site.
+.feeling-chips { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); margin: var(--space-2) 0 0; }
+.feeling-try { color: var(--muted); font-size: 0.9rem; }
 .taf-chip {
-  font: inherit; font-size: 0.9rem; color: var(--muted); background: transparent; cursor: pointer;
+  font: inherit; font-size: 0.95rem; color: var(--text); background: var(--surface); cursor: pointer;
   border: 1px solid var(--border); border-radius: 999px; padding: 0 1rem; min-height: 44px;
 }
-.taf-chip:hover { color: var(--text); border-color: var(--muted); }
+.taf-chip:hover { border-color: var(--text); }
 .feeling-status { margin: var(--space-2) 0 0; color: var(--muted); font-size: 0.9rem; }
 .feeling-status:empty { display: none; }
-// The answer is one card: the notes, the feeling's name, how it is built, why, then two actions.
+// The answer is one card: its name with the one main action beside it, the notes as they play,
+// two quiet extras, and "how it's made" folded.
 #taf-result {
   margin-top: var(--space-3); padding: var(--space-3);
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
 }
 #taf-result[hidden] { display: none; }
-.feeling-roll { width: 100%; height: 3.5rem; display: block; margin-bottom: var(--space-2); }
-.feeling-roll rect { fill: var(--accent-2); opacity: 0.5; transition: opacity 0.12s; }
+@media (max-width: 520px) { #taf-result { padding: var(--space-2); } }
+.feeling-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-2); }
 .feeling-emo { margin: 0; font-size: 1.75rem; line-height: 1.2; }
-.feeling-meta { margin: 0.25rem 0 var(--space-2); color: var(--muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
-.feeling-cue { margin: 0; }
-// The map: feelings laid out from dark to bright (left to right) and calm to intense (bottom to top).
-// Touch a name, or anywhere between, to hear that place.
-.feeling-pad {
-  position: relative; direction: ltr; width: 100%; aspect-ratio: 4 / 3; margin-bottom: var(--space-2);
-  border-radius: var(--radius); border: 1px solid var(--border); cursor: crosshair; touch-action: manipulation;
-  background:
-    linear-gradient(to top, color-mix(in srgb, var(--surface) 70%, transparent), transparent 55%),
-    linear-gradient(to right, color-mix(in srgb, var(--accent-2) 30%, var(--surface)), color-mix(in srgb, var(--accent) 30%, var(--surface)));
+.feeling-play {
+  flex: none; display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px; padding: 0 1.1rem;
+  border-radius: 999px; border: 2px solid var(--text); background: transparent; color: var(--text);
+  font: inherit; font-size: 0.95rem; font-weight: 600; cursor: pointer;
 }
-@media (max-width: 520px) { .feeling-pad { aspect-ratio: 1 / 1.05; } }
-.feeling-pad:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.taf-dot {
-  position: absolute; translate: -50% -50%; min-width: 44px; min-height: 44px; padding: 0.25rem 0.6rem;
-  display: grid; place-items: center; font: inherit; font-size: 0.95rem; font-weight: 600; color: var(--text);
-  background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid var(--border); border-radius: 999px; cursor: pointer;
+.feeling-play:hover { background: var(--text); color: var(--surface); }
+.feeling-play[aria-pressed="true"] { background: var(--text); color: var(--surface); }
+.feeling-play .i-stop, .feeling-play[aria-pressed="true"] .i-play { display: none; }
+.feeling-play[aria-pressed="true"] .i-stop { display: inline; }
+.feeling-roll { width: 100%; height: 3.5rem; display: block; }
+.feeling-roll rect { fill: var(--accent-2); opacity: 0.5; transition: opacity 0.12s; }
+.feeling-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-3); margin-top: var(--space-1); }
+.feeling-link {
+  font: inherit; font-size: 0.9rem; background: none; border: 0; padding: 0; min-height: 44px;
+  color: var(--muted); cursor: pointer; text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 0.2em;
 }
-.taf-dot:hover { border-color: var(--text); }
-.taf-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.feeling-mark {
-  position: absolute; translate: -50% -50%; width: 22px; height: 22px; border-radius: 50%; pointer-events: none;
-  border: 3px solid var(--text); background: color-mix(in srgb, var(--text) 18%, transparent); transition: left 0.25s, top 0.25s;
+.feeling-link:hover { color: var(--text); text-decoration-color: currentColor; }
+.feeling-shareout { font-size: 0.8rem; color: var(--muted); overflow-wrap: anywhere; }
+.feeling-shareout:empty { display: none; }
+// Folds: a visible chevron says "there is more here"; it turns when open, and mirrors in Persian.
+.feeling-fold > summary {
+  list-style: none; cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: 0.6rem;
+  color: var(--text); font-size: 0.95rem; font-weight: 600;
 }
-.feeling-why { margin-top: var(--space-1); }
-.feeling-why summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--muted); font-size: 0.9rem; }
-.feeling-why p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.feeling-fold > summary::-webkit-details-marker { display: none; }
+.feeling-fold > summary::before {
+  content: ""; flex: none; width: 0.45rem; height: 0.45rem; border: solid currentColor; border-width: 0 2px 2px 0;
+  transform: rotate(-45deg); transition: transform 0.15s;
+}
+[dir="rtl"] .feeling-fold > summary::before { transform: rotate(135deg); }
+.feeling-fold[open] > summary::before { transform: rotate(45deg); }
+.feeling-why { margin-top: var(--space-1); border-top: 1px solid var(--border); }
+.feeling-why > summary { color: var(--muted); font-weight: 500; }
+.feeling-meta { margin: 0 0 var(--space-1); color: var(--muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.feeling-cue { margin: 0; color: var(--muted); font-size: 0.95rem; }
 .feeling-sound { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-2); margin-top: var(--space-2); }
 .feeling-sound-label { color: var(--muted); font-size: 0.9rem; }
 .feeling-timbre { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
@@ -299,14 +312,37 @@ pre code { background: none; padding: 0; }
 }
 .feeling-timbre button + button { border-inline-start: 1px solid var(--border); }
 .feeling-timbre button[aria-pressed="true"] { background: var(--text); color: var(--surface); }
-.feeling-actions { display: flex; flex-wrap: wrap; gap: 0 var(--space-3); margin-top: var(--space-2); padding-top: 0.25rem; border-top: 1px solid var(--border); }
-.feeling-link {
-  font: inherit; font-size: 0.95rem; background: none; border: 0; padding: 0; min-height: 44px;
-  color: var(--accent); cursor: pointer; text-decoration: underline; text-underline-offset: 0.18em;
+// The map: feelings laid out from dark to bright (left to right) and calm to intense (bottom to top).
+// Touch a name, or anywhere between, to hear that place.
+.feeling-map { margin-top: var(--space-2); }
+.feeling-map-hint { margin: 0 0 var(--space-2); color: var(--muted); font-size: 0.9rem; max-width: 40rem; }
+.feeling-pad {
+  position: relative; direction: ltr; width: 100%; aspect-ratio: 4 / 3;
+  border-radius: var(--radius); border: 1px solid var(--border); cursor: crosshair; touch-action: manipulation;
+  background:
+    linear-gradient(to top, color-mix(in srgb, var(--surface) 70%, transparent), transparent 55%),
+    linear-gradient(to right, color-mix(in srgb, var(--accent-2) 30%, var(--surface)), color-mix(in srgb, var(--accent) 30%, var(--surface)));
 }
-.feeling-link:hover { text-decoration-thickness: 2px; }
-.feeling-shareout { display: block; font-size: 0.75rem; color: var(--muted); overflow-wrap: anywhere; }
-.feeling-shareout:empty { display: none; }
+@media (max-width: 520px) { .feeling-pad { aspect-ratio: 1 / 1.05; } }
+.feeling-pad:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.feeling-legend {
+  direction: ltr; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 var(--space-2);
+  margin: 0.4rem 0 0; color: var(--muted); font-size: 0.8rem;
+}
+// Each label keeps its arrow beside its own word, also when the word is Persian.
+.feeling-legend span { unicode-bidi: isolate; }
+.taf-dot {
+  position: absolute; translate: -50% -50%; min-width: 44px; min-height: 44px; padding: 0.25rem 0.6rem;
+  display: grid; place-items: center; font: inherit; font-size: 0.95rem; font-weight: 600; color: var(--text);
+  background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid var(--border); border-radius: 999px; cursor: pointer;
+}
+.taf-dot:hover { border-color: var(--text); }
+.taf-dot[aria-current="true"] { background: var(--text); color: var(--surface); border-color: var(--text); }
+.taf-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.feeling-mark {
+  position: absolute; translate: -50% -50%; width: 22px; height: 22px; border-radius: 50%; pointer-events: none;
+  border: 3px solid var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); transition: left 0.25s, top 0.25s;
+}
 .feeling-note { margin: var(--space-3) 0 0; font-size: 0.8rem; line-height: 1.55; color: var(--muted); max-width: 60ch; }
 
 // Nothing moves for visitors who ask for less motion, except the opacity of the note bars

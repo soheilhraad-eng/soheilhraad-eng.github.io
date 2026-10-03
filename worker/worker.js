@@ -131,24 +131,34 @@ export default {
         temperature: 0,
       };
       if (!env.AI) throw new Error("the AI binding is missing");
-      let result;
-      try {
-        result = await env.AI.run(env.MODEL || DEFAULT_MODEL, {
-          ...input,
-          response_format: { type: "json_schema", json_schema: { name: "feeling", schema: SCHEMA, strict: true } },
-        });
-      } catch {
-        // If the model refuses the fixed format, ask once more without it. The prompt still asks
-        // for JSON, and clean() checks the answer either way.
-        result = await env.AI.run(env.MODEL || DEFAULT_MODEL, input);
+      // Try the chosen model, then a few that Workers AI has long offered. For each, first with
+      // the answer format fixed, then without. The first that answers wins.
+      const models = [env.MODEL, DEFAULT_MODEL, "@cf/meta/llama-3.1-8b-instruct-fast", "@cf/meta/llama-3.1-8b-instruct"]
+        .filter((m, i, all) => m && all.indexOf(m) === i);
+      const problems = [];
+      let result = null;
+      for (const model of models) {
+        for (const fixed of [true, false]) {
+          try {
+            result = await env.AI.run(model, fixed
+              ? { ...input, response_format: { type: "json_schema", json_schema: { name: "feeling", schema: SCHEMA, strict: true } } }
+              : input);
+            break;
+          } catch (e) {
+            problems.push(model.split("/").pop() + (fixed ? " [fixed]" : "") + ": " + String(e && e.message).slice(0, 90));
+          }
+        }
+        if (result) break;
       }
+      if (!result) throw new Error(problems.join(" | "));
       const raw = result?.choices?.[0]?.message?.content ?? result?.response ?? "";
       return json(clean(raw, text), 200, origin);
     } catch (err) {
       // Never log the text, or anything that might contain it.
       // Only the error's own message (a model or binding problem), never the visitor's text.
       console.log("classify failed:", String(err && err.message).slice(0, 200));
-      return json({ error: "unavailable", reason: env.AI ? "model" : "binding" }, 503, origin);
+      // `detail` names the model errors (never the visitor's text) to help while setting up.
+      return json({ error: "unavailable", reason: env.AI ? "model" : "binding", detail: String(err && err.message).slice(0, 400) }, 503, origin);
     }
   },
 };

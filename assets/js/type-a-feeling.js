@@ -161,6 +161,8 @@ const MODS = {
       es:['poco','algo','ligeramente','levemente'],
       fa:['کمی','یکم','کم','اندکی','نسبتا']}
 };
+/* "not happy", "no estoy triste", "نمی‌ترسم": the feeling's opposite side of the map. */
+const NEG = new Set(['not','no','never','isnt','dont','arent','cant','without','nunca','sin','ni','نه','نیستم','نیست','نمی','بدون','هرگز'].map(w=>norm(w)));
 const MOD = new Map();
 for(const [dir,langs] of Object.entries(MODS)) for(const list of Object.values(langs)) for(const w of list) MOD.set(norm(w), dir==='up' ? 1 : -1);
 
@@ -170,29 +172,32 @@ function lookup(text){
   const n = norm(text);
   if(!n) return null;
   const toks = n.split(' '), found = [];
-  let intensity = 0;
+  let intensity = 0, neg = 0, negated = false;
   const whole = LEX.get(n);
   if(whole) found.push(whole);
   else for(let i=0;i<toks.length;i++){
     let hit = null, used = 1;
     for(const len of [3,2,1]){ const k = toks.slice(i,i+len).join(' '); if(LEX.has(k)){ hit = LEX.get(k); used = len; break; } }
-    if(hit){ if(!found.some(f=>f.emo===hit.emo)) found.push(hit); i += used-1; continue; }
-    if(MOD.has(toks[i])) intensity = MOD.get(toks[i]);
+    if(hit){ if(!found.some(f=>f.emo===hit.emo)){ if(neg>0 && !found.length) negated = true; found.push(hit); } i += used-1; neg = 0; continue; }
+    if(NEG.has(toks[i])) neg = 2;
+    else if(MOD.has(toks[i])) intensity = MOD.get(toks[i]);
+    else if(neg>0) neg--;
   }
   if(!found.length) return intensity ? {emo:null,intensity} : null;
   const raw = detectLang(text);
-  return place({emo:found[0].emo, lang: raw==='fa' ? 'fa' : (raw==='es' ? 'es' : found[0].lang)}, found[1] && found[1].emo, intensity);
+  return place({emo:found[0].emo, lang: raw==='fa' ? 'fa' : (raw==='es' ? 'es' : found[0].lang)}, found[1] && found[1].emo, intensity, negated && found.length===1);
 }
 
 /* Turns a reading into a point on the map. A single plain feeling keeps its own spot (no pos). */
-function place(hit,second,intensity){
-  if(!second && !intensity) return hit;
+function place(hit,second,intensity,negated){
+  if(!second && !intensity && !negated) return hit;
   let p = second ? {v:(POS[hit.emo].v+POS[second].v)/2, a:(POS[hit.emo].a+POS[second].a)/2} : {v:POS[hit.emo].v, a:POS[hit.emo].a};
+  if(negated) p = {v:-.75*p.v, a:-.4*p.a};   // the other side of the map, and flatter
   if(intensity){ const k = intensity>0 ? 1.3 : .6; p = {v:p.v*k, a:p.a*k}; }
   p = {v:Math.max(-.95,Math.min(.95,p.v)), a:Math.max(-.95,Math.min(.95,p.a))};
   // A blend takes the character of whatever feeling lies between the two; a stronger or softer
   // feeling keeps its own character and only moves.
-  return Object.assign(hit,{pos:p, keep:!second, second, intensity});
+  return Object.assign(hit,{pos:p, keep:!second && !negated, second, intensity, negated});
 }
 
 function fnv(str){ let h=2166136261>>>0; for(let i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619)>>>0; } return h>>>0; }
@@ -347,7 +352,7 @@ function voice(e,fx,base,midi,dur,vel,gainScale){
 /* The card's one main button shows what pressing it will do: Play when silent, Stop while sounding. */
 function setPlaying(on){
   const b = $('play'), lang = current ? current.lang : PAGE_LANG;
-  b.setAttribute('aria-pressed', String(on));
+  b.dataset.playing = String(on);
   $('playLabel').textContent = T[lang][on ? 'stop' : 'play'];
 }
 function fadeOut(){
@@ -471,7 +476,7 @@ function showResult(text,hit,autoplay,v,pos){
   const lang = hit.lang, at = pos || hit.pos, p = at || POS[hit.emo];
   const key = hit.keep ? hit.emo : (at ? nearest(p.v,p.a) : hit.emo), e = synth(p.v,p.a,key);
   const names = T[lang].emotions;
-  const label = hit.second ? names[hit.emo].name + ' + ' + names[hit.second].name : names[key].name;
+  const label = hit.negated ? T[lang].not + ' ' + names[hit.emo].name : hit.second ? names[hit.emo].name + ' + ' + names[hit.second].name : names[key].name;
   const mod = !hit.second && hit.intensity ? T[lang][hit.intensity>0 ? 'intense' : 'gentle'] : '';
   const box = $('result');
   box.hidden = false; box.lang = lang; box.dir = lang==='fa' ? 'rtl' : 'ltr';
@@ -529,7 +534,7 @@ document.querySelectorAll('.taf-chip').forEach(c=>c.addEventListener('click',()=
 }));
 $('play').addEventListener('click',()=>{
   if(!current) return;
-  if($('play').getAttribute('aria-pressed')==='true') stop();
+  if($('play').dataset.playing==='true') stop();
   else { ensureAudio(); play(); }
 });
 $('take').addEventListener('click',()=>{

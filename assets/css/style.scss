@@ -277,9 +277,9 @@ pre code { background: none; padding: 0; }
   font: inherit; font-size: 0.95rem; font-weight: 600; cursor: pointer;
 }
 .feeling-play:hover { background: var(--text); color: var(--surface); }
-.feeling-play[aria-pressed="true"] { background: var(--text); color: var(--surface); }
-.feeling-play .i-stop, .feeling-play[aria-pressed="true"] .i-play { display: none; }
-.feeling-play[aria-pressed="true"] .i-stop { display: inline; }
+.feeling-play[data-playing="true"] { background: var(--text); color: var(--surface); }
+.feeling-play .i-stop, .feeling-play[data-playing="true"] .i-play { display: none; }
+.feeling-play[data-playing="true"] .i-stop { display: inline; }
 .feeling-roll { width: 100%; height: 3.5rem; display: block; }
 .feeling-roll rect { fill: var(--accent-2); opacity: 0.5; transition: opacity 0.12s; }
 .feeling-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-3); margin-top: var(--space-1); }

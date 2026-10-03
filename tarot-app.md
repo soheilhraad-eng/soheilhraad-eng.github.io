@@ -6,11 +6,8 @@ lede: "An AI-powered tarot reading app in three languages, with the original 190
 decision: "It tells you it is an AI before the reading starts, and anonymous readings are never stored."
 permalink: /projects/tarot-app/
 ref: tarot
-video:      # TODO(owner): a 30 s demo, as a YouTube id or a path under /assets/video/
-poster:     # TODO(owner): image path; also becomes this page's og:image (add the same path as image:)
 cta_label: "Try it live"
 cta_url: https://tarotx.streamlit.app
-images:     # TODO(owner): screenshots, e.g. - {src: /assets/img/projects/tarot-1.jpg, alt: "The reading table"}
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

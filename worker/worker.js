@@ -22,7 +22,7 @@ const MAX_CHARS = 40;
 const EMOTIONS = ["joy", "sadness", "calm", "fear", "anger", "tenderness", "longing", "wonder", "hope"];
 const LANGS = ["en", "es", "fa"];
 
-// The site's own address. TODO(owner): add the custom domain here once there is one.
+// The site's own address. If a custom domain is set up later, add it here too.
 const ALLOWED_ORIGINS = new Set([
   "https://soheilhrad.github.io",
   "http://localhost:4000", // jekyll serve, for previewing

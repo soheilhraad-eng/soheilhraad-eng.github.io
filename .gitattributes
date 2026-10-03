@@ -1,0 +1,8 @@
+# One line-ending rule for everyone: git stores LF, Windows checks out its own.
+* text=auto
+*.png binary
+*.jpg binary
+*.gif binary
+*.mp4 binary
+*.webm binary
+*.woff2 binary

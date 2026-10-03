@@ -6,11 +6,8 @@ lede: "Una aplicación de lecturas de tarot con IA en tres idiomas, con las ilus
 decision: "Te dice que es una IA antes de que empiece la lectura, y las lecturas anónimas nunca se guardan."
 permalink: /es/projects/tarot-app/
 ref: tarot
-video:      # TODO(owner): a 30 s demo, as a YouTube id or a path under /assets/video/
-poster:     # TODO(owner): image path; also becomes this page's og:image (add the same path as image:)
 cta_label: "Pruébalo"
 cta_url: https://tarotx.streamlit.app
-images:     # TODO(owner): screenshots, e.g. - {src: /assets/img/projects/tarot-1.jpg, alt: "The reading table"}
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

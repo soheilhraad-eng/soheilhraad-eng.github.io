@@ -6,11 +6,6 @@ lede: "Un pueblo pequeño, simulado en NetLogo. Llega gente nueva, se crean vín
 decision: "Los resultados no se asignan ni se puntúan: se leen en la red de cada persona, es decir, con quién está realmente conectada, dentro de su propia comunidad y con la comunidad de acogida."
 permalink: /es/projects/small-town/
 ref: small-town
-video:      # TODO(owner): a demo video, or leave empty and set cta_url to a NetLogo Web link
-poster:     # TODO(owner): image path; also becomes this page's og:image (add the same path as image:)
-cta_label:  # TODO(owner): e.g. Run it in the browser
-cta_url:    # TODO(owner): NetLogo Web link, if the model runs there
-images:     # TODO(owner): screenshots, e.g. - {src: /assets/img/projects/tarot-1.jpg, alt: "The reading table"}
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

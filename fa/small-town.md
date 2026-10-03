@@ -6,11 +6,6 @@ lede: "یک شهر کوچک، شبیه‌سازی‌شده در NetLogo. تاز�
 decision: "نتیجه‌ها تعیین یا نمره‌دهی نمی‌شوند، بلکه از شبکهٔ هر فرد خوانده می‌شوند: اینکه واقعاً با چه کسانی در ارتباط است، هم درون جامعهٔ خودش و هم با جامعهٔ میزبان."
 permalink: /fa/projects/small-town/
 ref: small-town
-video:      # TODO(owner): a demo video, or leave empty and set cta_url to a NetLogo Web link
-poster:     # TODO(owner): image path; also becomes this page's og:image (add the same path as image:)
-cta_label:  # TODO(owner): e.g. Run it in the browser
-cta_url:    # TODO(owner): NetLogo Web link, if the model runs there
-images:     # TODO(owner): screenshots, e.g. - {src: /assets/img/projects/tarot-1.jpg, alt: "The reading table"}
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

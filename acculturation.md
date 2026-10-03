@@ -1,16 +1,16 @@
 ---
 layout: project
-title: Small Town
+title: Acculturation
 description: A small town, simulated in NetLogo. Newcomers settle, ties form, and integration or separation emerges from host receptivity, individual preparedness and the capacity of local services.
 lede: "A small town, simulated in NetLogo. Newcomers arrive, ties form, and the town shows when settlement leads to integration and when it leads to separation."
 decision: "Outcomes are not assigned or scored. They are read from each person's network: who they are actually connected to, inside their own community and across to the host one."
-permalink: /projects/small-town/
-ref: small-town
-video:      # TODO(owner): a demo video, or leave empty and set cta_url to a NetLogo Web link
-poster:     # TODO(owner): image path; also becomes this page's og:image (add the same path as image:)
-cta_label:  # TODO(owner): e.g. Run it in the browser
-cta_url:    # TODO(owner): NetLogo Web link, if the model runs there
-images:     # TODO(owner): screenshots, e.g. - {src: /assets/img/projects/tarot-1.jpg, alt: "The reading table"}
+permalink: /projects/acculturation/
+redirect_from: /projects/small-town/
+ref: acculturation
+clip: /assets/video/acculturation-demo.mp4
+poster: /assets/img/projects/acculturation-poster.jpg
+image: /assets/img/projects/acculturation-poster.jpg
+clip_alt: "The Acculturation model running in NetLogo: agents settle on a town map while the charts show integration rising and separation falling over 500 ticks."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

@@ -101,33 +101,33 @@ const PROG = {
 
 /* Words the page knows without asking anyone. Accents and Persian variants are normalised below. */
 const WORDS = {
-  joy:{en:['joy','happy','happiness','glad','delight','cheerful','excited','elated','bliss','fun'],
-       es:['alegría','feliz','felicidad','contento','contenta','gozo','dicha','entusiasmo'],
-       fa:['شادی','خوشحال','خوشحالی','شاد','ذوق','سرور','خوشی','لذت']},
-  sadness:{en:['sad','sadness','sorrow','grief','melancholy','blue','mourning','lonely','loneliness','heartbreak'],
-       es:['triste','tristeza','pena','dolor','luto','melancolía','soledad','duelo'],
-       fa:['غم','غمگین','اندوه','غصه','ناراحت','تنهایی','سوگ','ماتم']},
-  calm:{en:['calm','peace','peaceful','serene','serenity','relaxed','still','quiet','tranquil','rest'],
-       es:['calma','paz','tranquilo','tranquilidad','serenidad','sosiego','quietud','descanso'],
-       fa:['آرامش','آرام','صلح','سکوت','آسودگی','آسوده','سکون']},
-  fear:{en:['fear','afraid','scared','anxious','anxiety','dread','worry','panic','nervous','terror','unease'],
-       es:['miedo','temor','ansiedad','pánico','nervios','angustia','inquietud'],
-       fa:['ترس','هراس','اضطراب','نگرانی','وحشت','دلهره','نگران']},
-  anger:{en:['anger','angry','rage','fury','mad','annoyed','irritated','frustration','frustrated','outrage'],
-       es:['ira','rabia','enfado','enojo','furia','frustración','indignación'],
-       fa:['خشم','عصبانی','عصبانیت','غضب','کلافه']},
-  tenderness:{en:['tender','tenderness','love','affection','warmth','care','gentle','kindness','compassion','fondness'],
-       es:['ternura','amor','cariño','calidez','dulzura','compasión','afecto'],
-       fa:['مهربانی','عشق','محبت','مهر','لطف','دلسوزی','عاطفه']},
-  longing:{en:['longing','nostalgia','nostalgic','homesick','homesickness','yearning','missing','miss','wistful','saudade'],
-       es:['añoranza','morriña','anhelo','extrañar','nostálgico','echar de menos'],
-       fa:['دلتنگی','دلتنگ','نوستالژی','حسرت','غربت','اشتیاق']},
-  wonder:{en:['wonder','awe','amazement','curiosity','marvel','astonished','surprise','inspired','fascination'],
-       es:['asombro','maravilla','admiración','curiosidad','sorpresa','fascinación'],
-       fa:['شگفتی','حیرت','تعجب','کنجکاوی','شگفت‌زده']},
-  hope:{en:['hope','hopeful','optimism','optimistic','faith'],
-       es:['esperanza','optimismo','fe','esperanzado'],
-       fa:['امید','امیدواری','امیدوار','خوش‌بینی']}
+  joy:{en:['joy','happy','happiness','glad','delight','cheerful','excited','elated','bliss','fun','joyful','thrilled','overjoyed','euphoric','proud'],
+       es:['alegría','feliz','felicidad','contento','contenta','gozo','dicha','entusiasmo','alegre','eufórico','eufórica','orgulloso','orgullosa'],
+       fa:['شادی','خوشحال','خوشحالی','شاد','ذوق','سرور','خوشی','لذت','سرخوش','هیجان‌زده','شادمان']},
+  sadness:{en:['sad','sadness','sorrow','grief','melancholy','blue','mourning','lonely','loneliness','heartbreak','down','heartbroken','depressed','gloomy','hurt','disappointed','unhappy'],
+       es:['triste','tristeza','pena','dolor','luto','melancolía','soledad','duelo','deprimido','deprimida','desanimado','desanimada','decepcionado','decepcionada','abatido'],
+       fa:['غم','غمگین','اندوه','غصه','ناراحت','تنهایی','سوگ','ماتم','افسرده','دلشکسته','دل‌گرفته','ناامید']},
+  calm:{en:['calm','peace','peaceful','serene','serenity','relaxed','still','quiet','tranquil','rest','content','chill','safe','grounded','at ease','relief'],
+       es:['calma','paz','tranquilo','tranquilidad','serenidad','sosiego','quietud','descanso','relajado','relajada','sereno','serena','a gusto','alivio'],
+       fa:['آرامش','آرام','صلح','سکوت','آسودگی','آسوده','سکون','راحت','آسوده‌خاطر','آسایش']},
+  fear:{en:['fear','afraid','scared','anxious','anxiety','dread','worry','panic','nervous','terror','unease','frightened','terrified','uneasy','tense','insecure','stressed','stress'],
+       es:['miedo','temor','ansiedad','pánico','nervios','angustia','inquietud','asustado','asustada','inseguro','insegura','tenso','tensa','preocupado','preocupada','estrés'],
+       fa:['ترس','هراس','اضطراب','نگرانی','وحشت','دلهره','نگران','ترسیده','دلشوره','استرس','مضطرب']},
+  anger:{en:['anger','angry','rage','fury','mad','annoyed','irritated','frustration','frustrated','outrage','furious','resentful','bitter','irritable','resentment'],
+       es:['ira','rabia','enfado','enojo','furia','frustración','indignación','furioso','furiosa','harto','harta','rencor','enfadado','enfadada'],
+       fa:['خشم','عصبانی','عصبانیت','غضب','کلافه','عصبی','کینه','خشمگین']},
+  tenderness:{en:['tender','tenderness','love','affection','warmth','care','gentle','kindness','compassion','fondness','loving','grateful','gratitude','cozy','caring','adore'],
+       es:['ternura','amor','cariño','calidez','dulzura','compasión','afecto','agradecido','agradecida','gratitud','cariñoso','cariñosa'],
+       fa:['مهربانی','عشق','محبت','مهر','لطف','دلسوزی','عاطفه','قدردانی','سپاسگزاری','دوست‌داشتن']},
+  longing:{en:['longing','nostalgia','nostalgic','homesick','homesickness','yearning','missing','miss','wistful','saudade','pining','yearn','missing home','miss home'],
+       es:['añoranza','morriña','anhelo','extrañar','nostálgico','echar de menos','nostalgia','echo de menos','te extraño'],
+       fa:['دلتنگی','دلتنگ','نوستالژی','حسرت','غربت','اشتیاق','دلتنگم','هوای خانه']},
+  wonder:{en:['wonder','awe','amazement','curiosity','marvel','astonished','surprise','inspired','fascination','awestruck','amazed','dreamy','mesmerized','mesmerised'],
+       es:['asombro','maravilla','admiración','curiosidad','sorpresa','fascinación','asombrado','asombrada','maravillado','maravillada','fascinado','fascinada'],
+       fa:['شگفتی','حیرت','تعجب','کنجکاوی','شگفت‌زده','مبهوت','حیرت‌زده','شگفت']},
+  hope:{en:['hope','hopeful','optimism','optimistic','faith','determined','looking forward','motivated','eager'],
+       es:['esperanza','optimismo','fe','esperanzado','ilusión','ilusionado','ilusionada','motivado','motivada'],
+       fa:['امید','امیدواری','امیدوار','خوش‌بینی','انگیزه','امیدوارم','چشم‌انتظار']}
 };
 
 function norm(s){
@@ -151,14 +151,53 @@ function detectLang(raw){
   return 'en';
 }
 
+/* Words that make a feeling stronger or softer. They move it on the map: stronger goes further from
+   the centre (very calm is calmer, very angry is angrier), softer comes closer to it. */
+const MODS = {
+  up:{en:['very','really','so','extremely','deeply','super','incredibly','totally','too','truly'],
+      es:['muy','mucho','muchisimo','tan','super','profundamente','demasiado','realmente'],
+      fa:['خیلی','بسیار','شدیدا','واقعا','عمیقا','کلی','حسابی']},
+  down:{en:['little','bit','slightly','somewhat','kinda','mildly','faintly'],
+      es:['poco','algo','ligeramente','levemente'],
+      fa:['کمی','یکم','کم','اندکی','نسبتا']}
+};
+/* "not happy", "no estoy triste", "نمی‌ترسم": the feeling's opposite side of the map. */
+const NEG = new Set(['not','no','never','isnt','dont','arent','cant','without','nunca','sin','ni','نه','نیستم','نیست','نمی','بدون','هرگز'].map(w=>norm(w)));
+const MOD = new Map();
+for(const [dir,langs] of Object.entries(MODS)) for(const list of Object.values(langs)) for(const w of list) MOD.set(norm(w), dir==='up' ? 1 : -1);
+
+/* Reads a phrase: which feelings it names (one, or two for a blend), and how strongly.
+   Same text always gives the same reading, so a shared link plays the same piece. */
 function lookup(text){
   const n = norm(text);
   if(!n) return null;
-  let hit = LEX.get(n);
-  if(!hit) for(const tok of n.split(' ')){ if(LEX.has(tok)){ hit = LEX.get(tok); break; } }
-  if(!hit) return null;
+  const toks = n.split(' '), found = [];
+  let intensity = 0, neg = 0, negated = false;
+  const whole = LEX.get(n);
+  if(whole) found.push(whole);
+  else for(let i=0;i<toks.length;i++){
+    let hit = null, used = 1;
+    for(const len of [3,2,1]){ const k = toks.slice(i,i+len).join(' '); if(LEX.has(k)){ hit = LEX.get(k); used = len; break; } }
+    if(hit){ if(!found.some(f=>f.emo===hit.emo)){ if(neg>0 && !found.length) negated = true; found.push(hit); } i += used-1; neg = 0; continue; }
+    if(NEG.has(toks[i])) neg = 2;
+    else if(MOD.has(toks[i])) intensity = MOD.get(toks[i]);
+    else if(neg>0) neg--;
+  }
+  if(!found.length) return intensity ? {emo:null,intensity} : null;
   const raw = detectLang(text);
-  return {emo:hit.emo, lang: raw==='fa' ? 'fa' : (raw==='es' ? 'es' : hit.lang)};
+  return place({emo:found[0].emo, lang: raw==='fa' ? 'fa' : (raw==='es' ? 'es' : found[0].lang)}, found[1] && found[1].emo, intensity, negated && found.length===1);
+}
+
+/* Turns a reading into a point on the map. A single plain feeling keeps its own spot (no pos). */
+function place(hit,second,intensity,negated){
+  if(!second && !intensity && !negated) return hit;
+  let p = second ? {v:(POS[hit.emo].v+POS[second].v)/2, a:(POS[hit.emo].a+POS[second].a)/2} : {v:POS[hit.emo].v, a:POS[hit.emo].a};
+  if(negated) p = {v:-.75*p.v, a:-.4*p.a};   // the other side of the map, and flatter
+  if(intensity){ const k = intensity>0 ? 1.3 : .6; p = {v:p.v*k, a:p.a*k}; }
+  p = {v:Math.max(-.95,Math.min(.95,p.v)), a:Math.max(-.95,Math.min(.95,p.a))};
+  // A blend takes the character of whatever feeling lies between the two; a stronger or softer
+  // feeling keeps its own character and only moves.
+  return Object.assign(hit,{pos:p, keep:!second && !negated, second, intensity, negated});
 }
 
 function fnv(str){ let h=2166136261>>>0; for(let i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619)>>>0; } return h>>>0; }
@@ -310,11 +349,30 @@ function voice(e,fx,base,midi,dur,vel,gainScale){
   }
 }
 
+/* The card's one main button shows what pressing it will do: Play when silent, Stop while sounding. */
+function setPlaying(on){
+  const b = $('play'), lang = current ? current.lang : PAGE_LANG;
+  b.dataset.playing = String(on);
+  $('playLabel').textContent = T[lang][on ? 'stop' : 'play'];
+}
+function fadeOut(){
+  if(!bus || !AC) return;
+  const old = bus, now = AC.currentTime;
+  old.gain.cancelScheduledValues(now); old.gain.setTargetAtTime(0,now,.03);
+  setTimeout(()=>old.disconnect(),400);
+  bus = null;
+}
+function stop(){
+  playId++; fadeOut(); setPlaying(false);
+  document.querySelectorAll('#taf-roll rect').forEach(r=>r.style.opacity=.55);
+}
+
 function play(){
   if(!current || !ensureAudio()) return;
   const {phrase,key,e} = current, lead = leadVoice(e,timbre), now = AC.currentTime;
-  if(bus){ bus.gain.cancelScheduledValues(now); bus.gain.setTargetAtTime(0,now,.03); }
+  fadeOut();
   bus = AC.createGain(); bus.connect(master);
+  setPlaying(true);
   const fx = makeFx(lead,bus), base = now + .1, id = ++playId;
   phrase.notes.forEach(n=>{
     voice(lead,fx,base+n.t,n.midi,n.dur,n.vel,1);
@@ -342,7 +400,7 @@ function play(){
     const t = AC.currentTime - base;
     rects.forEach((r,i)=>{ const n = phrase.notes[i]; r.style.opacity = (t>=n.t && t<n.t+n.dur*.98) ? 1 : .45; });
     if(t < phrase.total+1.5) requestAnimationFrame(frame);
-    else rects.forEach(r=>r.style.opacity=.55);
+    else { rects.forEach(r=>r.style.opacity=.55); setPlaying(false); }
   })();
 }
 
@@ -415,17 +473,24 @@ PAD.addEventListener('keydown',ev=>{
 });
 
 function showResult(text,hit,autoplay,v,pos){
-  const lang = hit.lang, p = pos || POS[hit.emo], key = pos ? nearest(p.v,p.a) : hit.emo, e = synth(p.v,p.a,key);
+  const lang = hit.lang, at = pos || hit.pos, p = at || POS[hit.emo];
+  const key = hit.keep ? hit.emo : (at ? nearest(p.v,p.a) : hit.emo), e = synth(p.v,p.a,key);
+  const names = T[lang].emotions;
+  const label = hit.negated ? T[lang].not + ' ' + names[hit.emo].name : hit.second ? names[hit.emo].name + ' + ' + names[hit.second].name : names[key].name;
+  const mod = !hit.second && hit.intensity ? T[lang][hit.intensity>0 ? 'intense' : 'gentle'] : '';
   const box = $('result');
   box.hidden = false; box.lang = lang; box.dir = lang==='fa' ? 'rtl' : 'ltr';
   hit = {emo:key,lang};
   current = {text,key,lang,v:v||0,pos:p,e,phrase:buildPhrase(text,key,v||0,e)};
   moveMarker(p);
+  // The nearest feeling on the map is marked, so the map and the answer always agree.
+  document.querySelectorAll('.taf-dot').forEach(d=>d.setAttribute('aria-current', String(d.dataset.k===key)));
   drawRoll(current.phrase);
-  $('emo').textContent = T[lang].emotions[hit.emo].name;
+  $('emo').textContent = label;
+  if(mod){ const m = document.createElement('span'); m.className = 'feeling-emo-mod'; m.textContent = ' · ' + mod; $('emo').appendChild(m); }
   $('cue').textContent = T[lang].emotions[hit.emo].cue;
   $('meta').textContent = T[lang].modes[e.scale] + ' · ' + localDigits(e.bpm,lang) + ' bpm';
-  $('again').textContent = autoplay ? T[lang].again : T[lang].hear;
+  if(!autoplay){ playId++; setPlaying(false); }
   $('share').textContent = T[lang].share;
   $('take').textContent = T[lang].take;
   $('soundLabel').textContent = T[lang].sound;
@@ -444,18 +509,19 @@ async function handle(raw,autoplay=true,localOnly=false,v=0){
   const text = raw.trim().slice(0,40);
   if(!text) return;
   $('status').textContent = '';
-  let hit = lookup(text);
+  let hit = lookup(text), intensity = 0;
+  if(hit && !hit.emo){ intensity = hit.intensity; hit = null; }  // "very …" with a word the page doesn't know
   if(!hit && localOnly){ $('status').textContent = ''; return; }
   if(!hit){
     $('status').textContent = '…';
     const ai = localOnly ? null : await remoteClassify(text);
     if(ai && ai.emotion && EMO[ai.emotion]){
       const l = ['en','es','fa'].includes(ai.lang) ? ai.lang : detectLang(text);
-      hit = {emo:ai.emotion,lang:l};
+      hit = place({emo:ai.emotion,lang:l}, null, intensity);
     }
   }
   if(!hit){
-    $('result').hidden = true; playId++;
+    stop(); $('result').hidden = true;
     $('status').textContent = T[PAGE_LANG].unknown;
     return;
   }
@@ -466,7 +532,11 @@ $('form').addEventListener('submit',ev=>{ ev.preventDefault(); ensureAudio(); ha
 document.querySelectorAll('.taf-chip').forEach(c=>c.addEventListener('click',()=>{
   $('feeling').value = c.dataset.w; ensureAudio(); handle(c.dataset.w);
 }));
-$('again').addEventListener('click',()=>{ ensureAudio(); play(); $('again').textContent = T[current.lang].again; });
+$('play').addEventListener('click',()=>{
+  if(!current) return;
+  if($('play').dataset.playing==='true') stop();
+  else { ensureAudio(); play(); }
+});
 $('take').addEventListener('click',()=>{
   if(!current) return;
   ensureAudio();
@@ -494,6 +564,7 @@ try{
   if(mp){
     const p = {v:Math.max(-1,Math.min(1,+mp[1]/100)), a:Math.max(-1,Math.min(1,+mp[2]/100))}, ms = location.hash.match(/s=(keys|strings)/);
     if(ms) timbre = ms[1];
+    PAD.closest('details').open = true;
     showResult('p:'+Math.round(p.v*20)+','+Math.round(p.a*20),{emo:nearest(p.v,p.a),lang:PAGE_LANG},false,0,p);
   } else if(m){
     const w = decodeURIComponent(m[1]), mv = location.hash.match(/v=(\d+)/), ms = location.hash.match(/s=(keys|strings)/);

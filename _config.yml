@@ -12,9 +12,8 @@ author:
   name: dos
   github: soheilhrad
 
-# TODO(owner): a contact address. The "Write to us" line on the home page stays hidden
-# while this is empty.
-email: ""
+# The contact address. The "Write to us" line on the home page stays hidden if this is empty.
+email: "sohihrad@outlook.com"
 
 # The Worker that classifies words "Type a feeling" doesn't know (see worker/README.md).
 # Empty = unknown words are simply not understood, and nothing is ever sent.
@@ -26,6 +25,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 # Every page names its language (`lang`) and a shared `ref`; pages with the same `ref` are
 # translations of each other, which is how the language switcher finds them. English is the

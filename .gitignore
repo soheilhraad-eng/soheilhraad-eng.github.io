@@ -8,3 +8,6 @@ vendor/
 Gemfile.lock
 # Private to-do list and working notes. This repo is public; these stay on your computer.
 NOTES.md
+# Local-only tooling and unpublished post kits. This repo is public.
+_kits/
+.claude/

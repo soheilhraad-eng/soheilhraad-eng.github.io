@@ -6,11 +6,6 @@ lede: "معلم آفلاین اسپانیایی برای مبتدی‌های م�
 decision: "وقتی نمی‌شود به مدل اعتماد کرد که چیزی را درست تولید کند، خود اپلیکیشن آن را تولید می‌کند: صرف فعل‌ها، تصحیح تمرین‌ها و انتخاب زبان توضیح از کد می‌آیند، نه از مدل."
 permalink: /fa/projects/camino/
 ref: camino
-video:      # TODO(owner): a 60-90 s demo, as a YouTube id or a path under /assets/video/
-poster:     # TODO(owner): image path; also becomes this page's og:image (add the same path as image:)
-cta_label:  # TODO(owner): e.g. Download
-cta_url:    # TODO(owner): the download address
-images:     # TODO(owner): screenshots, e.g. - {src: /assets/img/projects/tarot-1.jpg, alt: "The reading table"}
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

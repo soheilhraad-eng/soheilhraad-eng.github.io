@@ -10,6 +10,9 @@ else is folded in <details>, closed by default, with no script. Front matter:
   poster      an image path: the video's still frame (also set `image:` to the same path for the
               link preview)
   images      a list of {src, alt}: screenshots in a swipeable strip under the video
+  clip        a short silent looping .mp4 under /assets/video/ (a screen recording); plays only when
+              visible and never for people who prefer reduced motion. Needs `poster` and `clip_alt`
+  clip_alt    what the clip shows, for screen readers
   cta_label / cta_url   the button (empty = no button)
 Nothing is requested from a third party until the visitor clicks play.
 {%- endcomment -%}
@@ -22,7 +25,7 @@ Nothing is requested from a third party until the visitor clicks play.
   {%- if page.lede %}
   <p class="lede">{{ page.lede }}</p>
   {%- endif %}
-  {%- if video != "" or page.cta_url %}
+  {%- if video != "" or page.clip or page.cta_url %}
   <div class="project-media">
     {%- if video != "" and local_video %}
     <video class="project-video" controls preload="none"{% if page.poster %} poster="{{ page.poster | relative_url }}"{% endif %}>
@@ -39,6 +42,21 @@ Nothing is requested from a third party until the visitor clicks play.
       </button>
     </div>
     <script src="{{ '/assets/js/video.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+    {%- endif %}
+    {%- if page.clip %}
+    <video class="project-clip" muted loop playsinline controls preload="none" aria-label="{{ page.clip_alt | escape }}"{% if page.poster %} poster="{{ page.poster | relative_url }}"{% endif %}>
+      <source src="{{ page.clip | relative_url }}" type="video/mp4">
+    </video>
+    <script>
+    (function () {
+      var v = document.querySelector('.project-clip');
+      if (!v || !('IntersectionObserver' in window)) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      new IntersectionObserver(function (e) {
+        e.forEach(function (x) { if (x.isIntersecting) { v.play().catch(function () {}); } else { v.pause(); } });
+      }, { threshold: 0.5 }).observe(v);
+    })();
+    </script>
     {%- endif %}
     {%- if page.cta_url and page.cta_label %}
     <p class="project-cta"><a class="button" href="{{ page.cta_url }}">{{ page.cta_label }} {{ t.arrow }}</a></p>

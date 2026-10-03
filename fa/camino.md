@@ -7,10 +7,9 @@ decision: "وقتی نمی‌شود به مدل اعتماد کرد که چیز�
 permalink: /fa/projects/camino/
 ref: camino
 clip: /assets/video/camino-demo.mp4
-clip_portrait: true
 poster: /assets/img/projects/camino-poster.jpg
 image: /assets/img/projects/camino-poster.jpg
-clip_alt: "Camino روی گوشی: انتخاب زبان توضیح‌ها و یک نام، کارت درس دربارهٔ املای اسپانیایی، توضیح معلم دربارهٔ تیلده به اسپانیایی و انگلیسی، و یک تمرین که درست پاسخ داده می‌شود."
+clip_alt: "Camino روی گوشی، سه لحظه کنار هم: کارت درس املا، توضیح معلم دربارهٔ تیلده، و یک تمرین که درست پاسخ داده می‌شود."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

@@ -7,10 +7,9 @@ decision: "Cuando no se puede confiar en que el modelo produzca algo, lo produce
 permalink: /es/projects/camino/
 ref: camino
 clip: /assets/video/camino-demo.mp4
-clip_portrait: true
 poster: /assets/img/projects/camino-poster.jpg
 image: /assets/img/projects/camino-poster.jpg
-clip_alt: "Camino en un móvil: elegir el idioma de las explicaciones y un nombre, una tarjeta de lección sobre ortografía española, la tutora explicando la tilde en español e inglés y un ejercicio respondido correctamente."
+clip_alt: "Camino en un móvil, tres momentos en paralelo: una tarjeta de lección sobre ortografía, la tutora explicando la tilde y un ejercicio respondido correctamente."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

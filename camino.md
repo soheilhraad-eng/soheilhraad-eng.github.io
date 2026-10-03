@@ -7,10 +7,9 @@ decision: "When the model cannot be relied on to produce something, the app prod
 permalink: /projects/camino/
 ref: camino
 clip: /assets/video/camino-demo.mp4
-clip_portrait: true
 poster: /assets/img/projects/camino-poster.jpg
 image: /assets/img/projects/camino-poster.jpg
-clip_alt: "Camino on a phone: choosing the language of explanations and a name, a lesson card on Spanish spelling, the tutor explaining the tilde in Spanish and English, and an exercise answered correctly."
+clip_alt: "Camino on a phone, three moments side by side: a lesson card on Spanish spelling, the tutor explaining the tilde, and an exercise answered correctly."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

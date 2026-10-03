@@ -34,7 +34,7 @@ jobs:
       - name: Check the head tags
         run: |
           fail=0
-          for f in _site/index.html _site/es/index.html _site/fa/index.html _site/projects/tarot-app/index.html _site/es/projects/camino/index.html _site/fa/projects/small-town/index.html; do
+          for f in _site/index.html _site/es/index.html _site/fa/index.html _site/projects/tarot-app/index.html _site/es/projects/camino/index.html _site/fa/projects/acculturation/index.html; do
             echo "== $f"
             grep -o "<title>[^<]*</title>" "$f" || { echo "::error::no <title> in $f"; fail=1; }
             grep -o "<html[^>]*>" "$f"
@@ -48,7 +48,7 @@ jobs:
 
       - name: Every old address still exists
         run: |
-          for p in blog about projects projects/tarot-app projects/camino projects/small-town es es/blog es/about es/projects es/projects/tarot-app es/projects/camino es/projects/small-town fa fa/blog fa/about fa/projects fa/projects/tarot-app fa/projects/camino fa/projects/small-town blog/2025/11/the-wall-of-paper es/blog/2025/11/the-wall-of-paper fa/blog/2025/11/the-wall-of-paper; do
+          for p in blog about projects projects/tarot-app projects/camino projects/acculturation es es/blog es/about es/projects es/projects/tarot-app es/projects/camino es/projects/acculturation fa fa/blog fa/about fa/projects fa/projects/tarot-app fa/projects/camino fa/projects/acculturation blog/2025/11/the-wall-of-paper es/blog/2025/11/the-wall-of-paper fa/blog/2025/11/the-wall-of-paper; do
             test -f "_site/$p/index.html" || { echo "::error::missing /$p/"; exit 1; }
           done
           test -f _site/404.html

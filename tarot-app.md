@@ -8,6 +8,10 @@ permalink: /projects/tarot-app/
 ref: tarot
 cta_label: "Try it live"
 cta_url: https://tarotx.streamlit.app
+clip: /assets/video/tarot-demo.mp4
+poster: /assets/img/projects/tarot-poster.jpg
+image: /assets/img/projects/tarot-poster.jpg
+clip_alt: "A reading in the Digital Tarot Sanctuary: the interface switches to Persian, a five-card horseshoe spread appears, and the oracle's written synthesis plays aloud."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

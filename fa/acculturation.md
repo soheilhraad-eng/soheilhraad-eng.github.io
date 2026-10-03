@@ -1,11 +1,16 @@
 ---
 layout: project
-title: Small Town
+title: Acculturation
 description: یک شهر کوچک، شبیه‌سازی‌شده در NetLogo. تازه‌واردها ساکن می‌شوند، پیوندها شکل می‌گیرند، و یکپارچگی یا جدایی از پذیرندگی ساکنان، آمادگی فردی و ظرفیت خدمات محلی پدید می‌آید.
 lede: "یک شهر کوچک، شبیه‌سازی‌شده در NetLogo. تازه‌واردها از راه می‌رسند، پیوندها شکل می‌گیرند، و شهر نشان می‌دهد اسکان چه زمانی به یکپارچگی می‌انجامد و چه زمانی به جدایی."
 decision: "نتیجه‌ها تعیین یا نمره‌دهی نمی‌شوند، بلکه از شبکهٔ هر فرد خوانده می‌شوند: اینکه واقعاً با چه کسانی در ارتباط است، هم درون جامعهٔ خودش و هم با جامعهٔ میزبان."
-permalink: /fa/projects/small-town/
-ref: small-town
+permalink: /fa/projects/acculturation/
+redirect_from: /fa/projects/small-town/
+ref: acculturation
+clip: /assets/video/acculturation-demo.mp4
+poster: /assets/img/projects/acculturation-poster.jpg
+image: /assets/img/projects/acculturation-poster.jpg
+clip_alt: "مدل Acculturation در NetLogo: عامل‌ها در نقشهٔ یک شهر مستقر می‌شوند و نمودارها نشان می‌دهند یکپارچگی بالا و جدایی پایین می‌رود (۵۰۰ تیک)."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

@@ -8,6 +8,10 @@ permalink: /es/projects/tarot-app/
 ref: tarot
 cta_label: "Pruébalo"
 cta_url: https://tarotx.streamlit.app
+clip: /assets/video/tarot-demo.mp4
+poster: /assets/img/projects/tarot-poster.jpg
+image: /assets/img/projects/tarot-poster.jpg
+clip_alt: "Una lectura en el Digital Tarot Sanctuary: la interfaz cambia a persa, aparece una tirada de herradura de cinco cartas y se reproduce en voz alta la síntesis escrita de la oráculo."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

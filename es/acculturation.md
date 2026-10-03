@@ -1,11 +1,16 @@
 ---
 layout: project
-title: Small Town
+title: Acculturation
 description: Un pueblo pequeño, simulado en NetLogo. Llegan recién llegados, se crean vínculos y la integración o la separación surgen de la receptividad de los vecinos, la preparación individual y la capacidad de los servicios locales.
 lede: "Un pueblo pequeño, simulado en NetLogo. Llega gente nueva, se crean vínculos y el pueblo muestra cuándo el asentamiento lleva a la integración y cuándo a la separación."
 decision: "Los resultados no se asignan ni se puntúan: se leen en la red de cada persona, es decir, con quién está realmente conectada, dentro de su propia comunidad y con la comunidad de acogida."
-permalink: /es/projects/small-town/
-ref: small-town
+permalink: /es/projects/acculturation/
+redirect_from: /es/projects/small-town/
+ref: acculturation
+clip: /assets/video/acculturation-demo.mp4
+poster: /assets/img/projects/acculturation-poster.jpg
+image: /assets/img/projects/acculturation-poster.jpg
+clip_alt: "El modelo Acculturation en NetLogo: los agentes se asientan en el mapa de un pueblo mientras los gráficos muestran cómo sube la integración y baja la separación a lo largo de 500 ticks."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

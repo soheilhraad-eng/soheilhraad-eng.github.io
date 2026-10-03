@@ -8,6 +8,10 @@ permalink: /fa/projects/tarot-app/
 ref: tarot
 cta_label: "امتحانش کنید"
 cta_url: https://tarotx.streamlit.app
+clip: /assets/video/tarot-demo.mp4
+poster: /assets/img/projects/tarot-poster.jpg
+image: /assets/img/projects/tarot-poster.jpg
+clip_alt: "یک فال در پناهگاه دیجیتال تاروت: رابط به فارسی تغییر می‌کند، چیدمان نعل اسبی پنج‌کارتی ظاهر می‌شود و جمع‌بندی نوشتهٔ فالگیر با صدا خوانده می‌شود."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

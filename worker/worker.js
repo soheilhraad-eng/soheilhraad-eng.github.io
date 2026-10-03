@@ -2,7 +2,7 @@
 //
 // The page knows about 200 feeling words in English, Spanish and Persian and matches those on
 // the visitor's own device. For any other word it asks this Worker, which asks Cloudflare's own
-// AI (Google's Gemma 4, through the `AI` binding: there is no API key anywhere) which of nine
+// AI (Google's Gemma, through the `AI` binding: there is no API key anywhere) which of nine
 // feelings the word is closest to.
 //
 // The contract, and nothing else:
@@ -17,7 +17,10 @@
 //   - the text is never logged or stored, and nothing but the two fields above is returned
 // On the Workers Free plan, usage past the daily free allowance fails instead of being billed.
 
-const MODEL = "@cf/google/gemma-4-26b-a4b-it";
+// Which AI model answers. Workers AI has no default, so one must be named. To switch without
+// editing code, add a Worker variable called MODEL (Settings → Variables) with another name
+// from developers.cloudflare.com/workers-ai/models/.
+const DEFAULT_MODEL = "@cf/google/gemma-3-12b-it";
 const MAX_CHARS = 40;
 const EMOTIONS = ["joy", "sadness", "calm", "fear", "anger", "tenderness", "longing", "wonder", "hope"];
 const LANGS = ["en", "es", "fa"];
@@ -102,6 +105,8 @@ export default {
     const origin = request.headers.get("Origin") || "";
 
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(origin) });
+    // Opening the address in a browser shows this: proof the Worker is deployed.
+    if (request.method === "GET") return json({ ok: true, model: env.MODEL || DEFAULT_MODEL, ai: !!env.AI }, 200, origin);
     if (request.method !== "POST") return json({ error: "method" }, 405, origin);
     if (!ALLOWED_ORIGINS.has(origin)) return json({ error: "origin" }, 403, origin);
 
@@ -124,25 +129,35 @@ export default {
         ],
         max_tokens: 40,
         temperature: 0,
-        chat_template_kwargs: { enable_thinking: false },
       };
-      let result;
-      try {
-        result = await env.AI.run(MODEL, {
-          ...input,
-          response_format: { type: "json_schema", json_schema: { name: "feeling", schema: SCHEMA, strict: true } },
-        });
-      } catch {
-        // If the model refuses the fixed format, ask once more without it. The prompt still asks
-        // for JSON, and clean() checks the answer either way.
-        result = await env.AI.run(MODEL, input);
+      if (!env.AI) throw new Error("the AI binding is missing");
+      // Try the chosen model, then a few that Workers AI has long offered. For each, first with
+      // the answer format fixed, then without. The first that answers wins.
+      const models = [env.MODEL, DEFAULT_MODEL, "@cf/meta/llama-3.1-8b-instruct-fast", "@cf/meta/llama-3.1-8b-instruct"]
+        .filter((m, i, all) => m && all.indexOf(m) === i);
+      const problems = [];
+      let result = null;
+      for (const model of models) {
+        for (const fixed of [true, false]) {
+          try {
+            result = await env.AI.run(model, fixed
+              ? { ...input, response_format: { type: "json_schema", json_schema: { name: "feeling", schema: SCHEMA, strict: true } } }
+              : input);
+            break;
+          } catch (e) {
+            problems.push(model.split("/").pop() + (fixed ? " [fixed]" : "") + ": " + String(e && e.message).slice(0, 90));
+          }
+        }
+        if (result) break;
       }
+      if (!result) throw new Error(problems.join(" | "));
       const raw = result?.choices?.[0]?.message?.content ?? result?.response ?? "";
       return json(clean(raw, text), 200, origin);
     } catch (err) {
       // Never log the text, or anything that might contain it.
-      console.log("classify failed");
-      return json({ error: "unavailable" }, 503, origin);
+      // Only the error's own message (a model or binding problem), never the visitor's text.
+      console.log("classify failed:", String(err && err.message).slice(0, 400));
+      return json({ error: "unavailable", reason: env.AI ? "model" : "binding" }, 503, origin);
     }
   },
 };

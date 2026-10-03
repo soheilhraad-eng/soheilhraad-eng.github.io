@@ -6,6 +6,11 @@ lede: "معلم آفلاین اسپانیایی برای مبتدی‌های م�
 decision: "وقتی نمی‌شود به مدل اعتماد کرد که چیزی را درست تولید کند، خود اپلیکیشن آن را تولید می‌کند: صرف فعل‌ها، تصحیح تمرین‌ها و انتخاب زبان توضیح از کد می‌آیند، نه از مدل."
 permalink: /fa/projects/camino/
 ref: camino
+clip: /assets/video/camino-demo.mp4
+clip_portrait: true
+poster: /assets/img/projects/camino-poster.jpg
+image: /assets/img/projects/camino-poster.jpg
+clip_alt: "Camino روی گوشی: انتخاب زبان توضیح‌ها و یک نام، کارت درس دربارهٔ املای اسپانیایی، توضیح معلم دربارهٔ تیلده به اسپانیایی و انگلیسی، و یک تمرین که درست پاسخ داده می‌شود."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

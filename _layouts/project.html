@@ -12,6 +12,7 @@ else is folded in <details>, closed by default, with no script. Front matter:
   images      a list of {src, alt}: screenshots in a swipeable strip under the video
   clip        a short silent looping .mp4 under /assets/video/ (a screen recording); plays only when
               visible and never for people who prefer reduced motion. Needs `poster` and `clip_alt`
+  clip_portrait  true for a phone recording: shown narrower and centred
   clip_alt    what the clip shows, for screen readers
   cta_label / cta_url   the button (empty = no button)
 Nothing is requested from a third party until the visitor clicks play.
@@ -44,7 +45,7 @@ Nothing is requested from a third party until the visitor clicks play.
     <script src="{{ '/assets/js/video.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
     {%- endif %}
     {%- if page.clip %}
-    <video class="project-clip" muted loop playsinline controls preload="none" aria-label="{{ page.clip_alt | escape }}"{% if page.poster %} poster="{{ page.poster | relative_url }}"{% endif %}>
+    <video class="project-clip{% if page.clip_portrait %} is-portrait{% endif %}" muted loop playsinline controls preload="none" aria-label="{{ page.clip_alt | escape }}"{% if page.poster %} poster="{{ page.poster | relative_url }}"{% endif %}>
       <source src="{{ page.clip | relative_url }}" type="video/mp4">
     </video>
     <script>

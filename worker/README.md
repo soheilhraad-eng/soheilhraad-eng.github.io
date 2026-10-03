@@ -2,7 +2,7 @@
 
 "Type a feeling" on the home page knows about 200 feeling words and matches those on the
 visitor's own device. For any other word it asks this small program, which runs on Cloudflare
-Workers (free) and asks Cloudflare's own AI (Google's Gemma 4) which of nine feelings the word
+Workers (free) and asks Cloudflare's own AI (Google's Gemma) which of nine feelings the word
 is closest to. There's no API key anywhere: the model is reached through a Cloudflare
 "binding" instead.
 

@@ -130,6 +130,7 @@ export default {
         max_tokens: 40,
         temperature: 0,
       };
+      if (!env.AI) throw new Error("the AI binding is missing");
       let result;
       try {
         result = await env.AI.run(env.MODEL || DEFAULT_MODEL, {
@@ -145,8 +146,9 @@ export default {
       return json(clean(raw, text), 200, origin);
     } catch (err) {
       // Never log the text, or anything that might contain it.
-      console.log("classify failed");
-      return json({ error: "unavailable" }, 503, origin);
+      // Only the error's own message (a model or binding problem), never the visitor's text.
+      console.log("classify failed:", String(err && err.message).slice(0, 200));
+      return json({ error: "unavailable", reason: env.AI ? "model" : "binding" }, 503, origin);
     }
   },
 };

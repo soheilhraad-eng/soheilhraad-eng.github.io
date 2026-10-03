@@ -6,6 +6,11 @@ lede: "An offline Spanish tutor for absolute beginners. Twenty-five lessons, a y
 decision: "When the model cannot be relied on to produce something, the app produces it instead: conjugations, exercise marking and which language to explain in all come from code, not from the model."
 permalink: /projects/camino/
 ref: camino
+clip: /assets/video/camino-demo.mp4
+clip_portrait: true
+poster: /assets/img/projects/camino-poster.jpg
+image: /assets/img/projects/camino-poster.jpg
+clip_alt: "Camino on a phone: choosing the language of explanations and a name, a lesson card on Spanish spelling, the tutor explaining the tilde in Spanish and English, and an exercise answered correctly."
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
 

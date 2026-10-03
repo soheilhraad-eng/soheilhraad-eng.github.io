@@ -156,9 +156,8 @@ export default {
     } catch (err) {
       // Never log the text, or anything that might contain it.
       // Only the error's own message (a model or binding problem), never the visitor's text.
-      console.log("classify failed:", String(err && err.message).slice(0, 200));
-      // `detail` names the model errors (never the visitor's text) to help while setting up.
-      return json({ error: "unavailable", reason: env.AI ? "model" : "binding", detail: String(err && err.message).slice(0, 400) }, 503, origin);
+      console.log("classify failed:", String(err && err.message).slice(0, 400));
+      return json({ error: "unavailable", reason: env.AI ? "model" : "binding" }, 503, origin);
     }
   },
 };
